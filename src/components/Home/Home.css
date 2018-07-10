@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+.component-home{
+    font-family: 'Oswald', 'Arial', sans-serif;
+}
+
+/* Header Styles */
+.header{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) ,url('./images/lorry-mountains-nature-93398.jpg');
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+    position: relative;
+}
+
+.header-nav{
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.header-nav-logo{
+    color: white;
+}
+
+.link:link,
+.link:active{
+    color: #F6F6F6;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.btn-login{
+    background-color: #3A80B2;
+    font-size: 1.25rem;
+    color: #F6F6F6;
+    position: relative;
+    top: 5px;
+}
+
+/* .header-hero{
+    position: relative;
+    top: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid red
+} */
+
+.header-hero{
+    color: #F6F6F6;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-hero h1{
+    margin-bottom: 1.5rem;
+}
+
