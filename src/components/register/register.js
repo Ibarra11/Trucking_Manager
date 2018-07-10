@@ -1,6 +1,30 @@
 import React, { Component } from 'react';
-import './register.css';
+import './Register.css';
+import axios from 'axios';
 class Register extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            accountType: 'premium',
+            username: '',
+            email: '',
+            password: ''
+        }
+    }
+    onChangeInput = event => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
+    onChangeSelect = event => {
+        this.setState({ accountType: event.target.value })
+    }
+    registerUser = event => {
+        event.preventDefault();
+        let { accountType, username, password, email } = this.state
+        axios.post('/api/auth/register', { accountType, username, password, email })
+            .then(() => this.props.history.push('/dashboard'))
+    }
     render() {
         return (
             <div className="component-register">
@@ -12,29 +36,29 @@ class Register extends Component {
                         <button onClick={() => this.props.history.goBack()}>Back</button>
                     </div>
                 </nav>
-                <form className="register-form">
+                <form onSubmit={this.registerUser} className="register-form">
                     <div className="form-header">
                         <h1>Join Trucking Manager</h1>
                     </div>
                     <div className="form-group">
                         <h6>Account Type</h6>
-                        <select className="form-control" name="" id="">
+                        <select onChange={this.onChangeSelect} className="form-control" name="" id="">
                             <option value="premium">Premium</option>
                             <option value="Pro">Pro</option>
                             <option value="basic">Basic</option>
                         </select>
                     </div>
                     <div className="form-group">
-                        <h6>First Name</h6>
-                        <input className="form-control" type="text" />
+                        <h6>Username</h6>
+                        <input name='username' value={this.state.username} onChange={this.onChangeInput} className="form-control" type="text" />
                     </div>
                     <div className="form-group">
-                        <h6>Last Name</h6>
-                        <input className="form-control" type="text" />
+                        <h6>Password</h6>
+                        <input name='password' value={this.state.password} onChange={this.onChangeInput} className="form-control" type="password" />
                     </div>
                     <div className="form-group">
                         <h6>Email</h6>
-                        <input className="form-control" type="email" />
+                        <input name='email' value={this.state.email} onChange={this.onChangeInput} className="form-control" type="email" />
                     </div>
                     <div className="form-button">
                         <button className="btn btn-primary">Register</button>
