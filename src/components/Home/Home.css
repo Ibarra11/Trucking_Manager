@@ -118,3 +118,16 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
+
+.card-register{
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-register{
+    background-color: #FFA400;
+    width: 50%;
+    border-radius: 5px;
+    font-size: 1.25rem;
+}

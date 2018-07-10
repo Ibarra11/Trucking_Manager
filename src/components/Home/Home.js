@@ -101,22 +101,8 @@ class Home extends Component {
                                             <li>Expense Reports</li>
                                             </ul>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                <div className="card">
-                                        <div className="card-heading">
-                                            <h3 className="card-heading-primary">Premium</h3>
-                                            <p className="card-heading-secondary">$39.99</p>
-                                        </div>
-                                        <div className="card-body">
-                                            <ul className="feature-list">
-                                            <li>Payroll</li>
-                                            <li>Fuel Tracker</li>
-                                            <li>Navigation</li>
-                                            <li>IFTA</li>
-                                            <li>Expense Reports</li>
-                                            </ul>
+                                        <div className="card-register">
+                                            <button className="btn btn-register" onClick={() => this.props.history.push('/register')}>Purchase</button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,6 +120,29 @@ class Home extends Component {
                                             <li>IFTA</li>
                                             <li>Expense Reports</li>
                                             </ul>
+                                        </div>
+                                        <div className="card-register">
+                                            <button className="btn btn-register" onClick={() => this.props.history.push('/register')}>Purchase</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                <div className="card">
+                                        <div className="card-heading">
+                                            <h3 className="card-heading-primary">Premium</h3>
+                                            <p className="card-heading-secondary">$39.99</p>
+                                        </div>
+                                        <div className="card-body">
+                                            <ul className="feature-list">
+                                            <li>Payroll</li>
+                                            <li>Fuel Tracker</li>
+                                            <li>Navigation</li>
+                                            <li>IFTA</li>
+                                            <li>Expense Reports</li>
+                                            </ul>
+                                        </div>
+                                        <div className="card-register">
+                                            <button className="btn btn-register" onClick={() => this.props.history.push('/register')}>Purchase</button>
                                         </div>
                                     </div>
                                 </div>
