@@ -5,7 +5,8 @@ const
     session = require('express-session'),
     ctrl = require('./controller'),
     bcrypt = require('bcrypt-nodejs'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    validator = require('express-validator');
 require('dotenv').config();
 
 
@@ -17,12 +18,16 @@ const {
 
 // Middleware
 app.use(bodyParser.json());
-
+// save uninitalizaed to false maeks it so that we dont make a cookie for anyone that visits the site
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
-}))
+    saveUninitialized: false
+}));
+
+app.use(validator());
+
+
 
 // Database Setup
 massive(CONNECTION_STRING)
@@ -32,13 +37,11 @@ massive(CONNECTION_STRING)
     })
     .catch(err => console.log(err));
 
-
-
 // endpoints
 
-app.post('/api/auth/register', (req, res) => ctrl.registerUser(req,res, bcrypt))
+app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt))
 
-app.post('/api/auth/login', (req,res) => ctrl.findUser(req, res, bcrypt))
+app.post('/api/auth/login', (req, res) => ctrl.findUser(req, res, bcrypt))
 
 
 

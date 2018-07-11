@@ -1,0 +1,59 @@
+@import '../variables';
+.component-register {
+    font-family: $font-family-oswald;
+    background-image: url('../components/Home/images/mainbg.jpg');
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+    .register-form {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: relative;
+        top: 5rem;
+        left: 4rem;
+        width: 50%;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1.5rem;
+    }
+    .form-group{
+        margin-bottom: 10px;
+    }
+    .errors{
+        width: 35%;
+        position: relative;
+        left: 725px;
+        bottom: 400px;
+        // padding: 1rem;
+        color: $light;
+    }
+    nav {
+        position: absolute;
+        background-color: $nav-bg;
+        height: 4rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+    h6,
+    h1,
+    h2 {
+        color: $light;
+    }
+    h1 {
+        text-align: center;
+    }
+    .form-button {
+        text-align: center;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .btn {
+        width: 75%;
+    }
+    small{
+        color: #E80000;
+    }
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Register.css';
 import axios from 'axios';
 class Register extends Component {
 
@@ -9,7 +8,9 @@ class Register extends Component {
             accountType: 'premium',
             username: '',
             email: '',
-            password: ''
+            password: '',
+            password2: '',
+            errors: []
         }
     }
     onChangeInput = event => {
@@ -21,9 +22,27 @@ class Register extends Component {
     }
     registerUser = event => {
         event.preventDefault();
-        let { accountType, username, password, email } = this.state
-        axios.post('/api/auth/register', { accountType, username, password, email })
-            .then(() => this.props.history.push('/dashboard'))
+        let { accountType, username, password, password2,  email } = this.state
+        axios.post('/api/auth/register', { accountType, username, password, password2, email })
+            .then((res) => {
+                if (res.data === 'OK') {
+                    this.props.history.push('/dashboard')
+                }
+                else {
+                    this.setState({ errors: res.data })
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    renderErrors = () => {
+        return this.state.errors.map((e, i) => {
+            return (
+                <div key={i} className="alert alert-danger">
+                    {e.msg}
+                </div>
+            )
+        })
     }
     render() {
         return (
@@ -57,6 +76,11 @@ class Register extends Component {
                         <input name='password' value={this.state.password} onChange={this.onChangeInput} className="form-control" type="password" />
                     </div>
                     <div className="form-group">
+                        <h6>Re-Enter Password</h6>
+                        <input name='password2' value={this.state.password2} onChange={this.onChangeInput} className="form-control" type="password" />
+                    </div>
+
+                    <div className="form-group">
                         <h6>Email</h6>
                         <input name='email' value={this.state.email} onChange={this.onChangeInput} className="form-control" type="email" />
                     </div>
@@ -64,6 +88,9 @@ class Register extends Component {
                         <button className="btn btn-primary">Register</button>
                     </div>
                 </form>
+                <div className="errors">
+                    {this.state.errors[0] ? this.renderErrors() : ''}
+                </div>
             </div>
         )
     }
