@@ -1,0 +1,52 @@
+@import '../variables';
+.component-login{
+
+    font-family: $font-family-oswald;
+    background-image: url('../components/Home/images/mainbg.jpg');
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+    .form-login{
+        width: 45%;
+        background-color: rgba(0,0,0,0.7);
+        position: relative;
+        top: 35%;
+        left: 10%;;
+        height: 21rem;
+        padding: 0 1.5rem;
+    }
+    h6,h1,h2{
+        color: $light;
+    }
+    h1{
+       text-align: center;
+       padding: 0.75rem;
+    }
+    nav {
+        position: absolute;
+        background-color: $nav-bg;
+        height: 4rem;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .form-login-btn{
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .btn{
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    small{
+        color: $link-blue;
+        font-size: 1rem;
+
+    }
+}

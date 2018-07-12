@@ -1,8 +1,16 @@
 module.exports = {
-    registerUser: (req, res, bcrypt, validationResult) => {
+    registerUser: async (req, res, bcrypt, validationResult) => {
         // Validation for body inputs
         req.checkBody('username', 'Username field cannot be empty').notEmpty();
         req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15);
+        let user = await req.app.get('db').find_user([req.body.username])
+        req.checkBody('username', 'Username already exists').custom( username => {
+            return user.length === 0;
+        })
+        let userEmail = await req.app.get('db').email_exists([req.body.email]);
+        req.checkBody('email', 'Email already exist please enter a different one').custom(email =>{
+            return userEmail.length === 0;
+        })
         req.checkBody('password', 'Password must be between 8 and 16 characters long').len(8, 16);
         req.checkBody('password', 'Password must include one lowercase character, one uppercase character, a number, and a special character').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
         req.checkBody('password', "Passwords don't match").equals(req.body.password2);
@@ -25,13 +33,13 @@ module.exports = {
         }
     },
     findUser: (req, res, bcrypt) => {
-        let { username, password } = req.body;
+        let { username, password: loginPassword } = req.body;
         req.app.get('db').find_user([username])
             .then(user => {
                 let { id, password } = user[0];
                 req.session.userid = id;
-                bcrypt.compare(password, password, (error, response) => {
-                    (response ? res.sendStatus(200) : res.sendStatus(401))
+                bcrypt.compare(loginPassword, password, (error, response) => {
+                    (response ? res.send('valid') : res.send('invalid'))
                 })
             })
             .catch(err => res.status(500).send(err))
