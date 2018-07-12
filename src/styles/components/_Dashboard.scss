@@ -10,6 +10,15 @@
     .nav-link-container{
         margin-bottom: 0;
     }
+
+    .nav-link{
+        transition: all 1s;
+    }
+
+    .nav-link:hover{
+        background-color: rgba(0,0,0,0.7);
+        cursor: pointer;
+    }
     .dashboard-content{
         // background-color: $dash-dark;
         height: 100vh;

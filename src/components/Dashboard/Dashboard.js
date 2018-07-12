@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Switch, Route, Link } from 'react-router-dom';
-import Dashboard_Home from './Dashboard_Components/Dashboard_Home';
-import Dashboard_Trucks from './Dashboard_Components/Dashboard_Trucks';
+import { Link } from 'react-router-dom';
+import {dashboardRoutes} from '../../routes';
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -13,47 +13,43 @@ class Dashboard extends Component {
             name: ''
         }
     }
-
     render() {
         return (
             <div className='component-dashboard'>
                 <nav className="dashboard-nav">
                     <h1>Trucking Manager</h1>
                     <ul className="nav-link-container">
-                        <li>
+                        <Link className="nav-link" to='/dashboard'>
                             <h5>Home</h5>
-                        </li>
-                        <li >
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/trucks'>
                             <h5>Trucks</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/fuel'>
                             <h5>Fuel</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/drivers'>
                             <h5>Drivers</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/maintenance'>
                             <h5>Maintenance</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/ifta'>
                             <h5>IFTA</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/1099'>
                             <h5>1099</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/navigation'>
                             <h5>Navigation</h5>
-                        </li>
-                        <li>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/contacts'>
                             <h5>Contacts</h5>
-                        </li>
+                        </Link>
                     </ul>
                 </nav>
                 <div className='dashboard-content'>
-                    <Switch>
-                        <Route path='/trucks' component={Dashboard_Trucks} />
-                        <Route path='/' component={Dashboard_Home} />
-                    </Switch>
+                    {dashboardRoutes()}
                 </div>
             </div>
 

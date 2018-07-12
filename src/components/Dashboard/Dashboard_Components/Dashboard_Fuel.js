@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Dashboard_Trucks extends Component{
+class Dashboard_Fuel extends Component{
     render(){
         return(
             <div>
-                <h2>Dashboard Trucks</h2>
+                DashboardFuel
             </div>
         )
     }
 }
 
-export default Dashboard_Trucks;
+export default Dashboard_Fuel;
