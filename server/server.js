@@ -43,6 +43,7 @@ app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt)
 
 app.post('/api/auth/login', (req, res) => ctrl.findUser(req, res, bcrypt))
 
+app.post('/api/driver', ctrl.addDriver )
 
 
 app.listen(SERVER_PORT, () => console.log('server running'));

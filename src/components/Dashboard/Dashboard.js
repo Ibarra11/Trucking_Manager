@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {dashboardRoutes} from '../../routes';
+import { dashboardRoutes } from '../../routes';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -49,7 +49,15 @@ class Dashboard extends Component {
                     </ul>
                 </nav>
                 <div className='dashboard-content'>
-                    {dashboardRoutes()}
+                    <div className="dashboard-settings">
+                        <div className="dashboard-header-buttons">
+                            <i className="fa fa-user user"></i>
+                            <button className="btn btn-primary">Sign Out</button>
+                        </div>
+                    </div>
+                    <div className="dashboard-views">
+                        {dashboardRoutes()}
+                    </div>
                 </div>
             </div>
 

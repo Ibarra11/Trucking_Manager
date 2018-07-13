@@ -1,4 +1,4 @@
-.component-dashboard{
+.component-dashboard {
     display: flex;
     height: 100vh;
     width: 100%;
@@ -7,40 +7,71 @@
         height: 100vh;
         width: 18%;
     }
-    .nav-link-container{
+    .nav-link-container {
         margin-bottom: 0;
     }
-
-    .nav-link{
+    .nav-link {
         transition: all 1s;
     }
-
-    .nav-link:hover{
-        background-color: rgba(0,0,0,0.7);
+    .nav-link:hover {
+        background-color: rgba(0, 0, 0, 0.7);
         cursor: pointer;
     }
-    .dashboard-content{
+    .dashboard-content {
         // background-color: $dash-dark;
         height: 100vh;
         width: 85%;
+        display: flex;
+        flex-direction: column;
     }
-    h1{
+    .dashboard-header {
+        height: 9%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 1rem;
+    }
+
+    .dashboard-settings{
+        border-bottom: 1px solid grey;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    
+
+    .dashboard-header-buttons{
+        display: flex;
+        align-items: center;
+    }
+
+    .dashboard-views{
+        height: 91%;
+    }
+
+
+    i.user{
+        font-size: 2.5rem;
+        margin-right: 5rem;
+    }
+    h1 {
         color: $light;
-        font-size:  1.25rem;
+        font-size: 1.25rem;
         text-align: center;
         padding-bottom: 1rem;
         border-bottom: 1px solid black;
     }
-    h5{
+    h5 {
         color: $light;
         text-transform: uppercase;
     }
-    li{
+    li {
         padding: 0.75rem 1.25rem;
         transition: all 1s;
     }
-    li:hover{
-        background-color: rgba(0,0,0,0.7);
+    li:hover {
+        background-color: rgba(0, 0, 0, 0.7);
         cursor: pointer;
     }
 }

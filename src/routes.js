@@ -7,8 +7,8 @@ import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 // Dashboard Routes
 import Dashboard_Home from './components/Dashboard/Dashboard_Components/Dashboard_Home';
-import Dashboard_Trucks from './components/Dashboard/Dashboard_Components/Dashboard_Trucks';
-import Dashboard_Drivers from './components/Dashboard/Dashboard_Components/Dashboard_Drivers';
+import Dashboard_Trucks from './components/Dashboard/Dashboard_Components/Dashboard_Trucks/Dashboard_Trucks';
+import Dashboard_Drivers from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers';
 import Dashboard_Maintenance from './components/Dashboard/Dashboard_Components/Dashboard_Maintenance';
 import Dashboard_Ifta from './components/Dashboard/Dashboard_Components/Dashboard_Ifta';
 import Dashboard_1099 from './components/Dashboard/Dashboard_Components/Dashboard_1099';
@@ -16,6 +16,12 @@ import Dashboard_Fuel from './components/Dashboard/Dashboard_Components/Dashboar
 import Dashboard_Navigation from './components/Dashboard/Dashboard_Components/Dashboard_Navigation';
 import Dashboard_Contacts from './components/Dashboard/Dashboard_Components/Dashboard_Contacts';
 
+// Dashboard Truck Routes
+import Dashboard_Trucks_Add from './components/Dashboard/Dashboard_Components/Dashboard_Trucks/Dashboard_Trucks_Add';
+
+
+// Dashboard Driver Routes
+import Dashboard_Drivers_Add from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers_Add';
 
 export function baseRoutes() {
     return (
@@ -40,6 +46,22 @@ export function dashboardRoutes() {
             <Route path='/dashboard/navigation' component={Dashboard_Navigation} />
             <Route path='/dashboard/contacts' component={Dashboard_Contacts} />
             <Route path='/' component={Dashboard_Home} />
+        </Switch>
+    )
+}
+
+export function dashboardTruckRoutes() {
+    return (
+        <Switch>
+            <Route path='/dashboard/trucks/add' component={Dashboard_Trucks_Add} />
+        </Switch>
+    )
+}
+
+export function dashboardDriversRoutes() {
+    return (
+        <Switch>
+            <Route path='/dashboard/drivers/add' component={Dashboard_Drivers_Add} />
         </Switch>
     )
 }

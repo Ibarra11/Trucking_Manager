@@ -43,5 +43,9 @@ module.exports = {
                 })
             })
             .catch(err => res.status(500).send(err))
+    },
+    addDriver: (req, res) =>{
+        let {name, contactNumber, address, dateHired, unitNumber} = req.body;
+        
     }
 }
