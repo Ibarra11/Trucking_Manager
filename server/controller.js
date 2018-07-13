@@ -46,6 +46,19 @@ module.exports = {
     },
     addDriver: (req, res) =>{
         let {name, contactNumber, address, dateHired, unitNumber} = req.body;
-        
+        req.app.get('db').add_driver([name, contactNumber, address, dateHired, unitNumber])
+        .then(driver => res.send(driver))
+        .catch(err => res.status(500).send(err))
+    },
+    getAllDrivers: (req, res) =>{
+        req.app.get('db').get_drivers()
+        .then(drivers => res.send(drivers))
+        .catch(err => res.status(500).send(err))
+    },
+    deleteDriver: (req, res) =>{
+        let {driver_id} = req.params;
+        req.app.get('db').delete_driver([driver_id])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }
