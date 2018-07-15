@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { addDriver } from '../../../../ducks/drivers_reducer';
 import Modal from 'react-responsive-modal';
+import { eventNames } from 'cluster';
 class Dashboard_Drivers extends Component {
     constructor() {
         super();
@@ -13,16 +14,20 @@ class Dashboard_Drivers extends Component {
             address: '',
             dateHired: '',
             unitNumber: '',
+            driverId: '',
             drivers: [],
-            open: false
+            open: false,
+            term: '',
+            filterDrivers: '',
         }
     }
 
-    onOpenModal = driver_id => {
-        let driver = this.state.drivers.filter(driver => driver_id === driver.id);
-        let {name, address, contactnumber, datehired, unitnumber} = driver[0];
-        this.setState({ 
+    onOpenModal = driverId => {
+        let driver = this.state.drivers.filter(driver => driverId === driver.id);
+        let { name, address, contactnumber, datehired, unitnumber } = driver[0];
+        this.setState({
             open: true,
+            driverId,
             name,
             contactNumber: contactnumber,
             address,
@@ -41,7 +46,10 @@ class Dashboard_Drivers extends Component {
 
     getDrivers = () => {
         axios.get('api/drivers')
-            .then(res => this.setState({ drivers: res.data }))
+            .then(res => {
+                console.log(res);
+                this.setState({ drivers: res.data })
+            })
             .catch(err => console.log(err))
     }
 
@@ -61,9 +69,26 @@ class Dashboard_Drivers extends Component {
         axios.post('/api/driver', {
             name, contactNumber, address, dateHired, unitNumber
         }).then(driver => {
-            console.log(driver);
+            this.props.history.push('/dashbaord');
         })
     }
+
+    updateDriver = event => {
+        event.preventDefault();
+        axios.put(`/api/driver/${this.state.driverId}`, this.state)
+            .then(() => {
+                this.onCloseModal();
+                this.getDrivers();
+            })
+            .catch(err => console.log(err));
+    }
+
+    filterDrivers = event => {
+        let drivers = this.state.filter(driver => driver.name === event.target.name);
+
+        
+    }
+
 
     onInputChange = event => this.setState({ [event.target.name]: event.target.value })
 
@@ -73,9 +98,9 @@ class Dashboard_Drivers extends Component {
                 <div className='component-dashboard-drivers'>
                     {/* Edit Modal */}
                     <div className="edit-driver">
-                        <Modal classNames={{ modal: 'custom-modal'}} open={this.state.open} onClose={this.onCloseModal} center>
+                        <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
                             <h2>Edit Driver</h2>
-                            <form className="edit-driver-form">
+                            <form onSubmit={this.updateDriver} className="edit-driver-form">
                                 <div className="form-group">
                                     <h6 className="driver">Name</h6>
                                     <input name='name' onChange={this.onInputChange} value={this.state.name} className="form-control" type="text" />
@@ -97,7 +122,7 @@ class Dashboard_Drivers extends Component {
                                     <input onChange={this.onInputChange} name='unitNumber' value={this.state.unitNumber} className="form-control" type="text" />
                                 </div>
                                 <div className="edit-form-buttons">
-                                    <button className="btn btn-primary">Update</button>
+                                    <button type='submit' className="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         </Modal>
@@ -106,7 +131,7 @@ class Dashboard_Drivers extends Component {
                         <div className="dashboard-header-left">
                             <h4>Driver List</h4>
                             <div className="input-group-append">
-                                <input placeholder='search drivers' className="form-control" type="text" />
+                                <input onChange={this.filterDrivers} placeholder='search drivers' className="form-control" type="text" />
                                 <button className='search-button'><i className='fa fa-search'></i></button>
                             </div>
                         </div>

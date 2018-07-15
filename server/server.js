@@ -45,6 +45,8 @@ app.get('/api/drivers', ctrl.getAllDrivers);
 
 app.post('/api/driver', ctrl.addDriver );
 
+app.put('/api/driver/:id', ctrl.updateDriver);
+
 app.delete('/api/driver/:driver_id', ctrl.deleteDriver)
 
 app.listen(SERVER_PORT, () => console.log('server running'));

@@ -60,5 +60,12 @@ module.exports = {
         req.app.get('db').delete_driver([driver_id])
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
+    },
+    updateDriver: (req, res) =>{
+        let {id} = req.params;
+        let {name, contactNumber, address, dateHired, unitNumber} = req.body;
+        req.app.get('db').update_driver([name, contactNumber, address, dateHired, unitNumber, id])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }
