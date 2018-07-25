@@ -20,19 +20,14 @@
     }
     .trucks-view {
         height: 90%;
-        display: flex;
-        .trucks-list{
-            text-align: center;
-        }
     }
-    .trucks-list {
-        height: 100%;
-        border-right: 1px solid black;
-        width: 20%;
-    }
-    .trucks-info {
-        height: 100%;
-        width: 80%;
+}
+
+.component-trucks-table{
+    table{
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 2rem;
     }
 }
 

@@ -67,5 +67,61 @@ module.exports = {
         req.app.get('db').update_driver([name, contactNumber, address, dateHired, unitNumber, id])
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
+    },
+    addContact: (req,res) =>{
+        let {name, companyName, phone, email, address} = req.body;
+        req.app.get('db').add_contact([name, companyName, phone, email, address])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getAllContacts: (req,res) =>{
+        req.app.get('db').get_all_contacts()
+        .then(contacts => res.send(contacts))
+        .catch(err => res.status(500).send(err))
+    },
+    deleteContacts: (req,res) =>{
+        req.app.get('db').delete_contacts([...req.body])
+        .then(contacts => res.send(contacts))
+        .catch(err => res.status(500).send(err))
+    },
+    updateContact: (req,res) =>{
+        let {id} = req.params;
+        let {name, company_name, phone, email, address} = req.body;
+        req.app.get('db').update_contact([id, name, company_name, phone, email, address])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    addTruck: (req, res) =>{
+        let {unit, make, model, year, plate_number, vin} = req.body;
+        req.app.get('db').add_truck([unit, make, model, year, plate_number, vin])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getAllTrucks: (req,res) =>{
+        req.app.get('db').get_trucks()
+        .then(trucks => res.send(trucks))
+        .catch(err => res.status(500).send(err))
+    },
+    updateTruck: (req,res) =>{
+        let {unit, make, model, year, plate_number, vin} = req.body;
+        req.app.get('db').update_truck([unit, make, model, year, plate_number, vin])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    addPayroll: (req, res) =>{
+        let {date, driver, amount} = req.body;
+        req.app.get('db').add_payroll([date, driver, amount])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getPayroll: (req,res) =>{
+        req.app.get('db').get_payroll()
+        .then(payments => res.send(payments))
+        .catch(err => res.status(500).send(err))
+    },
+    getPayrollMonthly: (req,res) =>{
+        req.app.get('db').get_payroll_monthly()
+        .then(payroll => res.send(payroll))
+        .catch(err => res.status(500).send(err))
     }
 }

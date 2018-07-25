@@ -1,0 +1,60 @@
+.component-contacts {
+    .dashboard-header {
+        justify-content: space-between;
+    }
+    .dashboard-header {
+        margin-top: 1rem;
+    }
+    .header-controls {
+        .btn:first-child {
+            margin-right: 1rem;
+        }
+    }
+    table {
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    td i {
+        font-size: 1.25rem;
+    }
+    td button {
+        margin-right: 0.5rem;
+    }
+    td button:last-child {
+        margin-right: 0;
+    }
+    .actions {
+        display: flex;
+        justify-content: center;
+    }
+    .select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    input {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.component-contacts-add {
+    form{
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    .submit{
+        float: right;
+
+        button{
+            margin-right: 1rem
+        }
+
+        button:last-child{
+            margin-right: 0;
+        }
+    }
+}

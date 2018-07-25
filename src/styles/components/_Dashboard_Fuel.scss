@@ -1,0 +1,26 @@
+.component-fuel {
+    height: 100%;
+    display: flex;
+    .fuel-charts {
+        border-right: 1px solid black;
+        height: 100%;
+        width: 40%;
+    }
+    h5 {
+        color: black;
+    }
+
+    .fuel-consumption{
+        width: 60%;
+        padding: 1rem;
+    }
+
+    .fuel-table-header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    table{
+        margin-top: 2rem;
+    }
+}

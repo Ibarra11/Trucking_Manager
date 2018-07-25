@@ -1,0 +1,63 @@
+.component-payroll {
+    h4 {
+        text-align: center;
+        font-size: 1.5rem
+    }
+    h5 {
+        color: #000;
+    }
+    
+
+    .payroll-container{
+        display: flex;
+    }
+    .table-container {
+        margin-top: 1.5rem;
+        h6 {
+            text-align: center;
+        }
+        .table-heading {
+            display: flex;
+            justify-content: center;
+        }
+        table {
+            th,
+            td {
+                text-align: center;
+            }
+            margin-bottom: 0;
+        }
+        .table-controls {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .card-footer{
+            padding: 6px 20px;
+        }
+    }
+}
+
+.component-payroll-add {
+    width: 65%;
+    margin: 0 auto;
+    position: relative;
+    top: 25%;
+    .submit-payroll {
+        display: flex;
+        justify-content: flex-end;
+        button:last-child {
+            margin-left: 1rem;
+        }
+    }
+    input {
+        padding:  !important 6px 12px;
+    }
+}
+
+.component-payroll-chart{
+    .row{
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,25 @@
+.component-dispatch{
+    .dashboard-header{
+        margin-top: 1rem;
+        justify-content: space-between;
+    }
+
+    table{
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.component-dispatch-create{
+    .dispatch-form{
+        width: 85%;
+        margin: 0 auto;
+        margin-top: 3rem;
+    }
+    .btn{
+        float: right;
+        width: 10%;
+        height: 2.8rem;
+        font-size: 1.25rem; 
+    }
+}

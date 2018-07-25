@@ -3,7 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { addDriver } from '../../../../ducks/drivers_reducer';
 import Modal from 'react-responsive-modal';
-import { eventNames } from 'cluster';
 class Dashboard_Drivers extends Component {
     constructor() {
         super();
@@ -21,7 +20,6 @@ class Dashboard_Drivers extends Component {
             filterDrivers: '',
         }
     }
-
     onOpenModal = driverId => {
         let driver = this.state.drivers.filter(driver => driverId === driver.id);
         let { name, address, contactnumber, datehired, unitnumber } = driver[0];
@@ -85,8 +83,6 @@ class Dashboard_Drivers extends Component {
 
     filterDrivers = event => {
         let drivers = this.state.filter(driver => driver.name === event.target.name);
-
-        
     }
 
 

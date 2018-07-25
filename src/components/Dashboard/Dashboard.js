@@ -26,13 +26,16 @@ class Dashboard extends Component {
                             <h5>Trucks</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/fuel'>
-                            <h5>Fuel</h5>
+                            <h5>Expenses</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/drivers'>
                             <h5>Drivers</h5>
                         </Link>
+                        <Link className="nav-link" to='/dashboard/payroll'>
+                            <h5>Payroll</h5>
+                        </Link>
                         <Link className="nav-link" to='/dashboard/maintenance'>
-                            <h5>Maintenance</h5>
+                            <h5>Notifications</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/ifta'>
                             <h5>IFTA</h5>
@@ -46,15 +49,12 @@ class Dashboard extends Component {
                         <Link className="nav-link" to='/dashboard/contacts'>
                             <h5>Contacts</h5>
                         </Link>
+                        <Link className="nav-link" to='/dashboard/dispatch'>
+                            <h5>Dispatch</h5>
+                        </Link>
                     </ul>
                 </nav>
                 <div className='dashboard-content'>
-                    <div className="dashboard-settings">
-                        <div className="dashboard-header-buttons">
-                            <i className="fa fa-user user"></i>
-                            <button className="btn btn-primary">Sign Out</button>
-                        </div>
-                    </div>
                     <div className="dashboard-views">
                         {dashboardRoutes()}
                     </div>

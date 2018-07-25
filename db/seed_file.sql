@@ -32,3 +32,45 @@ CREATE TABLE trucks(
     plateNumber VARCHAR(12),
     vin VARCHAR(60)
 );
+
+
+
+-- Contacts
+CREATE TABLE contacts(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(40),
+    company_name VARCHAR(40),
+    phone VARCHAR(12),
+    email VARCHAR(100),
+    address VARCHAR(100)
+)
+
+INSERT INTO contacts (name, company_name, phone, email, address )
+values 
+('test1', 'test1', 'test1', 'test1', 'email', 'test1');
+
+
+-- Payroll Table
+CREATE TABLE payroll(
+    id SERIAL PRIMARY KEY,
+    date VARCHAR(20),
+    driver_name VARCHAR (80),
+    amount FLOAT
+)
+
+
+INSERT INTO payroll (date, driver_name, amount)
+VALUES
+('01/15/18', 'Israel Ibarra', 2000),
+('02/12/18', 'Israel Ibarra', 1250),
+('03/05/18', 'Israel Ibarra', 1245),
+('04/20/18', 'Sergio Covarrubias', 881.91 ),
+('05/01/18', 'Israel Ibarra', 1000),
+('06/29/18', 'Israel Ibarra', 750),
+('07/25/18', 'Israel Ibarra', 1425),
+('08/04/18', 'Israel Ibarra', 1744),
+('09/19/18', 'Israel Ibarra', 1250),
+('10/12/18', 'Israel Ibarra', 1250),
+('11/15/18', 'Israel Ibarra', 900),
+('12/17/18', 'Israel Ibarra', 1250)
+

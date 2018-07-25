@@ -42,12 +42,22 @@ app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt)
 app.post('/api/auth/login', (req, res) => ctrl.findUser(req, res, bcrypt))
 
 app.get('/api/drivers', ctrl.getAllDrivers);
-
 app.post('/api/driver', ctrl.addDriver );
-
 app.put('/api/driver/:id', ctrl.updateDriver);
+app.delete('/api/driver/:driver_id', ctrl.deleteDriver);
 
-app.delete('/api/driver/:driver_id', ctrl.deleteDriver)
+app.get('/api/trucks', ctrl.getAllTrucks)
+app.post('/api/truck', ctrl.addTruck);
+app.put('/api/truck', ctrl.updateTruck)
+
+app.post('/api/contacts', ctrl.addContact);
+app.get('/api/contacts', ctrl.getAllContacts);
+app.delete('/api/contacts', ctrl.deleteContacts);
+app.put('/api/contacts/:id', ctrl.updateContact);
+
+app.post('/api/payroll', ctrl.addPayroll);
+app.get('/api/payroll', ctrl.getPayroll);
+app.get('/api/payroll/monthly', ctrl.getPayrollMonthly);
 
 app.listen(SERVER_PORT, () => console.log('server running'));
 

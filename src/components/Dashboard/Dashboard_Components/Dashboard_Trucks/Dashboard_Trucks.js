@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { dashboardTruckRoutes } from '../../../../routes';
+import {dashboardTruckRoutes} from '../../../../routes';
 class Dashboard_Trucks extends Component {
     render() {
         return (
@@ -12,15 +12,9 @@ class Dashboard_Trucks extends Component {
                         <Link to={'/dashboard/trucks/add'}><button className="btn btn-success">Add Truck</button></Link>
                     </div>
                 </div>
+
                 <div className="trucks-view">
-                    <div className="trucks-list">
-                    <h3>Truck List</h3>
-                        <ul>
-                        </ul>
-                    </div>
-                    <div className="trucks-info">
-                        {dashboardTruckRoutes()}
-                    </div>
+                    {dashboardTruckRoutes()}
                 </div>
             </div>
         )
