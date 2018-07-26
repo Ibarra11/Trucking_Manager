@@ -1,0 +1,96 @@
+.component-expenses{
+    .card-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .component-expenses-view{
+        width: 95%;
+        margin: 0 auto;
+        .expense-bar{
+            h5{
+                color: #000;
+            }
+            canvas{
+                border: 1px solid red;
+            }
+        }
+    }
+}
+
+.component-expenses-table {
+    padding: 0 2rem;
+    .expenses-header {
+        
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .actions{
+        button{
+            width: 25%;
+        }
+        i{
+            font-size: 1.25rem;
+        }
+        button:last-child{
+            margin-left: 0.5rem;
+        }
+    }
+    .expenses-search {
+        display: flex;
+        .form-control {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    .expenses-table {
+        margin-top: 1.5rem;
+        td,
+        th {
+            text-align: center;
+        }
+    }
+}
+.component-add-expense{
+    .card-header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .expense-submit{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .card{
+        border-bottom: none;
+    }
+
+    .card-body{
+        padding-left: 7rem;
+        padding-right: 7rem;
+    }
+}
+
+.component-add-category{
+    .card-header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    form{
+        width: 65%;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+
+    .category-submit{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+

@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import {dashboardDispatchRoutes} from '../../../../routes';
-
-
+import { Link, Switch, Route } from 'react-router-dom';
+import { StepWizard, Step } from 'react-step-wizard';
+import Step1 from './Step1';
+import Step2 from './Step2';
 class Dashboard_Dispatch extends Component {
     render() {
-        console.log(this)
         return (
             <div className="component-dispatch">
-                <div className="dashboard-header">
-                    <h3>Dispatch Center</h3>
-                    <Link to={`${this.props.match.url}/create`}><button className="btn btn-primary">Create Dispatch</button></Link>
+                <div className="card">
+                    <div className="card-header">
+                        <h3>Dispatch</h3>
+                    </div>
                 </div>
-                <div className="dispatch-table">
-                <h6>Previous dispatch</h6>
-                    <table className="table table-bordered">
-                        <tr>
-                            <th>Load_Id</th>
-                            <th>Company Name</th>
-                            <th>Address</th>
-                            <th>Rate</th>
-                            <th>Date</th>
-                        </tr>
-                    </table>
+                <div className="dispatch-wizard">
+                    <Switch>
+                        <Route component={Step1} />
+                        <Route path={`${this.props.match.url}/drivers`} component={Step2} />
+                        <Route path={`${this.props.match.url}/confirmation`} component={Step2} />
+                    </Switch>
                 </div>
             </div>
         )
     }
 }
-
 export default Dashboard_Dispatch;
+

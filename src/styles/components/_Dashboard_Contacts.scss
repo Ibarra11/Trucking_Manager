@@ -25,8 +25,9 @@
         margin-right: 0;
     }
     .actions {
-        display: flex;
-        justify-content: center;
+        .btn{
+            
+        }
     }
     .select {
         display: flex;
@@ -56,5 +57,11 @@
         button:last-child{
             margin-right: 0;
         }
+    }
+}
+
+.component-contacts-mail{
+    .card-header, .card{
+        display: flex;
     }
 }

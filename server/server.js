@@ -59,5 +59,13 @@ app.post('/api/payroll', ctrl.addPayroll);
 app.get('/api/payroll', ctrl.getPayroll);
 app.get('/api/payroll/monthly', ctrl.getPayrollMonthly);
 
+app.get('/api/expenses/categories', ctrl.getExpenseCategories);
+app.post('/api/expenses', ctrl.addExpense)
+app.get('/api/expenses', ctrl.getAllExpenses);
+app.post('/api/expenses/category', ctrl.addCategory)
+app.delete('/api/expense/:id', ctrl.deleteExpense);
+app.get('/api/expenses/categories/sum', ctrl.getExpenseSumPerCategory);
+app.get('/api/expenses/trucks/sum', ctrl.getExpenseSumPerTruck);
+
 app.listen(SERVER_PORT, () => console.log('server running'));
 

@@ -1,0 +1,1 @@
+INSERT INTO category (type) VALUES ($1);

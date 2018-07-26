@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-
-class Dashboard_Notifications extends Component{
-    render(){
-        return(
+import React, { Component } from 'react';
+import Calendar from './Dashboard_Notifications_Calendar';
+class Dashboard_Notifications extends Component {
+    render() {
+        return (
             <div>
-                <h3>Notifications</h3>
+                <Calendar />
             </div>
         )
     }

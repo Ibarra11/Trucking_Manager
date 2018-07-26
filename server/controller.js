@@ -123,5 +123,44 @@ module.exports = {
         req.app.get('db').get_payroll_monthly()
         .then(payroll => res.send(payroll))
         .catch(err => res.status(500).send(err))
+    },
+    getExpenseCategories: (req, res) =>{
+        req.app.get('db').get_expense_categories()
+        .then(categories => res.send(categories))
+        .catch(err => res.status(500).send(err))
+    },
+    addExpense: (req, res) =>{
+        let {date, category, truck, amount} = req.body;
+        req.app.get('db').add_expense([date, category, truck, amount])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getAllExpenses: (req,res) =>{
+        req.app.get('db').get_all_expenses()
+        .then(expenses => res.send(expenses))
+        .catch(err => res.status(500).send(err))
+    },
+    addCategory: (req,res) =>{
+        let {category} = req.body;
+        console.log(req.body);
+        req.app.get('db').add_category([category])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    deleteExpense: (req,res) =>{
+        let {id} = req.params;
+        req.app.get('db').delete_expense([id])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getExpenseSumPerCategory: (req,res) =>{
+        req.app.get('db').get_expense_sum_category()
+        .then(expenses => res.send(expenses))
+        .catch(err => res.status(500).send(err))
+    },
+    getExpenseSumPerTruck: (req,res) =>{
+        req.app.get('db').get_expense_sum_truck()
+        .then(expenses => res.send(expenses))
+        .catch(err => res.status(500).send(err))
     }
 }
