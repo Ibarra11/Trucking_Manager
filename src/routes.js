@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // Base Routes
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+// import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 
 // Dashboard Routes
@@ -44,7 +44,7 @@ export function baseRoutes() {
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
-            <Route path='/register' component={Register} />
+            {/* <Route path='/register' component={Register} /> */}
             <Route path='/dashboard' component={Dashboard} />
         </Switch>
     )
