@@ -1,0 +1,808 @@
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Sections
+     ========================================================================== */
+/**
+   * Remove the margin in all browsers.
+   */
+body {
+  margin: 0; }
+
+/**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Grouping content
+     ========================================================================== */
+/**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+     ========================================================================== */
+/**
+   * Remove the gray background on active links in IE 10.
+   */
+a {
+  background-color: transparent; }
+
+/**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+   * Add the correct font size in all browsers.
+   */
+small {
+  font-size: 80%; }
+
+/**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+     ========================================================================== */
+/**
+   * Remove the border on images inside links in IE 10.
+   */
+img {
+  border-style: none; }
+
+/* Forms
+     ========================================================================== */
+/**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/**
+   * Remove the inner border and padding in Firefox.
+   */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+   * Restore the focus styles unset by the previous rule.
+   */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+   * Correct the padding in Firefox.
+   */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+progress {
+  vertical-align: baseline; }
+
+/**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+textarea {
+  overflow: auto; }
+
+/**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+     ========================================================================== */
+/*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+details {
+  display: block; }
+
+/*
+   * Add the correct display in all browsers.
+   */
+summary {
+  display: list-item; }
+
+/* Misc
+     ========================================================================== */
+/**
+   * Add the correct display in IE 10+.
+   */
+template {
+  display: none; }
+
+/**
+   * Add the correct display in IE 10.
+   */
+[hidden] {
+  display: none; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.component-home {
+  font-family: "Oswald", "Arial", sans-serif;
+  /* Features Section Styles */
+  /* Font Sizes */ }
+  .component-home .header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../components/Home/images/mainbg.jpg");
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+    position: relative; }
+  .component-home .header-nav {
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem; }
+  .component-home .header-nav-logo {
+    color: #f5f5f5; }
+  .component-home .link:link,
+  .component-home .link:active {
+    color: #f5f5f5;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    text-decoration: none; }
+  .component-home .btn-login {
+    font-size: 1.25rem;
+    color: #f5f5f5;
+    position: relative;
+    top: 5px; }
+  .component-home .header-hero {
+    color: #f5f5f5;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    display: flex;
+    flex-direction: column; }
+  .component-home h1 {
+    margin-bottom: 1.5rem; }
+  .component-home .section {
+    padding: 4rem 3rem; }
+  .component-home .section-heading {
+    text-align: center;
+    margin-bottom: 3rem; }
+  .component-home .section-heading-primary {
+    font-size: 3rem; }
+  .component-home .section-heading-secondary {
+    font-size: 1.3rem; }
+  .component-home .section .row {
+    margin-bottom: 1.5rem; }
+  .component-home .feature-container {
+    text-align: center; }
+  .component-home .feature-heading-primary {
+    margin-top: 1rem;
+    font-size: 1.75rem; }
+  .component-home .fa {
+    font-size: 3rem; }
+  .component-home .pricing {
+    background-color: #F1F3F5; }
+  .component-home .card {
+    background-color: #0E79B2;
+    height: 25rem; }
+  .component-home .card-heading {
+    text-align: center;
+    padding: 1rem 0; }
+  .component-home .card-heading-primary {
+    color: #f5f5f5;
+    font-size: 2rem; }
+  .component-home .card-heading-secondary {
+    color: #f5f5f5;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem; }
+  .component-home .card-register {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center; }
+  .component-home .btn-register {
+    background-color: #FFA400;
+    width: 50%;
+    border-radius: 5px;
+    font-size: 1.25rem; }
+
+.component-register {
+  font-family: "Oswald", "Arial", sans-serif;
+  background-image: url("../components/Home/images/mainbg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 100vh; }
+  .component-register .register-form {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    top: 5rem;
+    left: 4rem;
+    width: 50%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem; }
+  .component-register .form-group {
+    margin-bottom: 10px; }
+  .component-register .errors {
+    width: 35%;
+    position: relative;
+    left: 725px;
+    bottom: 400px;
+    color: #f5f5f5; }
+  .component-register nav {
+    position: absolute;
+    background-color: #1D8C8A;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; }
+  .component-register h6,
+  .component-register h1,
+  .component-register h2 {
+    color: #f5f5f5; }
+  .component-register h1 {
+    text-align: center; }
+  .component-register .form-button {
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0; }
+  .component-register .btn {
+    width: 75%; }
+  .component-register small {
+    color: #E80000; }
+
+.component-login {
+  font-family: "Oswald", "Arial", sans-serif;
+  background-image: url("../components/Home/images/mainbg.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 100vh; }
+  .component-login .form-login {
+    width: 45%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: relative;
+    top: 35%;
+    left: 10%;
+    height: 21rem;
+    padding: 0 1.5rem; }
+  .component-login h6, .component-login h1, .component-login h2 {
+    color: #f5f5f5; }
+  .component-login h1 {
+    text-align: center;
+    padding: 0.75rem; }
+  .component-login nav {
+    position: absolute;
+    background-color: #1D8C8A;
+    height: 4rem;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem; }
+  .component-login .form-login-btn {
+    width: 50%;
+    margin: 0 auto; }
+  .component-login .btn {
+    width: 100%;
+    margin-bottom: 0.5rem; }
+  .component-login small {
+    color: #1859F2;
+    font-size: 1rem; }
+  .component-login p {
+    background-color: red;
+    width: 25%;
+    padding: 10px;
+    color: white;
+    position: relative;
+    left: 725px;
+    bottom: 75px; }
+
+.component-dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100%; }
+  .component-dashboard .dashboard-nav {
+    background-color: #005874;
+    height: 100vh;
+    width: 18%; }
+  .component-dashboard .nav-link-container {
+    margin-bottom: 0; }
+  .component-dashboard .nav-link {
+    transition: all 1s; }
+  .component-dashboard .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer; }
+  .component-dashboard .dashboard-content {
+    height: 100vh;
+    width: 85%;
+    display: flex;
+    flex-direction: column; }
+  .component-dashboard .dashboard-header {
+    height: 9%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1rem; }
+  .component-dashboard .dashboard-settings {
+    border-bottom: 1px solid grey;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: flex-end; }
+  .component-dashboard .dashboard-header-buttons {
+    display: flex;
+    align-items: center; }
+  .component-dashboard .dashboard-views {
+    height: 91%; }
+  .component-dashboard i.user {
+    font-size: 2.5rem;
+    margin-right: 5rem; }
+  .component-dashboard h1 {
+    color: #f5f5f5;
+    font-size: 1.25rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black; }
+  .component-dashboard h5 {
+    color: #f5f5f5;
+    text-transform: uppercase; }
+  .component-dashboard li {
+    padding: 0.75rem 1.25rem;
+    transition: all 1s; }
+  .component-dashboard li:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer; }
+
+.component-dashboard-trucks {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden; }
+  .component-dashboard-trucks .trucks-header {
+    height: 4rem;
+    border-bottom: 1px solid grey;
+    display: flex;
+    align-items: center;
+    padding: 0 6rem;
+    justify-content: space-between;
+    height: 10%; }
+  .component-dashboard-trucks .trucks-search-add {
+    display: flex; }
+  .component-dashboard-trucks .search {
+    margin-right: 8rem; }
+  .component-dashboard-trucks .trucks-view {
+    height: 90%; }
+
+.component-trucks-table table {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2rem; }
+
+.component-truck-add {
+  height: 100%;
+  display: flex;
+  align-items: center; }
+  .component-truck-add .truck-form {
+    padding: 10px; }
+  .component-truck-add .truck-add-buttons {
+    display: flex;
+    justify-content: flex-end; }
+  .component-truck-add .truck-add-buttons .btn {
+    margin-right: 10px; }
+
+.component-dashboard-drivers .dashboard-header {
+  display: flex;
+  justify-content: space-between; }
+
+.component-dashboard-drivers .search-button {
+  padding: 0 0.5rem; }
+
+.component-dashboard-drivers .dashboard-drivers-view {
+  margin-top: 1rem; }
+
+.component-dashboard-drivers th {
+  text-align: center; }
+
+.component-dashboard-drivers td {
+  text-align: center;
+  padding: 10px; }
+
+.component-dashboard-drivers table {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px; }
+
+.component-dashboard-drivers .actions {
+  display: flex;
+  justify-content: space-between; }
+
+.component-dashboard-drivers .btn {
+  padding: 3px 5px; }
+
+.custom-modal {
+  width: 600px; }
+  .custom-modal .edit-form-buttons {
+    display: flex;
+    justify-content: flex-end; }
+  .custom-modal .btn:nth-child(1) {
+    margin-right: 1rem; }
+
+.dashboard-drivers-add h3 {
+  font-size: 2rem; }
+
+.dashboard-drivers-add .form-drivers-add {
+  padding: 1rem; }
+
+.dashboard-drivers-add .form-drivers-add-buttons {
+  display: flex;
+  justify-content: flex-end; }
+
+.dashboard-drivers-add .btn {
+  padding: 0.5rem 1rem;
+  width: 5rem;
+  margin-right: 0.75rem; }
+
+.component-expenses .card-header {
+  display: flex;
+  justify-content: space-between; }
+
+.component-expenses .component-expenses-view {
+  width: 95%;
+  margin: 0 auto; }
+  .component-expenses .component-expenses-view .expense-bar h5 {
+    color: #000; }
+  .component-expenses .component-expenses-view .expense-bar canvas {
+    border: 1px solid red; }
+
+.component-expenses-table {
+  padding: 0 2rem; }
+  .component-expenses-table .expenses-header {
+    display: flex;
+    justify-content: space-between; }
+  .component-expenses-table .actions button {
+    width: 25%; }
+  .component-expenses-table .actions i {
+    font-size: 1.25rem; }
+  .component-expenses-table .actions button:last-child {
+    margin-left: 0.5rem; }
+  .component-expenses-table .expenses-search {
+    display: flex; }
+    .component-expenses-table .expenses-search .form-control {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
+    .component-expenses-table .expenses-search .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; }
+  .component-expenses-table .expenses-table {
+    margin-top: 1.5rem; }
+    .component-expenses-table .expenses-table td,
+    .component-expenses-table .expenses-table th {
+      text-align: center; }
+
+.component-add-expense .card-header {
+  display: flex;
+  justify-content: space-between; }
+
+.component-add-expense .expense-submit {
+  display: flex;
+  justify-content: flex-end; }
+
+.component-add-expense .card {
+  border-bottom: none; }
+
+.component-add-expense .card-body {
+  padding-left: 7rem;
+  padding-right: 7rem; }
+
+.component-add-category .card-header {
+  display: flex;
+  justify-content: space-between; }
+
+.component-add-category form {
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 2rem; }
+
+.component-add-category .category-submit {
+  display: flex;
+  justify-content: flex-end; }
+
+.component-dispatch .card-header {
+  display: flex;
+  justify-content: space-between; }
+
+.component-dispatch table {
+  width: 90%;
+  margin: 0 auto; }
+
+.component-dispatch-create .dispatch-form {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 3rem; }
+
+.component-dispatch-create .btn {
+  float: right;
+  width: 10%;
+  height: 2.8rem;
+  font-size: 1.25rem; }
+
+.component-contacts .dashboard-header {
+  justify-content: space-between; }
+
+.component-contacts .dashboard-header {
+  margin-top: 1rem; }
+
+.component-contacts .header-controls .btn:first-child {
+  margin-right: 1rem; }
+
+.component-contacts table {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2rem; }
+
+.component-contacts td i {
+  font-size: 1.25rem; }
+
+.component-contacts td button {
+  margin-right: 0.5rem; }
+
+.component-contacts td button:last-child {
+  margin-right: 0; }
+
+.component-contacts .select {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.component-contacts input {
+  width: 20px;
+  height: 20px; }
+
+.component-contacts-add form {
+  width: 75%;
+  margin: 0 auto; }
+
+.component-contacts-add .submit {
+  float: right; }
+  .component-contacts-add .submit button {
+    margin-right: 1rem; }
+  .component-contacts-add .submit button:last-child {
+    margin-right: 0; }
+
+.component-contacts-mail .card-header, .component-contacts-mail .card {
+  display: flex; }
+
+.component-payroll h4 {
+  text-align: center;
+  font-size: 1.5rem; }
+
+.component-payroll h5 {
+  color: #000; }
+
+.component-payroll .payroll-container {
+  display: flex; }
+
+.component-payroll .table-container {
+  margin-top: 1.5rem; }
+  .component-payroll .table-container h6 {
+    text-align: center; }
+  .component-payroll .table-container .table-heading {
+    display: flex;
+    justify-content: center; }
+  .component-payroll .table-container table {
+    margin-bottom: 0; }
+    .component-payroll .table-container table th,
+    .component-payroll .table-container table td {
+      text-align: center; }
+  .component-payroll .table-container .table-controls {
+    display: flex;
+    justify-content: flex-end; }
+  .component-payroll .table-container .card-footer {
+    padding: 6px 20px; }
+
+.component-payroll-add {
+  width: 65%;
+  margin: 0 auto;
+  position: relative;
+  top: 25%; }
+  .component-payroll-add .submit-payroll {
+    display: flex;
+    justify-content: flex-end; }
+    .component-payroll-add .submit-payroll button:last-child {
+      margin-left: 1rem; }
+  .component-payroll-add input {
+    padding: !important 6px 12px; }
+
+.component-payroll-chart .row {
+  display: flex;
+  justify-content: center; }
+
+.component-calendar {
+  height: 40vh; }
