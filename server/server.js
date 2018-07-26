@@ -16,6 +16,9 @@ const {
     CONNECTION_STRING
 } = process.env;
 
+
+app.use( express.static( `${__dirname}/../build` ));
+
 // Middleware
 app.use(bodyParser.json());
 // save uninitalizaed to false maeks it so that we dont make a cookie for anyone that visits the site
