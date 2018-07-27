@@ -1,0 +1,1 @@
+INSERT INTO company (name) VALUES ($1);

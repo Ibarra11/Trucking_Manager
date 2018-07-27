@@ -16,7 +16,7 @@ class Dashboard_Dispatch extends Component {
                     <Switch>
                         <Route exact path={'/dashboard/dispatch/drivers'} component={Step2} />
                         <Route path={`/dashboard/dispatch/confirmation`} component={Step3} />
-                        <Route component={Step1} />
+                        <Route  component={Step1} />
                     </Switch>
                 </div>
             </div>

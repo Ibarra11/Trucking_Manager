@@ -22,11 +22,13 @@ class Step2 extends Component {
         let drivers = document.querySelectorAll('input[type=checkbox]:checked');
         let driversList = [];
         for (let i = 0; i < drivers.length; i++) {
-            driversList.push(drivers[i].defaultValue);
+            driversList.push({driver: drivers[i].defaultValue, contactNumber: drivers[i].dataset.number});
         }
+        console.log(driversList);
         for (let i = 0; i < drivers.length; i++) {
             drivers[i].checked = false;
         }
+
         this.props.addDrivers(driversList);
     }
 
@@ -50,7 +52,7 @@ class Step2 extends Component {
                                                 <p> {driver.name}</p>
                                             </div>
                                             <div className="col-sm-3">
-                                                <input className="big-checkbox" type="checkbox" value={driver.name} />
+                                                <input data-number={driver.contactnumber} className="big-checkbox" type="checkbox" value={driver.name} />
                                             </div>
                                         </div>
                                     )
@@ -65,15 +67,15 @@ class Step2 extends Component {
                             {this.props.addedDrivers.map((driver,i) => {
                                 return (
                                     <div key={i} className="driver">
-                                       <p> {driver} </p>
-                                       <button onClick={() => this.deleteDriver(driver)} className="btn"><i className='fa fa-times-circle'></i></button>
+                                       <p> {driver.driver} </p>
+                                       <button onClick={() => this.deleteDriver(driver.driver)} className="btn"><i className='fa fa-times-circle'></i></button>
                                     </div>
                                 )
                             })}
                         </div>
                     </div>
                     <div className="wizard-controls">
-                        <button onClick={() => this.props.history.goBack()} className="btn">Previous</button>
+                        <button onClick={() => this.props.history.push('/dashboard/dispatch')} className="btn">Previous</button>
                         <button onClick={() => this.props.history.push('/dashboard/dispatch/confirmation')} className="btn">Next</button>
                     </div>
                 </form>

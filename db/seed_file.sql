@@ -88,3 +88,13 @@ VALUES
 ('01/10/18', 'Fuel', '7', 150),
 ('01/10/18', 'Fuel', '1994', 400)
 
+
+
+-- INcome
+CREATE TABLE income(
+    id SERIAL PRIMARY KEY,
+    date VARCHAR(80),
+    company VARCHAR(100),
+    amount FLOAT,
+    check_number INTEGER
+)

@@ -177,5 +177,27 @@ module.exports = {
         // for (let i = 0; i < req.body.length; i++) {
 
         // }
+    },
+    addCompany: (req,res) =>{
+        let {company} = req.body;
+        req.app.get('db').add_company([company])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getCompanies: (req,res) =>{
+        req.app.get('db').get_companies()
+        .then(companies => res.send(companies))
+        .catch(err => this.status(500).send(err))
+    },
+    addIncome: (req,res) =>{
+        let {date, company, amount, check} = req.body;
+        req.app.get('db').add_income([date, company, amount, +check])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getIncome: (req,res) =>{
+        req.app.get('db').get_income()
+        .then(income => res.send(income))
+        .catch(err => res.status(500).send(err))
     }
 }

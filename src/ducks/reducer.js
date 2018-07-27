@@ -17,7 +17,7 @@ export default function (state = initalState, action) {
             driversList.push(...action.payload)
             return Object.assign({}, state, { drivers: driversList });
         case DELETE_DRIVER:
-            let driversList2 = state.drivers.filter(driver => driver != action.payload);
+            let driversList2 = state.drivers.filter(driver => driver.driver != action.payload);
             return Object.assign({}, state, { drivers: driversList2 });
         case ADD_LOAD:
             let { shipper, pickupAddr, destAddr,  rate } = action.payload;

@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 class Step3 extends Component {
 
-    sendDispatch = () =>{
-        axios.post('/api/driver/numbers', this.props.driversList)
-        .then(res =>{
-            console.log(res)
-        })
-        // let body = `\nShipper:${this.props.shipper}\nPickup Address: ${this.props.pickupAddr}\nDestination Address: ${this.props.destAddr}\nrate: ${this.props.rate}`
-        // axios.post('/api/dispatch', {
-        //     body: body
-        // })
-        // .then(() =>{
-        //     alert('test');
+    sendDispatch = async () => {
+        let body = `\nShipper:${this.props.shipper}\nPickup Address: ${this.props.pickupAddr}\nDestination Address: ${this.props.destAddr}\nrate: ${this.props.rate}`;
+
+        for (let i = 0; i < this.props.driversList.length; i++) {
+            await axios.post('/api/dispatch', {
+                body: body,
+                number: '1' + this.props.driversList[i].contactNumber
+            })
+            swal({
+                position: 'top-end',
+                type: 'success',
+                title: 'Dispatch Successfully Sent',
+                showConfirmButton: false,
+                timer: 2500
+            })
+            setTimeout(() => this.props.history.push('/dashboard/dispatch'), 2700);
+        }
+
+
+        // this.props.driversList.forEach(driver => {
+
         // })
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="component-confirmation">
                 <div className="card">
@@ -40,7 +52,7 @@ class Step3 extends Component {
                             <p>Drivers:</p>
                             <ul className="driver-list">
                                 {this.props.driversList.map((driver, index) => {
-                                    return <li className="driver-item"  key={index}>{driver}</li>
+                                    return <li className="driver-item" key={index}>{driver.driver}</li>
                                 })}
                             </ul>
                         </div>

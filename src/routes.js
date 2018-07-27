@@ -12,7 +12,6 @@ import Dashboard_Home from './components/Dashboard/Dashboard_Components/Dashboar
 import Dashboard_Trucks from './components/Dashboard/Dashboard_Components/Dashboard_Trucks/Dashboard_Trucks';
 import Dashboard_Drivers from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers';
 import Dashboard_Payroll from './components/Dashboard/Dashboard_Components/Dashboard_Payroll/Dashboard_Payroll';
-import Dashboard_Notifications from './components/Dashboard/Dashboard_Components/Dashboard_Notifications/Dashboard_Notifications';
 import Dashboard_Expenses from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Expenses';
 import Dashboard_Navigation from './components/Dashboard/Dashboard_Components/Dashboard_Navigation';
 import Dashboard_Contacts from './components/Dashboard/Dashboard_Components/Dashboard_Contacts/Dashboard_Contacts';
@@ -33,12 +32,12 @@ import Dashboard_Contacts_Mail from './components/Dashboard/Dashboard_Components
 // Dashboard Payroll routes
 import Dashboard_Payroll_Add from './components/Dashboard/Dashboard_Components/Dashboard_Payroll/Dashboard_Payroll_Add';
 
-
-
 // Dashboard Expenses Rotues
 import Dashboard_Add_Expense from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Add_Expense';
 import Dashboard_Add_Category from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Add_Category';
 
+// Dashboard Income Routes
+import Dashboard_Income_Add from './components/Dashboard/Dashboard_Components/Dashboard_Income/Dashboard_Income_Add';
 
 export function baseRoutes() {
     return (
@@ -58,11 +57,11 @@ export function dashboardRoutes() {
             <Route path='/dashboard/expenses/add/expense' component={Dashboard_Add_Expense} />
             <Route path='/dashboard/expenses/add/category' component={Dashboard_Add_Category} />
             <Route path='/dashboard/expenses' component={Dashboard_Expenses} />
+            <Route path='/dashboard/income/add' component={Dashboard_Income_Add} />
             <Route path='/dashboard/income' component={Dashboard_Income} />
             <Route path='/dashboard/drivers' component={Dashboard_Drivers} />
             <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
             <Route path='/dashboard/payroll' component={Dashboard_Payroll} />
-            <Route path='/dashboard/notifications' component={Dashboard_Notifications} />
             <Route path='/dashboard/navigation' component={Dashboard_Navigation} />
             <Route path='/dashboard/contacts/add' component={Dashboard_Contacts_Add} />
             <Route path='/dashboard/contacts/mail' component={Dashboard_Contacts_Mail} />

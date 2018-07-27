@@ -51,4 +51,73 @@
             }
         }
     }
+
+    .income-table{
+        width: 97%;
+        margin: 1rem auto; 
+        h4{
+            text-align: center;
+        }
+
+        th,td{
+            text-align: center;
+        }
+
+        .card-header{
+            position: relative;
+            .btn{
+                position: absolute;
+                right: 0;
+                top: 0.8rem;
+                margin-right: 1rem;
+            }
+        }
+        
+
+        .table-controls{
+            float: right;
+            position: relative;
+            bottom: 0.5rem;
+        }
+    }
+}
+
+.component-income-add{
+    form{
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 2.5rem;
+    }
+
+    .btn-empty{
+        background-color: white;
+        border: none;
+    }
+    i{
+        font-size: 1.25rem;
+    }
+
+    .company{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-submit{
+        display: flex;
+        justify-content: flex-end;
+
+        .edit-driver-form{
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    
+        .btn:last-child{
+            margin-left: 0.8rem;
+        }
+    }
+
+    .submit{
+        display: flex;
+        justify-content: flex-end;
+    }
 }

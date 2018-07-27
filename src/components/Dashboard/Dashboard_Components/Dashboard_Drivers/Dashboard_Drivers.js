@@ -66,7 +66,7 @@ class Dashboard_Drivers extends Component {
         axios.post('/api/driver', {
             name, contactNumber, address, dateHired, unitNumber
         }).then(driver => {
-            this.props.history.push('/dashbaord');
+            this.props.history.goBack();
         })
     }
 

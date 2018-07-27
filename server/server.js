@@ -6,7 +6,6 @@ const
     ctrl = require('./controller'),
     bcrypt = require('bcrypt-nodejs'),
     bodyParser = require('body-parser'),
-    twilio = require('twilio'),
     validator = require('express-validator');
 require('dotenv').config();
 
@@ -49,11 +48,12 @@ massive(CONNECTION_STRING)
 // endpoints
 
 app.post('/api/dispatch', (req, res) =>{
-    let {body} = req.body;
+    let {body, number} = req.body;
+    console.log(req.body)
     client.messages
-        .create({from: '+12093951427', body: body, to:'12094162966'})
+        .create({from: '+12093951427', body: body, to: number})
         .then(message => console.log(message.sid))
-        .done();
+        .done(res.sendStatus(200));
 })
 
 app.post('/api/driver/numbers', ctrl.getDriverNumbers);
@@ -88,5 +88,9 @@ app.delete('/api/expense/:id', ctrl.deleteExpense);
 app.get('/api/expenses/categories/sum', ctrl.getExpenseSumPerCategory);
 app.get('/api/expenses/trucks/sum', ctrl.getExpenseSumPerTruck);
 
+app.post('/api/income/company', ctrl.addCompany);
+app.get('/api/income/company', ctrl.getCompanies);
+app.post('/api/income', ctrl.addIncome);
+app.get('/api/income', ctrl.getIncome);
 app.listen(SERVER_PORT, () => console.log('server running'));
 
