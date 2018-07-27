@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { addDriver } from '../../../../ducks/drivers_reducer';
+
 import Modal from 'react-responsive-modal';
 class Dashboard_Drivers extends Component {
     constructor() {

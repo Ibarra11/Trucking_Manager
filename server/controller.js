@@ -4,11 +4,11 @@ module.exports = {
         req.checkBody('username', 'Username field cannot be empty').notEmpty();
         req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15);
         let user = await req.app.get('db').find_user([req.body.username])
-        req.checkBody('username', 'Username already exists').custom( username => {
+        req.checkBody('username', 'Username already exists').custom(username => {
             return user.length === 0;
         })
         let userEmail = await req.app.get('db').email_exists([req.body.email]);
-        req.checkBody('email', 'Email already exist please enter a different one').custom(email =>{
+        req.checkBody('email', 'Email already exist please enter a different one').custom(email => {
             return userEmail.length === 0;
         })
         req.checkBody('password', 'Password must be between 8 and 16 characters long').len(8, 16);
@@ -44,123 +44,138 @@ module.exports = {
             })
             .catch(err => res.status(500).send(err))
     },
-    addDriver: (req, res) =>{
-        let {name, contactNumber, address, dateHired, unitNumber} = req.body;
+    addDriver: (req, res) => {
+        let { name, contactNumber, address, dateHired, unitNumber } = req.body;
         req.app.get('db').add_driver([name, contactNumber, address, dateHired, unitNumber])
-        .then(driver => res.send(driver))
-        .catch(err => res.status(500).send(err))
+            .then(driver => res.send(driver))
+            .catch(err => res.status(500).send(err))
     },
-    getAllDrivers: (req, res) =>{
+    getAllDrivers: (req, res) => {
         req.app.get('db').get_drivers()
-        .then(drivers => res.send(drivers))
-        .catch(err => res.status(500).send(err))
+            .then(drivers => res.send(drivers))
+            .catch(err => res.status(500).send(err))
     },
-    deleteDriver: (req, res) =>{
-        let {driver_id} = req.params;
+    deleteDriver: (req, res) => {
+        let { driver_id } = req.params;
         req.app.get('db').delete_driver([driver_id])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    updateDriver: (req, res) =>{
-        let {id} = req.params;
-        let {name, contactNumber, address, dateHired, unitNumber} = req.body;
+    updateDriver: (req, res) => {
+        let { id } = req.params;
+        let { name, contactNumber, address, dateHired, unitNumber } = req.body;
         req.app.get('db').update_driver([name, contactNumber, address, dateHired, unitNumber, id])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    addContact: (req,res) =>{
-        let {name, companyName, phone, email, address} = req.body;
+    addContact: (req, res) => {
+        let { name, companyName, phone, email, address } = req.body;
         req.app.get('db').add_contact([name, companyName, phone, email, address])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getAllContacts: (req,res) =>{
+    getAllContacts: (req, res) => {
         req.app.get('db').get_all_contacts()
-        .then(contacts => res.send(contacts))
-        .catch(err => res.status(500).send(err))
+            .then(contacts => res.send(contacts))
+            .catch(err => res.status(500).send(err))
     },
-    deleteContacts: (req,res) =>{
+    deleteContacts: (req, res) => {
         req.app.get('db').delete_contacts([...req.body])
-        .then(contacts => res.send(contacts))
-        .catch(err => res.status(500).send(err))
+            .then(contacts => res.send(contacts))
+            .catch(err => res.status(500).send(err))
     },
-    updateContact: (req,res) =>{
-        let {id} = req.params;
-        let {name, company_name, phone, email, address} = req.body;
+    updateContact: (req, res) => {
+        let { id } = req.params;
+        let { name, company_name, phone, email, address } = req.body;
         req.app.get('db').update_contact([id, name, company_name, phone, email, address])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    addTruck: (req, res) =>{
-        let {unit, make, model, year, plate_number, vin} = req.body;
+    addTruck: (req, res) => {
+        let { unit, make, model, year, plate_number, vin } = req.body;
         req.app.get('db').add_truck([unit, make, model, year, plate_number, vin])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getAllTrucks: (req,res) =>{
+    getAllTrucks: (req, res) => {
         req.app.get('db').get_trucks()
-        .then(trucks => res.send(trucks))
-        .catch(err => res.status(500).send(err))
+            .then(trucks => res.send(trucks))
+            .catch(err => res.status(500).send(err))
     },
-    updateTruck: (req,res) =>{
-        let {unit, make, model, year, plate_number, vin} = req.body;
+    updateTruck: (req, res) => {
+        let { unit, make, model, year, plate_number, vin } = req.body;
         req.app.get('db').update_truck([unit, make, model, year, plate_number, vin])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    addPayroll: (req, res) =>{
-        let {date, driver, amount} = req.body;
+    addPayroll: (req, res) => {
+        let { date, driver, amount } = req.body;
         req.app.get('db').add_payroll([date, driver, amount])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getPayroll: (req,res) =>{
+    getPayroll: (req, res) => {
         req.app.get('db').get_payroll()
-        .then(payments => res.send(payments))
-        .catch(err => res.status(500).send(err))
+            .then(payments => res.send(payments))
+            .catch(err => res.status(500).send(err))
     },
-    getPayrollMonthly: (req,res) =>{
+    getPayrollMonthly: (req, res) => {
         req.app.get('db').get_payroll_monthly()
-        .then(payroll => res.send(payroll))
-        .catch(err => res.status(500).send(err))
+            .then(payroll => res.send(payroll))
+            .catch(err => res.status(500).send(err))
     },
-    getExpenseCategories: (req, res) =>{
+    getExpenseCategories: (req, res) => {
         req.app.get('db').get_expense_categories()
-        .then(categories => res.send(categories))
-        .catch(err => res.status(500).send(err))
+            .then(categories => res.send(categories))
+            .catch(err => res.status(500).send(err))
     },
-    addExpense: (req, res) =>{
-        let {date, category, truck, amount} = req.body;
+    addExpense: (req, res) => {
+        let { date, category, truck, amount } = req.body;
         req.app.get('db').add_expense([date, category, truck, amount])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getAllExpenses: (req,res) =>{
+    getAllExpenses: (req, res) => {
         req.app.get('db').get_all_expenses()
-        .then(expenses => res.send(expenses))
-        .catch(err => res.status(500).send(err))
+            .then(expenses => res.send(expenses))
+            .catch(err => res.status(500).send(err))
     },
-    addCategory: (req,res) =>{
-        let {category} = req.body;
+    addCategory: (req, res) => {
+        let { category } = req.body;
         console.log(req.body);
         req.app.get('db').add_category([category])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    deleteExpense: (req,res) =>{
-        let {id} = req.params;
+    deleteExpense: (req, res) => {
+        let { id } = req.params;
         req.app.get('db').delete_expense([id])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getExpenseSumPerCategory: (req,res) =>{
+    getExpenseSumPerCategory: (req, res) => {
         req.app.get('db').get_expense_sum_category()
-        .then(expenses => res.send(expenses))
-        .catch(err => res.status(500).send(err))
+            .then(expenses => res.send(expenses))
+            .catch(err => res.status(500).send(err))
     },
-    getExpenseSumPerTruck: (req,res) =>{
+    getExpenseSumPerTruck: (req, res) => {
         req.app.get('db').get_expense_sum_truck()
-        .then(expenses => res.send(expenses))
-        .catch(err => res.status(500).send(err))
+            .then(expenses => res.send(expenses))
+            .catch(err => res.status(500).send(err))
+    },
+    getDriverNumbers:  (req, res) => {
+        let drivers = [];
+        req.body.forEach(driverName => {
+            req.app.get('db').get_drivers_number([driverName])
+                .then(driver => {
+                    drivers.push(driver)
+                })
+                .catch(err => res.status(500).send(err))
+        })
+
+        let 
+        // for (let i = 0; i < req.body.length; i++) {
+
+        // }
     }
 }

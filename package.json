@@ -2,12 +2,12 @@
   "name": "trucking_manager",
   "version": "0.1.0",
   "private": true,
-  "proxy":{
-    "/api":{
-      "target":  "http://localhost:3005"
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3005"
     },
-    "/auth":{
-      "target":  "http://localhost:3005"
+    "/auth": {
+      "target": "http://localhost:3005"
     }
   },
   "main": "server/server.js",
@@ -38,7 +38,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-step-wizard": "^2.0.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "twilio": "^3.18.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
-import { StepWizard, Step } from 'react-step-wizard';
 import Step1 from './Step1';
 import Step2 from './Step2';
+import Step3 from './Step3';
 class Dashboard_Dispatch extends Component {
     render() {
         return (
@@ -14,9 +14,9 @@ class Dashboard_Dispatch extends Component {
                 </div>
                 <div className="dispatch-wizard">
                     <Switch>
+                        <Route exact path={'/dashboard/dispatch/drivers'} component={Step2} />
+                        <Route path={`/dashboard/dispatch/confirmation`} component={Step3} />
                         <Route component={Step1} />
-                        <Route path={`${this.props.match.url}/drivers`} component={Step2} />
-                        <Route path={`${this.props.match.url}/confirmation`} component={Step2} />
                     </Switch>
                 </div>
             </div>

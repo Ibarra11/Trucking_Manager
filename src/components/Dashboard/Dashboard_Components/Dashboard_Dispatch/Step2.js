@@ -1,11 +1,91 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { addDrivers } from '../../../../ducks/reducer';
+import { deleteDriver } from '../../../../ducks/reducer';
+class Step2 extends Component {
+    constructor() {
+        super();
+        this.state = {
+            drivers: []
+        }
+    }
+    componentDidMount() {
+        axios.get('/api/drivers')
+            .then(res => {
+                    this.setState({ drivers: res.data }) 
+            })
+            .catch(err => console.log(err))
+    }
 
-class Step2 extends Component{
-    render(){
-        return(
-            Step2
+    addDrivers = () => {
+        let drivers = document.querySelectorAll('input[type=checkbox]:checked');
+        let driversList = [];
+        for (let i = 0; i < drivers.length; i++) {
+            driversList.push(drivers[i].defaultValue);
+        }
+        for (let i = 0; i < drivers.length; i++) {
+            drivers[i].checked = false;
+        }
+        this.props.addDrivers(driversList);
+    }
+
+    deleteDriver = driver =>{
+        this.props.deleteDriver(driver)
+    }
+
+    render() {
+        return (
+            <div className="component-drivers-info">
+                <form>
+                    <h5>Select Drivers</h5>
+                    <div className="card drivers">
+                        <div className="driver-list">
+                            <h6>Driver List</h6>
+                            <div className="container drivers">
+                                {this.state.drivers.map(driver => {
+                                    return (
+                                        <div key={driver.id} className="row">
+                                            <div className="col-sm-9">
+                                                <p> {driver.name}</p>
+                                            </div>
+                                            <div className="col-sm-3">
+                                                <input className="big-checkbox" type="checkbox" value={driver.name} />
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            <div className="add-driver">
+                                <button onClick={this.addDrivers} className="btn"><i className="fa fa-plus"> Drivers</i></button>
+                            </div>
+                        </div>
+                        <div className="drivers-added">
+                        <h6>Drivers Added</h6>
+                            {this.props.addedDrivers.map((driver,i) => {
+                                return (
+                                    <div key={i} className="driver">
+                                       <p> {driver} </p>
+                                       <button onClick={() => this.deleteDriver(driver)} className="btn"><i className='fa fa-times-circle'></i></button>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div className="wizard-controls">
+                        <button onClick={() => this.props.history.goBack()} className="btn">Previous</button>
+                        <button onClick={() => this.props.history.push('/dashboard/dispatch/confirmation')} className="btn">Next</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
 
-export default Step2;
+function mapStateToProps(state) {
+    return {
+        addedDrivers: state.drivers
+    }
+}
+
+export default connect(mapStateToProps, { addDrivers, deleteDriver })(Step2);

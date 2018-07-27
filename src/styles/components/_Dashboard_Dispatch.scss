@@ -1,25 +1,165 @@
-.component-dispatch{
-    .card-header{
+.component-dispatch {
+    .card-header {
         display: flex;
         justify-content: space-between;
     }
-
-    table{
+    table {
         width: 90%;
         margin: 0 auto;
     }
+    h5 {
+        color: #000;
+    }
 }
 
-.component-dispatch-create{
-    .dispatch-form{
+.component-load-form {
+    form {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .form-controls {
+        float: right;
+    }
+}
+
+.component-confirmation{
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    h5{
+        text-align: center;
+    }
+    .controls{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .driver-list{
+        display: flex;
+        flex-wrap: wrap;
+       .driver-item{
+           width: 30%;
+           padding: 8px;
+           text-align: center;
+           border: 1px solid grey;
+           border-radius: 5px;
+           margin-right: 0.5rem;
+           list-style-type: none;
+       }
+       .driver-item:hover{
+           background-color: white;
+       }
+    }
+}
+
+.component-dispatch-create {
+    .dispatch-form {
         width: 85%;
         margin: 0 auto;
         margin-top: 3rem;
     }
-    .btn{
+    .btn {
         float: right;
         width: 10%;
         height: 2.8rem;
-        font-size: 1.25rem; 
+        font-size: 1.25rem;
+    }
+}
+
+.component-drivers-info {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    height: 7rem;
+
+    .wizard-controls{
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 1rem;
+        .btn{
+            width: 15%;
+        }
+    }
+    .card {
+        height: 25rem;
+        display: flex;
+        flex-direction: row;
+        .driver-list {
+            position: relative;
+            width: 50%;
+            border-right: 1px solid black;
+            .add-driver {
+                 display: flex;
+                 justify-content: center;
+                button{
+                    position: absolute;
+                    bottom: 0; 
+                    margin-bottom: 1rem;
+                    width: 250px;
+                }  
+            }
+        }
+        .drivers-added {
+            width: 50%;
+            .driver{
+                border: 1px solid grey;
+                border-radius: 5px;
+                width: 80%;
+                margin: 0 auto;
+                margin-top: 16px;
+                padding: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    margin: 0;
+                    position: relative;
+                    bottom: 2px;
+                }
+                .btn{
+                    background-color: transparent;
+                    padding: 0;
+                }
+
+                i{
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        .drivers{
+            height: 75%;
+            overflow-y: auto;
+        }
+
+        h6 {
+            text-align: center;
+        }
+        .row {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            p{
+                text-align: left;
+                position: relative;
+                top: 5px;
+            }
+
+
+            .big-checkbox{
+                width: 20px;
+                height: 20px;
+            }
+        }
     }
 }

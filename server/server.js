@@ -6,8 +6,16 @@ const
     ctrl = require('./controller'),
     bcrypt = require('bcrypt-nodejs'),
     bodyParser = require('body-parser'),
+    twilio = require('twilio'),
     validator = require('express-validator');
 require('dotenv').config();
+
+
+const accountSid = 'ACff86a903e784406a68fc5213717fd66e';
+const authToken = '51096b0684701ec94ea8e835b570ad8d';
+
+const client = require('twilio')(accountSid, authToken);
+
 
 
 const {
@@ -39,6 +47,16 @@ massive(CONNECTION_STRING)
     .catch(err => console.log(err));
 
 // endpoints
+
+app.post('/api/dispatch', (req, res) =>{
+    let {body} = req.body;
+    client.messages
+        .create({from: '+12093951427', body: body, to:'12094162966'})
+        .then(message => console.log(message.sid))
+        .done();
+})
+
+app.post('/api/driver/numbers', ctrl.getDriverNumbers);
 
 app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt))
 

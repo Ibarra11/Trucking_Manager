@@ -17,6 +17,7 @@ import Dashboard_Expenses from './components/Dashboard/Dashboard_Components/Dash
 import Dashboard_Navigation from './components/Dashboard/Dashboard_Components/Dashboard_Navigation';
 import Dashboard_Contacts from './components/Dashboard/Dashboard_Components/Dashboard_Contacts/Dashboard_Contacts';
 import Dashboard_Dispatch from './components/Dashboard/Dashboard_Components/Dashboard_Dispatch/Dashboard_Dispatch';
+import Dashboard_Income from './components/Dashboard/Dashboard_Components/Dashboard_Income/Dashboard_Income';
 
 // Dashboard Truck Routes
 import Dashboard_Trucks_Add from './components/Dashboard/Dashboard_Components/Dashboard_Trucks/Dashboard_Trucks_Add';
@@ -57,6 +58,7 @@ export function dashboardRoutes() {
             <Route path='/dashboard/expenses/add/expense' component={Dashboard_Add_Expense} />
             <Route path='/dashboard/expenses/add/category' component={Dashboard_Add_Category} />
             <Route path='/dashboard/expenses' component={Dashboard_Expenses} />
+            <Route path='/dashboard/income' component={Dashboard_Income} />
             <Route path='/dashboard/drivers' component={Dashboard_Drivers} />
             <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
             <Route path='/dashboard/payroll' component={Dashboard_Payroll} />

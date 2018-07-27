@@ -1,0 +1,54 @@
+.component-income {
+    .income-view {
+        .card {
+            width: 97%;
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+        h4,
+        h6,
+        p {
+            text-align: center;
+        }
+        h6 {
+            font-size: 1.625rem;
+        }
+        .total-income {
+            border: 1px solid grey;
+            padding: 5px;
+            border-radius: 5px;
+            p {
+                font-size: 1.5rem;
+            }
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            .stats{
+                display: flex;
+                justify-content: center;
+                .total-income:last-child{
+                    margin-left: 1rem;
+                    width: 30%;
+                }
+                margin-bottom: 1rem;
+            }
+        }
+        .graphs {
+            width: 100%;
+            display: flex;
+            .income-monthly {
+                width: 100%;
+            }
+
+            h5{
+                color: #000;
+                text-align: center;
+            }
+
+            .component-income-chart{
+                width: 100%;
+            }
+        }
+    }
+}
