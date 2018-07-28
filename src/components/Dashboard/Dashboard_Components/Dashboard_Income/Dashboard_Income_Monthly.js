@@ -55,7 +55,9 @@ class Dashboard_Income_Monthly extends Component {
                     options={{
                         maintainAspectRatio: false,
                     }}
-                    data={data} />
+                    data={data}
+                    height={275}
+                />
             </div>
         )
     }

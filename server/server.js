@@ -92,5 +92,7 @@ app.post('/api/income/company', ctrl.addCompany);
 app.get('/api/income/company', ctrl.getCompanies);
 app.post('/api/income', ctrl.addIncome);
 app.get('/api/income', ctrl.getIncome);
+app.delete('/api/income/:id', ctrl.deleteIncome);
+app.put('/api/income/:id', ctrl.updateIncome);
 app.listen(SERVER_PORT, () => console.log('server running'));
 

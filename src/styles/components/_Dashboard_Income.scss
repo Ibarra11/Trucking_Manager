@@ -1,4 +1,12 @@
 .component-income {
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+
+        .btn:last-child{
+            margin-left: 1rem;
+        }
+    }
     .income-view {
         .card {
             width: 97%;
@@ -24,10 +32,10 @@
         .card-body {
             display: flex;
             flex-direction: column;
-            .stats{
+            .stats {
                 display: flex;
                 justify-content: center;
-                .total-income:last-child{
+                .total-income:last-child {
                     margin-left: 1rem;
                     width: 30%;
                 }
@@ -36,45 +44,46 @@
         }
         .graphs {
             width: 100%;
-            display: flex;
-            .income-monthly {
-                width: 100%;
+            .income-monthly{
+                border: 1px solid blue;
+                margin-bottom: 1rem;
             }
-
-            h5{
+            h5 {
                 color: #000;
                 text-align: center;
             }
-
-            .component-income-chart{
+            .component-income-chart {
                 width: 100%;
             }
         }
     }
-
-    .income-table{
+    .income-table {
         width: 97%;
-        margin: 1rem auto; 
-        h4{
+        margin: 1rem auto;
+        h4 {
             text-align: center;
         }
-
-        th,td{
+        th,
+        td {
             text-align: center;
-        }
-
-        .card-header{
-            position: relative;
             .btn{
+                padding: 6px 10px;
+            }
+            .btn:last-child{
+                position: relative;
+                left: 0.8rem;
+            }
+        }
+        .card-header {
+            position: relative;
+            .btn {
                 position: absolute;
                 right: 0;
                 top: 0.8rem;
                 margin-right: 1rem;
             }
         }
-        
-
-        .table-controls{
+        .table-controls {
             float: right;
             position: relative;
             bottom: 0.5rem;
@@ -82,41 +91,35 @@
     }
 }
 
-.component-income-add{
-    form{
+.component-income-add {
+    form {
         width: 80%;
         margin: 0 auto;
         margin-top: 2.5rem;
     }
-
-    .btn-empty{
+    .btn-empty {
         background-color: white;
         border: none;
     }
-    i{
+    i {
         font-size: 1.25rem;
     }
-
-    .company{
+    .company {
         display: flex;
         justify-content: space-between;
     }
-
-    .form-submit{
+    .form-submit {
         display: flex;
         justify-content: flex-end;
-
-        .edit-driver-form{
+        .edit-driver-form {
             border: 1px solid red;
             margin: 0 auto;
         }
-    
-        .btn:last-child{
+        .btn:last-child {
             margin-left: 0.8rem;
         }
     }
-
-    .submit{
+    .submit {
         display: flex;
         justify-content: flex-end;
     }

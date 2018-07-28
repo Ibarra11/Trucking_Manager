@@ -185,5 +185,18 @@ module.exports = {
         req.app.get('db').get_income()
         .then(income => res.send(income))
         .catch(err => res.status(500).send(err))
+    },
+    deleteIncome: (req,res) =>{
+        let{id} = req.params;
+        req.app.get('db').delete_income([id])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    updateIncome: (req,res) =>{
+        let{id} = req.params;
+        let {date,  company, amount, check} = req.body;
+        req.app.get('db').update_income([id, date,company, amount, check])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }

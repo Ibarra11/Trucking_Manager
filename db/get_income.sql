@@ -1,1 +1,2 @@
-SELECT * FROM income;
+SELECT * FROM income
+ORDER BY date DESC;

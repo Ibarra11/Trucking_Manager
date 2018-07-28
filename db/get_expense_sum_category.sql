@@ -1,4 +1,6 @@
-SELECT category, SUM(amount)
+SELECT type, SUM(amount)
 FROM expenses
-GROUP BY category
-ORDER BY category;
+FULL OUTER JOIN category
+ON expenses.category = category.type
+GROUP BY type
+ORDER BY sum DESC NULLS LAST;

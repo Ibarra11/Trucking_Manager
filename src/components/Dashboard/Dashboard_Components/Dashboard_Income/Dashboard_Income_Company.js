@@ -28,16 +28,15 @@ class Dashboard_Income_Company extends Component {
     }
     componentDidMount(){
     }
-
     render() {
         return (
             <div>
                 <Bar
                     data={data}
+                    height = {275}
                     options={{
                         maintainAspectRatio: false
                     }}
-                   
                 />
             </div>
         );

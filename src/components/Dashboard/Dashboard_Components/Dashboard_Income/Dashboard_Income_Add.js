@@ -70,12 +70,10 @@ class Dashboard_Income_Add extends Component {
                         </div>
                     </form>
                 </Modal>
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Add Income</h3>
-                    </div>
-                </div>
                 <form onSubmit={event => this.addIncome(event)}>
+                <div className="form-header">
+                    <h4>Add Income</h4>
+                </div>
                     <div className="form-group">
                         <label>
                             Date

@@ -40,9 +40,6 @@ class Dashboard extends Component {
                         <Link className="nav-link" to='/dashboard/ifta'>
                             <h5>IFTA</h5>
                         </Link>
-                        <Link className="nav-link" to='/dashboard/navigation'>
-                            <h5>Navigation</h5>
-                        </Link>
                         <Link className="nav-link" to='/dashboard/contacts'>
                             <h5>Contacts</h5>
                         </Link>

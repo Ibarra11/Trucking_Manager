@@ -16,36 +16,39 @@ let data = {
 };
 
 class Dashboard_Expenses_Category extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             categories: [],
             sumPerCategory: [],
-            resetState : false
+            resetState: false
         }
     }
-    componentDidMount(){
-        axios.get('/api/expenses/categories')
-        .then(res =>{
-            let labels = [];
-            res.data.forEach(category =>{
-                labels.push(category.type)
-            })
-            this.setState({ resetState: !this.state.resetState})
-            data.labels = labels;
-        })
-        .catch(err => console.log(err));
+    componentDidMount() {
+        // axios.get('/api/expenses/categories')
+        //     .then(res => {
+        //         let labels = [];
+        //         res.data.forEach(category => {
+        //             labels.push(category.type)
+        //         })
+        //         this.setState({ resetState: !this.state.resetState })
+        //         data.labels = labels;
+        //     })
+        //     .catch(err => console.log(err));
 
         axios.get('/api/expenses/categories/sum')
-        .then(res => {
-            let expenseData = [];
-            res.data.forEach(expense =>{
-                expenseData.push(expense.sum)
+            .then(res => {
+                let expenseData = [];
+                let labels = [];
+                res.data.forEach(expense => {
+                    expenseData.push(expense.sum)
+                    labels.push(expense.type);
+                })
+                data.labels = labels;
+                data.datasets[0].data = expenseData;
+                this.setState({ resetState: !this.state.resetState })
             })
-            data.datasets[0].data = expenseData;
-            this.setState({ resetState: !this.state.resetState})
-        })
-        .catch(err => console.log(err))
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -55,7 +58,15 @@ class Dashboard_Expenses_Category extends Component {
                     data={data}
                     height={400}
                     options={{
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 100,
+                                }
+                            }]
+                        }
                     }}
                 />
             </div>
