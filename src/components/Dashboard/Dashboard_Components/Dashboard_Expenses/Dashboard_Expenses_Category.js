@@ -51,10 +51,9 @@ class Dashboard_Expenses_Category extends Component {
     render() {
         return (
             <div>
-                <h5>Expenses Per Category</h5>
                 <Bar
                     data={data}
-                    height={50}
+                    height={400}
                     options={{
                         maintainAspectRatio: false
                     }}

@@ -56,7 +56,7 @@ app.post('/api/dispatch', (req, res) =>{
         .done(res.sendStatus(200));
 })
 
-app.post('/api/driver/numbers', ctrl.getDriverNumbers);
+
 
 app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt))
 

@@ -22,11 +22,6 @@ class Step3 extends Component {
             })
             setTimeout(() => this.props.history.push('/dashboard/dispatch'), 2700);
         }
-
-
-        // this.props.driversList.forEach(driver => {
-
-        // })
     }
 
     render() {

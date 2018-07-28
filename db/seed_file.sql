@@ -75,6 +75,14 @@ VALUES
 ('12/17/18', 'Israel Ibarra', 1250)
 
 -- Expenses
+CREATE TABLE expenses(
+    id SERIAL PRIMARY KEY,
+    date VARCHAR(100),
+    category VARCHAR(100),
+    truck INTEGER REFERENCES trucks(unit),
+    amount FLOAT
+)
+
 INSERT INTO expenses (date, category, truck, amount)
 VALUES
 ('01/10/18', 'Fuel', '7', 200.25),

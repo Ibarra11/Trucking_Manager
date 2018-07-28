@@ -31,12 +31,12 @@ class Dashboard_Expenses_Total extends Component{
     render(){
         return(
             <div className="component-expense-total">
-            <h5>Expenses Total Per Month</h5>
+                
                 <Line
+                height={400}
                 options={{
                     maintainAspectRatio: false
                 }}
-                height={50}
                  data={data} />
             </div>
         )

@@ -131,6 +131,7 @@ module.exports = {
     },
     addExpense: (req, res) => {
         let { date, category, truck, amount } = req.body;
+       +truck;
         req.app.get('db').add_expense([date, category, truck, amount])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
@@ -162,21 +163,6 @@ module.exports = {
         req.app.get('db').get_expense_sum_truck()
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
-    },
-    getDriverNumbers:  (req, res) => {
-        let drivers = [];
-        req.body.forEach(driverName => {
-            req.app.get('db').get_drivers_number([driverName])
-                .then(driver => {
-                    drivers.push(driver)
-                })
-                .catch(err => res.status(500).send(err))
-        })
-
-        let 
-        // for (let i = 0; i < req.body.length; i++) {
-
-        // }
     },
     addCompany: (req,res) =>{
         let {company} = req.body;

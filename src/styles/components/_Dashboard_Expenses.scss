@@ -1,17 +1,34 @@
-.component-expenses{
-    .card-header{
+.component-expenses {
+    .card-header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
-    .component-expenses-view{
+    .component-expenses-view {
         width: 95%;
         margin: 0 auto;
-        .expense-bar{
-            h5{
+        .expense-bar {
+            h5 {
                 color: #000;
             }
-            canvas{
-                border: 1px solid red;
+        }
+        h4,
+        h5 {
+            text-align: center;
+        }
+        h5 {
+            color: #000;
+        }
+        // .section-content {
+        //     display: flex;
+        //     flex-wrap: wrap;
+        //     justify-content: space-between;
+        // }
+        .graph {
+            margin-bottom: 1rem;
+            .card-header {
+                display: flex;
+                justify-content: center;
             }
         }
     }
@@ -20,19 +37,17 @@
 .component-expenses-table {
     padding: 0 2rem;
     .expenses-header {
-        
         display: flex;
         justify-content: space-between;
     }
-
-    .actions{
-        button{
+    .actions {
+        button {
             width: 25%;
         }
-        i{
+        i {
             font-size: 1.25rem;
         }
-        button:last-child{
+        button:last-child {
             margin-left: 0.5rem;
         }
     }
@@ -55,42 +70,80 @@
         }
     }
 }
-.component-add-expense{
-    .card-header{
+
+.component-add-expense {
+    .card-header {
         display: flex;
         justify-content: space-between;
     }
-
-    .expense-submit{
+    .expense-submit {
         display: flex;
         justify-content: flex-end;
     }
-
-    .card{
+    .card {
         border-bottom: none;
     }
-
-    .card-body{
+    .card-body {
         padding-left: 7rem;
         padding-right: 7rem;
     }
+    h5 {
+        color: #000;
+        text-align: center;
+    }
+    .form-header {
+        border: 1px solid grey;
+        width: 35%;
+        margin: 0 auto;
+        padding: 5px;
+    }
 }
 
-.component-add-category{
-    .card-header{
+.component-add-category {
+    .card-header {
         display: flex;
         justify-content: space-between;
     }
-
-    form{
+    form {
         width: 65%;
         margin: 0 auto;
         margin-top: 2rem;
     }
-
-    .category-submit{
+    .category-submit {
         display: flex;
         justify-content: flex-end;
     }
 }
 
+.component-expense-list {
+    width: 95%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+    .table-controls {
+        display: flex;
+        justify-content: flex-end;
+    }
+    table {
+        th,
+        td {
+            text-align: center;
+        }
+        td {
+            padding: 0 12px;
+            height: 2.75rem;
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+            .btn {
+                padding: 5px 10px;
+            }
+            .btn:last-child {
+                position: relative;
+                left: 0.8rem;
+            }
+        }
+    }
+}

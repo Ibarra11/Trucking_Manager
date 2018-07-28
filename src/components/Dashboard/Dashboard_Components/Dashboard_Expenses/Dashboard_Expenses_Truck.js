@@ -16,42 +16,44 @@ let data = {
 };
 
 class Dashboard_Expenses_Truck extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            resetState : false
+            resetState: false
         }
     }
-    componentDidMount(){
-        axios.get('/api/trucks')
-        .then(res =>{
-            let units = [];
-            res.data.forEach(truck =>{
-                units.push(truck.unit);
-            })
-            data.labels = units;
-            this.setState({resetState: !this.resetState})
-        })
-        .catch(err => console.log(err));
+    componentDidMount() {
+
         axios.get('/api/expenses/trucks/sum')
-        .then(res =>{
-            let sumPerTruck = [];
-            res.data.forEach(truck =>{
-                sumPerTruck.push(truck.sum);
+            .then(res => {
+                let units = [];
+                let sumPerTruck = [];
+                res.data.forEach(truck => {
+                    units.push(truck.unit);
+                    sumPerTruck.push(truck.total)
+                })
+
+                data.labels = units;
+                data.datasets[0].data = sumPerTruck;
+                this.setState({ resetState: !this.resetState })
             })
-            data.datasets[0].data = sumPerTruck;
-            this.setState({resetState: !this.resetState})
-        })
     }
     render() {
         return (
             <div>
-                <h5>Expenses Per Truck</h5>
                 <Bar
                     data={data}
-                   
+                    height={400}
                     options={{
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 100,
+                                }
+                            }]
+                        }
                     }}
                 />
             </div>
