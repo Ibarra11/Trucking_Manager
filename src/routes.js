@@ -25,19 +25,11 @@ import Dashboard_Trucks_Table from './components/Dashboard/Dashboard_Components/
 // Dashboard Driver Routes
 import Dashboard_Drivers_Add from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers_Add';
 
-// Dashboard Contacts Routes
-import Dashboard_Contacts_Add from './components/Dashboard/Dashboard_Components/Dashboard_Contacts/Dashboard_Contacts_Add';
-import Dashboard_Contacts_Mail from './components/Dashboard/Dashboard_Components/Dashboard_Contacts/Dashboard_Contacts_Mail';
-
-// Dashboard Payroll routes
-import Dashboard_Payroll_Add from './components/Dashboard/Dashboard_Components/Dashboard_Payroll/Dashboard_Payroll_Add';
-
 // Dashboard Expenses Rotues
 import Dashboard_Add_Expense from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Add_Expense';
 import Dashboard_Add_Category from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Add_Category';
 
-// Dashboard Income Routes
-import Dashboard_Income_Add from './components/Dashboard/Dashboard_Components/Dashboard_Income/Dashboard_Income_Add';
+
 
 export function baseRoutes() {
     return (
@@ -57,14 +49,10 @@ export function dashboardRoutes() {
             <Route path='/dashboard/expenses/add/expense' component={Dashboard_Add_Expense} />
             <Route path='/dashboard/expenses/add/category' component={Dashboard_Add_Category} />
             <Route path='/dashboard/expenses' component={Dashboard_Expenses} />
-            <Route path='/dashboard/income/add' component={Dashboard_Income_Add} />
             <Route path='/dashboard/income' component={Dashboard_Income} />
             <Route path='/dashboard/drivers' component={Dashboard_Drivers} />
-            <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
             <Route path='/dashboard/payroll' component={Dashboard_Payroll} />
             <Route path='/dashboard/navigation' component={Dashboard_Navigation} />
-            <Route path='/dashboard/contacts/add' component={Dashboard_Contacts_Add} />
-            <Route path='/dashboard/contacts/mail' component={Dashboard_Contacts_Mail} />
             <Route path='/dashboard/contacts' component={Dashboard_Contacts} />
             <Route path='/dashboard/dispatch' component={Dashboard_Dispatch} />
             <Route path='/' component={Dashboard_Home} />

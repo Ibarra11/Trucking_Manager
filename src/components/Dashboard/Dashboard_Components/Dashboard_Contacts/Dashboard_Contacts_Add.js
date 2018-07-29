@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Dashboard_Contacts_Add extends Component {
@@ -13,22 +13,22 @@ class Dashboard_Contacts_Add extends Component {
             address: ''
         }
     }
-
     addContact = event => {
         event.preventDefault();
-        let {name, companyName, phone, email, address} = this.state;
+        let { name, companyName, phone, email, address } = this.state;
         axios.post('/api/contacts', {
             name, companyName, phone, email, address
         })
-        .then(
-            this.props.history.goBack()
-        )
+            .then(
+                this.props.history.goBack()
+            )
     }
     onInputChange = event => this.setState({ [event.target.name]: event.target.value });
+
     render() {
         return (
             <div className="component-contacts-add">
-                <h3>Add Contact</h3>
+                <h4>Add Contact</h4>
                 <form onSubmit={event => this.addContact(event)}>
                     <div className="form-group">
                         <label htmlFor="">Name</label>

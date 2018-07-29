@@ -34,12 +34,11 @@ class Dashboard_Income_Add extends Component {
             .catch(err => console.log(err))
     }
 
-    onCompanyChange = event => this.setState({company: event.target.value});
+    onCompanyChange = event => this.setState({ company: event.target.value });
 
     onInputChange = event => this.setState({ [event.target.name]: event.target.value });
 
     addCompany = event => {
-        event.preventDefault();
         axios.post('/api/income/company', {
             company: this.state.companyModal
         })
@@ -51,8 +50,9 @@ class Dashboard_Income_Add extends Component {
     addIncome = event => {
         event.preventDefault();
         let { date, company, amount, check } = this.state;
-        axios.post('/api/income', {date, company, amount, check})
-        .then(() => this.props.history.goBack())
+        axios.post('/api/income', { date, company, amount, check })
+            .then(() => this.props.history.goBack())
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -60,20 +60,20 @@ class Dashboard_Income_Add extends Component {
             <div className="component-income-add">
                 <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
                     <h2>Add Company</h2>
-                    <form onSubmit={event => this.addCompany(event)} className="edit-driver-form">
+                    <div className="edit-driver-form">
                         <div className="form-group">
                             <h6 className="driver">Company</h6>
                             <input name='companyModal' onChange={this.onInputChange} className="form-control" type="text" />
                         </div>
                         <div className="edit-form-buttons">
-                            <button type='submit' className="btn btn-primary">Add</button>
+                            <button onClick={() => this.addCompany()} type='submit' className="btn btn-primary">Add</button>
                         </div>
-                    </form>
+                    </div>
                 </Modal>
-                <form onSubmit={event => this.addIncome(event)}>
-                <div className="form-header">
-                    <h4>Add Income</h4>
-                </div>
+                <div className="form">
+                    <div className="form-header">
+                        <h4>Add Income</h4>
+                    </div>
                     <div className="form-group">
                         <label>
                             Date
@@ -88,7 +88,7 @@ class Dashboard_Income_Add extends Component {
                         <select onChange={this.onCompanyChange} className="form-control">
                             {this.state.companies.map(company => {
                                 return (
-                                    <option value={company.name}>{company.name}</option>
+                                    <option  key={company.name} value={company.name}>{company.name}</option>
                                 )
                             })}
                         </select>
@@ -102,10 +102,10 @@ class Dashboard_Income_Add extends Component {
                         <input name='check' onChange={this.onInputChange} className="form-control" type="text" />
                     </div>
                     <div className="form-submit">
-                        <button type='submit' className="btn btn-primary">Add Income</button>
+                        <button onClick={this.addIncome} type='submit' className="btn btn-primary">Add Income</button>
                         <Link to='/dashboard/income'><button className="btn btn-danger">Cancel</button></Link>
                     </div>
-                </form>
+                </div>
             </div>
         )
     }

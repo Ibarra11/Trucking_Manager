@@ -2,8 +2,7 @@
     .card-header {
         display: flex;
         justify-content: space-between;
-
-        .btn:last-child{
+        .btn:last-child {
             margin-left: 1rem;
         }
     }
@@ -44,7 +43,7 @@
         }
         .graphs {
             width: 100%;
-            .income-monthly{
+            .income-monthly {
                 border: 1px solid blue;
                 margin-bottom: 1rem;
             }
@@ -66,10 +65,10 @@
         th,
         td {
             text-align: center;
-            .btn{
+            .btn {
                 padding: 6px 10px;
             }
-            .btn:last-child{
+            .btn:last-child {
                 position: relative;
                 left: 0.8rem;
             }
@@ -92,10 +91,13 @@
 }
 
 .component-income-add {
-    form {
+    .form {
         width: 80%;
         margin: 0 auto;
         margin-top: 2.5rem;
+        h4{
+            text-align: center;
+        }
     }
     .btn-empty {
         background-color: white;

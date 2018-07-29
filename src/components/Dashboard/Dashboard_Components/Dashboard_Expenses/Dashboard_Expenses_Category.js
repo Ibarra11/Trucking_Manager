@@ -56,17 +56,9 @@ class Dashboard_Expenses_Category extends Component {
             <div>
                 <Bar
                     data={data}
-                    height={400}
+                    height={200}
                     options={{
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    min: 0,
-                                    stepSize: 100,
-                                }
-                            }]
-                        }
+                        maintainAspectRatio: false
                     }}
                 />
             </div>

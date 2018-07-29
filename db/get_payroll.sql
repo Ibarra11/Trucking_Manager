@@ -1,1 +1,3 @@
-SELECT * FROM payroll;
+SELECT * 
+FROM payroll
+ORDER BY date;

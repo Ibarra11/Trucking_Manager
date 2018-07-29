@@ -20,7 +20,8 @@ class Step1 extends Component {
 
     onInputChange = event => this.setState({[event.target.name]:event.target.value})
 
-    addLoad = () =>{
+    addLoad = event =>{
+        event.preventDefault();
         let{shipper, pickupAddr, destAddr,  rate} = this.state;
         this.props.addLoad({
             shipper, pickupAddr, destAddr, rate
@@ -31,8 +32,8 @@ class Step1 extends Component {
     render() {
         return (
             <div className="component-load-form">
-                <h5>Load Information</h5>
-                <form>
+                <h5>Dispatch Information</h5>
+                <form onSubmit={event => this.addLoad(event)}>
                     <div className="form-group">
                         <label>Shipper</label>
                         <input value={this.state.shipper} name='shipper' onChange={this.onInputChange} type="text" className="form-control" />
@@ -50,7 +51,7 @@ class Step1 extends Component {
                         <input value={this.state.rate} name='rate' onChange={this.onInputChange} type="text" className="form-control" />
                     </div>
                     <div className="form-controls">
-                        <button onClick={this.addLoad}  className="btn btn-primary">Next</button>
+                        <button type='submit'  className="btn btn-primary">Next</button>
                     </div>
                 </form>
             </div>

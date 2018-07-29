@@ -80,7 +80,8 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     deleteContacts: (req, res) => {
-        req.app.get('db').delete_contacts([...req.body])
+        let {id} = req.params;
+        req.app.get('db').delete_contacts([id])
             .then(contacts => res.send(contacts))
             .catch(err => res.status(500).send(err))
     },
@@ -119,10 +120,33 @@ module.exports = {
             .then(payments => res.send(payments))
             .catch(err => res.status(500).send(err))
     },
+    deletePayroll: (req, res) =>{
+        let {id} = req.params;
+        req.app.get('db').delete_payroll([id])
+        .then(() => res.sendStatus(200))
+        .catch( err => res.status(500).send(err))
+    },
+    updatePayroll: (req,res) =>{
+        let {id} = req.params;
+        let {date, driver, amount} = req.body;
+        req.app.get('db').update_payroll([id, date, driver, amount])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
+    },
     getPayrollMonthly: (req, res) => {
         req.app.get('db').get_payroll_monthly()
             .then(payroll => res.send(payroll))
             .catch(err => res.status(500).send(err))
+    },
+    getTotalPayroll: (req,res) =>{
+        req.app.get('db').get_total_payroll()
+        .then(amount => res.send(amount))
+        .catch(err => res.status(500).send(err))
+    },
+    getTotalPayments: (req,res) =>{
+        req.app.get('db').get_total_payments()
+        .then(payments => res.send(payments))
+        .catch(err => console.log(err))
     },
     getExpenseCategories: (req, res) => {
         req.app.get('db').get_expense_categories()
@@ -197,6 +221,11 @@ module.exports = {
         let {date,  company, amount, check} = req.body;
         req.app.get('db').update_income([id, date,company, amount, check])
         .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getIncomePerCompany: (req,res) =>{
+        req.app.get('db').get_income_sum_companies()
+        .then(companies => res.send(companies))
         .catch(err => res.status(500).send(err))
     }
 }

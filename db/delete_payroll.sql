@@ -1,0 +1,1 @@
+DELETE FROM payroll WHERE id = $1;

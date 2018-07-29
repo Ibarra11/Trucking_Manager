@@ -11,7 +11,7 @@ class Dashboard_Expenses extends Component {
                     <div className="card-header">
                         <h3>Expenses</h3>
                         <div className="link-controls">
-                            <NavLink activeClassName='selected'  to='/dashboard/expenses'> <button className="btn btn-outline-primary">Expense List</button> </NavLink>
+                            <NavLink activeClassName='selected' to='/dashboard/expenses'> <button className="btn btn-outline-primary">Expense List</button> </NavLink>
                             <NavLink activeClassName='selected' to='/dashboard/expenses/metrics'><button className="btn btn-outline-primary">Expense Metrics</button></NavLink>
                         </div>
                     </div>

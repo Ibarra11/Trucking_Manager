@@ -56,8 +56,6 @@ app.post('/api/dispatch', (req, res) =>{
         .done(res.sendStatus(200));
 })
 
-
-
 app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt))
 
 app.post('/api/auth/login', (req, res) => ctrl.findUser(req, res, bcrypt))
@@ -73,12 +71,16 @@ app.put('/api/truck', ctrl.updateTruck)
 
 app.post('/api/contacts', ctrl.addContact);
 app.get('/api/contacts', ctrl.getAllContacts);
-app.delete('/api/contacts', ctrl.deleteContacts);
+app.delete('/api/contacts/:id', ctrl.deleteContacts);
 app.put('/api/contacts/:id', ctrl.updateContact);
 
 app.post('/api/payroll', ctrl.addPayroll);
 app.get('/api/payroll', ctrl.getPayroll);
 app.get('/api/payroll/monthly', ctrl.getPayrollMonthly);
+app.delete('/api/payroll/:id', ctrl.deletePayroll);
+app.put('/api/payroll/:id', ctrl.updatePayroll);
+app.get('/api/payroll/total', ctrl.getTotalPayroll)
+app.get('/api/payroll/payments', ctrl.getTotalPayments);
 
 app.get('/api/expenses/categories', ctrl.getExpenseCategories);
 app.post('/api/expenses', ctrl.addExpense)
@@ -94,5 +96,6 @@ app.post('/api/income', ctrl.addIncome);
 app.get('/api/income', ctrl.getIncome);
 app.delete('/api/income/:id', ctrl.deleteIncome);
 app.put('/api/income/:id', ctrl.updateIncome);
+app.get('/api/income/companies/sum', ctrl.getIncomePerCompany)
 app.listen(SERVER_PORT, () => console.log('server running'));
 

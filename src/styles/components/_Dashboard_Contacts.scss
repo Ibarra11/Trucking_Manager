@@ -10,9 +10,11 @@
             margin-right: 1rem;
         }
     }
-    table {
+    .contacts-main {
         width: 95%;
         margin: 0 auto;
+    }
+    table {
         margin-top: 2rem;
     }
     td i {
@@ -24,44 +26,40 @@
     td button:last-child {
         margin-right: 0;
     }
-    .actions {
-        .btn{
-            
-        }
-    }
     .select {
         display: flex;
         align-items: center;
         justify-content: center;
-        
     }
-    input {
-        width: 20px;
-        height: 20px;
+   
+    .table-controls {
+        display: flex;
+        justify-content: flex-end;
     }
 }
 
 .component-contacts-add {
-    form{
-        width: 75%;
-        margin: 0 auto;
+    margin-top: 1rem;
+    h4{
+        text-align: center;
     }
+  form{
+      width: 80%;
+      margin: 0 auto;
+  }
 
-    .submit{
-        float: right;
-
-        button{
-            margin-right: 1rem
-        }
-
-        button:last-child{
-            margin-right: 0;
-        }
-    }
+  .submit{
+      display: flex;
+      justify-content: flex-end;
+      .btn:last-child{
+          margin-left: 1rem;
+      }
+  }
 }
 
-.component-contacts-mail{
-    .card-header, .card{
+.component-contacts-mail {
+    .card-header,
+    .card {
         display: flex;
     }
 }

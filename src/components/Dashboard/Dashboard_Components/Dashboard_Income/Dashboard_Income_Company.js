@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
 let data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
             label: 'Category',
@@ -12,7 +11,6 @@ let data = {
             borderWidth: 1,
             hoverBackgroundColor: 'rgba(255,99,132,0.4)',
             hoverBorderColor: 'rgba(255,99,132,1)',
-            data: [65, 59, 80, 81, 56, 55, 40]
         }
     ]
 };
@@ -21,12 +19,25 @@ class Dashboard_Income_Company extends Component {
     constructor(){
         super();
         this.state = {
-            categories: [],
-            sumPerCategory: [],
             resetState : false
         }
     }
+
     componentDidMount(){
+        axios.get('/api/income/companies/sum')
+        .then(res => {
+            let labels = [];
+            let sumPerCompany = [];
+            res.data.forEach(company =>{
+                labels.push(company.name);
+                sumPerCompany.push(company.sum);
+            });
+            data.labels = labels;
+            data.datasets[0].data = sumPerCompany;
+            this.setState({resetState: !this.state.resetState})
+
+        })
+        .catch(err => console.log(err))
     }
     render() {
         return (

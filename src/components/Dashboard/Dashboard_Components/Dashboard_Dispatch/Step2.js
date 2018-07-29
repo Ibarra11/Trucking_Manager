@@ -39,8 +39,7 @@ class Step2 extends Component {
     render() {
         return (
             <div className="component-drivers-info">
-                <form>
-                    <h5>Select Drivers</h5>
+                    <h5 className="">Select Drivers</h5>
                     <div className="card drivers">
                         <div className="driver-list">
                             <h6>Driver List</h6>
@@ -78,8 +77,7 @@ class Step2 extends Component {
                         <button onClick={() => this.props.history.push('/dashboard/dispatch')} className="btn">Previous</button>
                         <button onClick={() => this.props.history.push('/dashboard/dispatch/confirmation')} className="btn">Next</button>
                     </div>
-                </form>
-            </div>
+                </div>
         )
     }
 }

@@ -8,38 +8,46 @@ class Dashboard_Expenses_Metrics extends Component {
             <div className="component-expenses">
                 <div className="component-expenses-view">
                     <div className="expenses-overview">
-                        <div className="section-header">
+                        <div className="expenses-metrics-header">
                             <h4>Expense Metrics</h4>
                         </div>
-                        <div className="section-content">
-                            <div className="graph card">
-                                <div className="card-header">
-                                    <h5>Expenses Per Month</h5>
+                        <div className="container">
+                            <div className="expenses-metrics-layout row">
+                                <div className="expenses-metrics-overall col-md-12">
+                                    <div className="card col-md-3">
+                                        <h6>Total</h6>
+                                        $10,000
+                                    </div>
+                                    <div className="card col-md-3">
+                                        <h6>Total</h6>
+                                        $10,000
+                                    </div>
+                                    <div className="card col-md-3">
+                                        <h6>Total</h6>
+                                        $10,000
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    <Dashboard_Expenses_Total />
-                                </div>
-                            </div>
-                            <div className="graph card">
-                                <div className="card-header">
-                                    <h5>Expenses Per Cagtegory</h5>
-                                </div>
-                                <div className="card-body">
-                                    <Dashboard_Expenses_Category />
-                                </div>
-                            </div>
-                            <div className="graph card">
-                                <div className="card-header">
-                                    <h5>Expenses Per Truck</h5>
-                                </div>
-                                <div className="card-body">
-                                    <Dashboard_Expenses_Truck />
+                                <div className="expense-metrics-graphs col-md-12">
+                                    <div className="graph">
+                                        <h5>Expenses Per Month</h5>
+                                        <Dashboard_Expenses_Total />
+                                    </div>
+
+                                    <div className="graph">
+                                        <h5>Expenses Per Cagtegory</h5>
+                                        <Dashboard_Expenses_Category />
+
+                                    </div>
+                                    <div className="graph">
+                                        <h5>Expenses Per Truck</h5>
+                                        <Dashboard_Expenses_Truck />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 }

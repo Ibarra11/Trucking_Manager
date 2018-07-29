@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import Dashboard_Payroll_Cards from './Dashboard_Payroll_Cards';
-import Dashboard_Payroll_Table from './Dashboard_Payroll_Table';
-import Dashboard_Payroll_Chart from './Dashboard_Payroll_Chart';
+import { Switch, Route } from 'react-router-dom';
+import Dashboard_Payroll_Add from './Dashboard_Payroll_Add';
+import Dashboard_Payroll_Metrics from './Dashboard_Payroll_Metrics';
 class Dashboard_Payroll extends Component {
     render() {
         return (
             <div className="component-payroll">
-                <div className="payroll-dashboard">
-                    <h3>Payroll</h3>
-                </div>
-                <div className="container">
-                    <div className="row payroll-container">
-                        <div className="col-md-3">
-                            <Dashboard_Payroll_Cards />
-                        </div>
-                        <div className="col-md-9">
-                            <Dashboard_Payroll_Chart />
-                            <Dashboard_Payroll_Table />
-                        </div>
+                <div className="card">
+                    <div className="card-header">
+                        <h3>Payroll</h3>
                     </div>
+                </div>
+                <div className="component-payroll-views">
+                    <Switch>
+                            <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
+                            <Route component={Dashboard_Payroll_Metrics} />
+                    </Switch>
                 </div>
             </div>
         )

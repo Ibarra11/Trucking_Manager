@@ -5,13 +5,7 @@
         align-items: center;
     }
     .component-expenses-view {
-        width: 95%;
-        margin: 0 auto;
-        .expense-bar {
-            h5 {
-                color: #000;
-            }
-        }
+        margin: 2rem 0;
         h4,
         h5 {
             text-align: center;
@@ -19,13 +13,16 @@
         h5 {
             color: #000;
         }
-        .graph {
-            margin-bottom: 1rem;
-            .card-header {
-                display: flex;
-                justify-content: center;
-            }
+        .graph{
+            margin: 1.25rem 0;
         }
+    }
+
+    .expenses-metrics-overall{
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+        margin-bottom: 0.5rem;
     }
 }
 

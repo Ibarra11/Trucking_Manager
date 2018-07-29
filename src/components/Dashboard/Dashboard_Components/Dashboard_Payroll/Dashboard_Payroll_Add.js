@@ -41,10 +41,13 @@ class Dashboard_Payroll_Add extends Component {
         return (
             <div className="component-payroll-add">
                 <form onSubmit={event => this.addPayroll(event)}>
-                    <h4>Add Payment</h4>
+                    <div className="form-header">
+                        <h4>Add Payment</h4>
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="">Date</label>
-                        <input onChange={this.onTextChange} name='date' type="text" className="form-control" type='date'/>
+                        <input onChange={this.onTextChange} name='date' type="text" className="form-control" type='date' />
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Driver</label>
@@ -62,7 +65,7 @@ class Dashboard_Payroll_Add extends Component {
                     </div>
                     <div className="submit-payroll">
                         <button className="btn" type="submit">Submit Payment</button>
-                        <Link to={() => this.props.history.goBack()}><button className="btn">Cancel</button></Link>
+                        <Link to='/dashboard/payroll'><button className="btn">Cancel</button></Link>
                     </div>
                 </form>
             </div>

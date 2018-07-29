@@ -1,31 +1,45 @@
 .component-dispatch {
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-    }
-    table {
-        width: 90%;
-        margin: 0 auto;
-    }
     h5 {
         color: #000;
+    }
+    .wizard{
+        // border: 1px solid red;
+    }
+    .dispatch-instructions{
+        padding: 1rem;
+        h4{
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .instructions-container{
+            display: flex;
+            flex-direction: column;
+        }
+        p{
+            font-size: 1.25rem;
+        }
+    }
+
+    .dispatch-wizard{
+        margin-top: 2rem;
+       .row{
+           display: flex;
+       }
     }
 }
 
 .component-load-form {
-    form {
-        width: 80%;
-        margin: 0 auto;
+    h5{
+        text-align: center;
     }
     .form-controls {
         float: right;
+        margin-right: 2rem;
     }
+
 }
 
 .component-confirmation{
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 2rem;
     h5{
         text-align: center;
     }
@@ -70,20 +84,15 @@
 }
 
 .component-drivers-info {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 2rem;
-    height: 7rem;
-
+    h5{
+        text-align: center;
+    }
     .wizard-controls{
         display: flex;
         justify-content: space-between;
         width: 70%;
         margin: 0 auto;
         margin-top: 1rem;
-        .btn{
-            width: 15%;
-        }
     }
     .card {
         height: 25rem;
@@ -91,10 +100,12 @@
         flex-direction: row;
         .driver-list {
             position: relative;
+            padding-top: 0.5rem;
             width: 50%;
             border-right: 1px solid black;
             .add-driver {
                  display: flex;
+                 
                  justify-content: center;
                 button{
                     position: absolute;
@@ -106,6 +117,7 @@
         }
         .drivers-added {
             width: 50%;
+            padding-top: 0.5rem;
             .driver{
                 border: 1px solid grey;
                 border-radius: 5px;
