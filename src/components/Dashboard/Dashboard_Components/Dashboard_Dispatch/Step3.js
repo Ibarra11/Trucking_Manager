@@ -25,7 +25,6 @@ class Step3 extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="component-confirmation">
                 <div className="card">
@@ -42,6 +41,9 @@ class Step3 extends Component {
                         </div>
                         <div className="card-field">
                             <p>Rate per Ton: {this.props.rate}</p>
+                        </div>
+                        <div className="card-field">
+                            <p>Date: {this.props.date}</p>
                         </div>
                         <div className="card-field">
                             <p>Drivers:</p>
@@ -63,9 +65,9 @@ class Step3 extends Component {
 }
 
 function mapStateToProps(state) {
-    let { drivers, shipper, pickupAddr, destAddr, rate } = state;
+    let { drivers, shipper, pickupAddr, destAddr, rate, date } = state;
     return {
-        driversList: drivers, shipper, pickupAddr, destAddr, rate
+        driversList: drivers, shipper, pickupAddr, destAddr, rate, date
     }
 }
 

@@ -76,6 +76,7 @@ app.put('/api/contacts/:id', ctrl.updateContact);
 
 app.post('/api/payroll', ctrl.addPayroll);
 app.get('/api/payroll', ctrl.getPayroll);
+app.get('/api/payroll/drivers', ctrl.getPayrollPerDriver);
 app.get('/api/payroll/monthly', ctrl.getPayrollMonthly);
 app.delete('/api/payroll/:id', ctrl.deletePayroll);
 app.put('/api/payroll/:id', ctrl.updatePayroll);
@@ -84,16 +85,20 @@ app.get('/api/payroll/payments', ctrl.getTotalPayments);
 
 app.get('/api/expenses/categories', ctrl.getExpenseCategories);
 app.post('/api/expenses', ctrl.addExpense)
+app.get('/api/expenses/total', ctrl.getTotalExpenses);
 app.get('/api/expenses', ctrl.getAllExpenses);
 app.post('/api/expenses/category', ctrl.addCategory)
 app.delete('/api/expense/:id', ctrl.deleteExpense);
 app.get('/api/expenses/categories/sum', ctrl.getExpenseSumPerCategory);
 app.get('/api/expenses/trucks/sum', ctrl.getExpenseSumPerTruck);
+app.get('/api/expenses/monthly', ctrl.getExpensesMonthly)
 
 app.post('/api/income/company', ctrl.addCompany);
 app.get('/api/income/company', ctrl.getCompanies);
 app.post('/api/income', ctrl.addIncome);
+app.get('/api/income/monthly', ctrl.getIncomePerMonth);
 app.get('/api/income', ctrl.getIncome);
+app.get('/api/income/total', ctrl.getTotalIncome);
 app.delete('/api/income/:id', ctrl.deleteIncome);
 app.put('/api/income/:id', ctrl.updateIncome);
 app.get('/api/income/companies/sum', ctrl.getIncomePerCompany)

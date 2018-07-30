@@ -7,10 +7,21 @@ class Dashboard_Expenses_List extends Component {
             expenses: []
         }
     }
+
     componentDidMount() {
+        this.getAllExpenses();
+    }
+
+    getAllExpenses = () => {
         axios.get('/api/expenses')
             .then(res => this.setState({ expenses: res.data }))
             .catch(err => console.log(err));
+    }
+
+    deleteExpense = expenseId => {
+        axios.delete(`/api/expense/${expenseId}`)
+            .then(() => this.getAllExpenses())
+            .catch((err) => console.log(err))
     }
 
     render() {
@@ -37,7 +48,7 @@ class Dashboard_Expenses_List extends Component {
                                     <td className="table-buttons">
                                         <span>
                                             <button className="btn btn-primary"><i className="fa fa-edit"></i></button>
-                                            <button className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                            <button onClick={() => this.deleteExpense(expense.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                         </span>
                                     </td>
                                 </tr>

@@ -1,0 +1,4 @@
+SELECT  SUBSTRING(SUBSTRING(date, 6), 1,2) AS "Month", Sum(amount)
+FROM income
+GROUP BY SUBSTRING(SUBSTRING(date, 6), 1,2)
+ORDER BY 1;

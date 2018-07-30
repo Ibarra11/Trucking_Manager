@@ -9,22 +9,23 @@ class Step1 extends Component {
             shipper: '',
             pickupAddr: '',
             destAddr: '',
-            rate: ''
+            rate: '',
+            date: ''
         }
     }
 
     componentDidMount(){
-        let {shipper, pickupAddr, destAddr,  rate} = this.props;
-        this.setState({shipper, pickupAddr, destAddr,  rate});
+        let {shipper, pickupAddr, destAddr,  rate, date} = this.props;
+        this.setState({shipper, pickupAddr, destAddr,  rate, date});
     }
 
     onInputChange = event => this.setState({[event.target.name]:event.target.value})
 
     addLoad = event =>{
         event.preventDefault();
-        let{shipper, pickupAddr, destAddr,  rate} = this.state;
+        let{shipper, pickupAddr, destAddr,  rate, date} = this.state;
         this.props.addLoad({
-            shipper, pickupAddr, destAddr, rate
+            shipper, pickupAddr, destAddr, rate, date
         })
         this.props.history.push(`${this.props.match.url}/drivers`)
     }
@@ -50,6 +51,10 @@ class Step1 extends Component {
                         <label>Rate</label>
                         <input value={this.state.rate} name='rate' onChange={this.onInputChange} type="text" className="form-control" />
                     </div>
+                    <div className="form-group">
+                        <label>Date</label>
+                        <input  value={this.state.date} name='date' onChange={this.onInputChange} type="date" className="form-control" />
+                    </div>
                     <div className="form-controls">
                         <button type='submit'  className="btn btn-primary">Next</button>
                     </div>
@@ -60,9 +65,9 @@ class Step1 extends Component {
 }
 
 function mapStateToProps(state){
-    let {shipper, pickupAddr, destAddr, rate} = state;
+    let {shipper, pickupAddr, destAddr, rate, date} = state;
     return{
-        shipper, pickupAddr, destAddr,  rate
+        shipper, pickupAddr, destAddr,  rate, date
     }
 }
 

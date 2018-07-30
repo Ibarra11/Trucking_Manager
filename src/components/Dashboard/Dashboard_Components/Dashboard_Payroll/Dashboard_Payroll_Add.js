@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import 'flatpickr/dist/themes/material_green.css'
-import Flatpickr from 'react-flatpickr'
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 class Dashboard_Payroll_Add extends Component {
     constructor() {
         super();
         this.state = {
-            date: moment().format("YYYY-MM-DD"),
+            date: '',
             driver: '',
             amount: 0,
             drivers: [],
@@ -47,7 +43,7 @@ class Dashboard_Payroll_Add extends Component {
 
                     <div className="form-group">
                         <label htmlFor="">Date</label>
-                        <input onChange={this.onTextChange} name='date' type="text" className="form-control" type='date' />
+                        <input onChange={this.onTextChange} name='date'  className="form-control" type='date' />
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Driver</label>

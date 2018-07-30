@@ -36,7 +36,7 @@ class Login extends Component {
                         <h2>Trucking Manager</h2>
                     </div>
                     <div className="nav-home">
-                        <button onClick={() => this.props.history.goBack()}>Back</button>
+                        <button className="btn home" onClick={() => this.props.history.goBack()}>Home</button>
                     </div>
                 </nav>
                 <form className="form-login" onSubmit={this.findUser}>

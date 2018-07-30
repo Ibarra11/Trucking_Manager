@@ -120,6 +120,11 @@ module.exports = {
             .then(payments => res.send(payments))
             .catch(err => res.status(500).send(err))
     },
+    getPayrollPerDriver: (req, res) =>{
+        req.app.get('db').get_sum_per_driver()
+        .then(sum => res.send(sum))
+        .catch(err => res.status(500).send(err))
+    },
     deletePayroll: (req, res) =>{
         let {id} = req.params;
         req.app.get('db').delete_payroll([id])
@@ -153,6 +158,11 @@ module.exports = {
             .then(categories => res.send(categories))
             .catch(err => res.status(500).send(err))
     },
+    getExpensesMonthly: (req,res) =>{
+        req.app.get('db').get_expense_monthly()
+        .then(expenses => res.send(expenses))
+        .catch(err => res.status(500).send(err))
+    },
     addExpense: (req, res) => {
         let { date, category, truck, amount } = req.body;
        +truck;
@@ -164,6 +174,11 @@ module.exports = {
         req.app.get('db').get_all_expenses()
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
+    },
+    getTotalExpenses: (req,res) =>{
+        req.app.get('db').get_total_expenses()
+        .then(expenses => res.send(expenses))
+        .catch(err => res.status(500).send(err))
     },
     addCategory: (req, res) => {
         let { category } = req.body;
@@ -210,6 +225,11 @@ module.exports = {
         .then(income => res.send(income))
         .catch(err => res.status(500).send(err))
     },
+    getIncomePerMonth: (req,res) =>{
+        req.app.get('db').get_income_per_month()
+        .then(income => res.send(income))
+        .catch(err => res.status(500).send(err))
+    },
     deleteIncome: (req,res) =>{
         let{id} = req.params;
         req.app.get('db').delete_income([id])
@@ -226,6 +246,11 @@ module.exports = {
     getIncomePerCompany: (req,res) =>{
         req.app.get('db').get_income_sum_companies()
         .then(companies => res.send(companies))
+        .catch(err => res.status(500).send(err))
+    },
+    getTotalIncome: (req,res) =>{
+        req.app.get('db').get_total_income()
+        .then(income => res.send(income))
         .catch(err => res.status(500).send(err))
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import { Link } from 'react-router-dom';
 class Dashboard_Trucks_Table extends Component {
     constructor() {
         super();
@@ -17,14 +18,14 @@ class Dashboard_Trucks_Table extends Component {
     }
     onOpenModal = unitId => {
         let unitFilter = this.state.trucks.filter(truck => truck.unit === unitId);
-        let {unit, make, model, year, plate_number, vin} = unitFilter[0];
+        let { unit, make, model, year, plate_number, vin } = unitFilter[0];
         this.setState({
-            unitNumber: unit, make,model, year, plate_number,vin,
+            unitNumber: unit, make, model, year, plate_number, vin,
             open: true
         })
     }
 
-    onInputChange = event =>{this.setState({[event.target.name]: event.target.value})}
+    onInputChange = event => { this.setState({ [event.target.name]: event.target.value }) }
 
     onCloseModal = () => {
         this.setState({ open: false })
@@ -39,15 +40,15 @@ class Dashboard_Trucks_Table extends Component {
     }
     updateTruck = (event) => {
         event.preventDefault();
-        let {unitNumber, make, model, year, plate_number, vin } = this.state
+        let { unitNumber, make, model, year, plate_number, vin } = this.state
         axios.put('/api/truck', {
             unit: unitNumber, make, model, year, plate_number, vin
         })
-        .then(() =>{
-            this.getAllTrucks();
-            this.onCloseModal();
-        })
-        .catch(err => console.log(err))
+            .then(() => {
+                this.getAllTrucks();
+                this.onCloseModal();
+            })
+            .catch(err => console.log(err))
     }
     render() {
         return (
@@ -112,12 +113,18 @@ class Dashboard_Trucks_Table extends Component {
                                         <button onClick={() => this.onOpenModal(truck.unit)} className="btn">
                                             <i className="fa fa-edit"></i>
                                         </button>
+                                        <button className="btn">
+                                            <i className="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
+                <div className="table-controls">
+                    <Link to='/dashboard/trucks/add'> <button  className="btn"><i className="fa fa-plus"> Truck</i></button></Link>
+                </div>
             </div>
         )
     }

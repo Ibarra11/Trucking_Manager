@@ -15,14 +15,28 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 1rem;
+        background-color: #1D8C8A;
+        h2 {
+            color: white;
+        }
+    }
+    .header-nav-links {
+        display: flex;
+        align-items: center;
+        .btn {
+            background-color: #F2A707;
+            color: white;
+            margin-left: 2rem;
+            font-size: 1.125rem;
+        }
     }
     .header-nav-logo {
         color: $light;
     }
     .link:link,
-    .link:active {
+    .link:visited {
         color: $light;
-        padding-left: 2rem;
+        padding-left: 1.5rem;
         font-size: 1.5rem;
         text-decoration: none;
     }
@@ -42,16 +56,30 @@
         letter-spacing: 3px;
         display: flex;
         flex-direction: column;
+        .hero-button {
+            position: relative;
+            top: 5rem;
+            width: 25%;
+            margin: 0 auto;
+            .btn {
+                width: 100%;
+                background-color: #F2A707;
+                color: white;
+                font-size: 1.5rem;
+            }
+        }
     }
     h1 {
         margin-bottom: 1.5rem;
-    } // section Styles
+    } // h2{
+    //     color: white;
+    // } // section Styles
     .section {
-        padding: 4rem 3rem;
+        padding: 3rem 3rem;
     }
     .section-heading {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
     .section-heading-primary {
         font-size: 3rem;
@@ -70,45 +98,85 @@
         margin-top: 1rem;
         font-size: 1.75rem;
     }
+    .feature {
+        color: white;
+        font-size: 1.5rem;
+    }
+    .cards {
+        padding: 0 20px;
+    }
+    .feature-list {
+        list-style: none;
+        padding-left: 1rem;
+        li {
+            font-size: 1.125rem;
+            color: white;
+        }
+    }
     /* Font Sizes */
     .fa {
         font-size: 3rem;
     }
-    .pricing{
+    .pricing {
         background-color: $light-section-divider;
     }
-    
-    .card{
-        background-color: $primary-blue;
+    .card {
+        background-color: #059BA5;
         height: 25rem;
     }
-    
-    .card-heading{
+    .card-heading {
         text-align: center;
         padding: 1rem 0;
     }
-    
-    .card-heading-primary{
+    .card-heading-primary {
         color: $light;
         font-size: 2rem;
     }
-    
-    .card-heading-secondary{
+    .card-heading-secondary {
         color: $light;
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
     }
-    
-    .card-register{
+    .card-register {
         margin-bottom: 2rem;
         display: flex;
         justify-content: center;
     }
-    
-    .btn-register{
-        background-color: $primary-yellow ;
+    .btn-register {
+        background-color: #F2A707;
         width: 50%;
+        color: white;
         border-radius: 5px;
         font-size: 1.25rem;
+        font-weight: 500;
+    }
+    .section-contact {
+        form {
+            width: 60%;
+            margin: 0 auto;
+        }
+        .form-submit {
+            display: flex;
+            justify-content: center;
+            .btn {
+                font-size: 1.25rem;
+                color: white;
+                width: 40%;
+                background-color: #059BA5;
+                i {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+    footer{
+        background-color: #373E40;
+        text-align: center;
+        padding: 1rem 0;
+        p{
+            margin: 0;
+            color: white;
+            font-size: 1.25rem;
+        }
     }
 }

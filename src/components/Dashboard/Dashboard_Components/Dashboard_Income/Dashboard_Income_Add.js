@@ -78,7 +78,7 @@ class Dashboard_Income_Add extends Component {
                         <label>
                             Date
                         </label>
-                        <input name='date' onChange={this.onInputChange} className="form-control" type="text" />
+                        <input name='date' onChange={this.onInputChange} className="form-control" type="date" />
                     </div>
                     <div className="form-group">
                         <label className="company">

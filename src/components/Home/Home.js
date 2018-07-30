@@ -5,21 +5,23 @@ class Home extends Component {
             <div className="component-home">
                 <header className="header">
                     <nav className="header-nav">
-                        <div className="header-nav-logo">
-                            <span>Logo</span>
-                        </div>
+                        <h2>Trucking Manager</h2>
                         <div className="header-nav-links">
                             <a className="link" href="#features">Features</a>
                             <a className="link" href="#pricing">Pricing</a>
                             <a className="link" href="#contact">Contact</a>
+                            <button className=" btn" onClick={() => this.props.history.push('/login')} >Login</button>
                         </div>
-                        <div className="header-nav-login">
-                            <button onClick={() => this.props.history.push('/login')} className="btn btn-login">Login</button>
-                        </div>
+                        {/* <div className="header-nav-login">
+                          
+                        </div> */}
                     </nav>
                     <div className="header-hero">
                         <h1>Trucking Manager</h1>
-                        <h3>Take your trucking business to the next level</h3>
+                        <h3>A Management System Built For Truckers</h3>
+                        <div className="hero-button">
+                            <button className="btn">Get Started Today</button>
+                        </div>
                     </div>
                 </header>
                 {/* Start of Features Section */}
@@ -38,7 +40,7 @@ class Home extends Component {
                                 </div>
                                 <div className="col-sm-3 feature-container">
                                     <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">IFTA Support</h4>
+                                    <h4 className="feature-heading-primary">Income Records</h4>
                                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
                                 </div>
                                 <div className="col-sm-3 feature-container">
@@ -60,12 +62,12 @@ class Home extends Component {
                                 </div>
                                 <div className="col-sm-3 feature-container">
                                     <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Truck Navigation</h4>
+                                    <h4 className="feature-heading-primary">Contact Management</h4>
                                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
                                 </div>
                                 <div className="col-sm-3 feature-container">
                                     <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Alert System</h4>
+                                    <h4 className="feature-heading-primary">Driver Management</h4>
                                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
                                 </div>
                                 <div className="col-sm-3 feature-container">
@@ -91,13 +93,14 @@ class Home extends Component {
                                             <h3 className="card-heading-primary">Premium</h3>
                                             <p className="card-heading-secondary">$39.99</p>
                                         </div>
-                                        <div className="card-body">
+                                        <div className="card-body cards">
+                                            <h5 className="feature">Features</h5>
                                             <ul className="feature-list">
-                                            <li>Payroll</li>
-                                            <li>Fuel Tracker</li>
-                                            <li>Navigation</li>
-                                            <li>IFTA</li>
-                                            <li>Expense Reports</li>
+                                                <li>Payroll</li>
+                                                <li>Fuel Tracker</li>
+                                                <li>Navigation</li>
+                                                <li>IFTA</li>
+                                                <li>Expense Reports</li>
                                             </ul>
                                         </div>
                                         <div className="card-register">
@@ -106,18 +109,19 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
-                                <div className="card">
+                                    <div className="card">
                                         <div className="card-heading">
-                                            <h3 className="card-heading-primary">Premium</h3>
-                                            <p className="card-heading-secondary">$39.99</p>
+                                            <h3 className="card-heading-primary">Pro</h3>
+                                            <p className="card-heading-secondary">$19.99</p>
                                         </div>
-                                        <div className="card-body">
+                                        <div className="card-body cards">
+                                            <h5 className="feature">Features</h5>
                                             <ul className="feature-list">
-                                            <li>Payroll</li>
-                                            <li>Fuel Tracker</li>
-                                            <li>Navigation</li>
-                                            <li>IFTA</li>
-                                            <li>Expense Reports</li>
+                                                <li>Payroll</li>
+                                                <li>Fuel Tracker</li>
+                                                <li>Navigation</li>
+                                                <li>IFTA</li>
+                                                <li>Expense Reports</li>
                                             </ul>
                                         </div>
                                         <div className="card-register">
@@ -126,18 +130,19 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
-                                <div className="card">
+                                    <div className="card">
                                         <div className="card-heading">
-                                            <h3 className="card-heading-primary">Premium</h3>
-                                            <p className="card-heading-secondary">$39.99</p>
+                                            <h3 className="card-heading-primary">Basic</h3>
+                                            <p className="card-heading-secondary">$0.00</p>
                                         </div>
-                                        <div className="card-body">
+                                        <div className="card-body cards">
+                                            <h5 className="feature">Features</h5>
                                             <ul className="feature-list">
-                                            <li>Payroll</li>
-                                            <li>Fuel Tracker</li>
-                                            <li>Navigation</li>
-                                            <li>IFTA</li>
-                                            <li>Expense Reports</li>
+                                                <li>Payroll</li>
+                                                <li>Fuel Tracker</li>
+                                                <li>Navigation</li>
+                                                <li>IFTA</li>
+                                                <li>Expense Reports</li>
                                             </ul>
                                         </div>
                                         <div className="card-register">
@@ -149,6 +154,39 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
+                <section className="section section-contact">
+                    <div className="section-heading">
+                        <h2 className="section-heading-primary">Contact</h2>
+                        <p className="section-heading-secondary">Have any questions. Ask Us!</p>
+                    </div>
+                    <div className="section-content">
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="">Name</label>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="">Name</label>
+                                <input className="form-control" type="text" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="">Email</label>
+                                <input className="form-control" type="email" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="">Message</label>
+                                <textarea className="form-control"   rows="4"></textarea>
+                            </div>
+                            <div className="form-submit">
+                                <button className="btn">Send Message <i className="fa fa-send"></i></button>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+                <footer>
+                    <p>Trucking Manager &copy; 2018</p>
+                </footer>
             </div>
         )
     }

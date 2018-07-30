@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {dashboardTruckRoutes} from '../../../../routes';
+import { Switch, Route } from 'react-router-dom';
+import Dashboard_Trucks_Add from './Dashboard_Trucks_Add';
+import Dashboard_Trucks_Table from './Dashboard_Trucks_Table';
 class Dashboard_Trucks extends Component {
     render() {
         return (
             <div className="component-dashboard-trucks">
-                <div className="trucks-header">
-                    <h3>Trucks</h3>
-                    <div className="trucks-search-add">
-                        <input placeholder="search for a truck" className="search form-control" type="text" />
-                        <Link to={'/dashboard/trucks/add'}><button className="btn btn-success">Add Truck</button></Link>
+                <div className="card">
+                    <div className="card-header">
+                        <h3>Trucks</h3>
                     </div>
                 </div>
-
                 <div className="trucks-view">
-                    {dashboardTruckRoutes()}
+                    <Switch>
+                        <Route path='/dashboard/trucks/add' component={Dashboard_Trucks_Add} />
+                        <Route  component={Dashboard_Trucks_Table} />
+                    </Switch>
                 </div>
             </div>
         )

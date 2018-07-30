@@ -20,9 +20,17 @@
 
     .expenses-metrics-overall{
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         margin: 1rem 0;
         margin-bottom: 0.5rem;
+
+        h6{
+            font-size: 1.625rem;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
     }
 }
 
@@ -84,10 +92,8 @@
         text-align: center;
     }
     .form-header {
-        border: 1px solid grey;
         width: 35%;
         margin: 0 auto;
-        padding: 5px;
     }
 }
 

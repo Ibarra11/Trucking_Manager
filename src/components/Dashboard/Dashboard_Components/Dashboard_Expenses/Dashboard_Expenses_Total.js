@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
@@ -28,10 +29,29 @@ const data = {
 };
 
 class Dashboard_Expenses_Total extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            changeState: false
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/api/expenses/monthly')
+            .then(res =>{
+                let expensePerMonth = [];
+                res.data.forEach(expense => expensePerMonth.push(expense.sum));
+                data.datasets[0].data = expensePerMonth;
+                this.setState({changeState: !this.state.changeState})
+
+            })
+            .catch(err => console.log(err))
+    }
+
     render() {
         return (
             <div className="component-expense-total">
-
                 <Line
                     height={200}
                     options={{

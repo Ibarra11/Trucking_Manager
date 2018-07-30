@@ -3,7 +3,8 @@ let initalState = {
     shipper: '',
     pickupAddr: '',
     destAddr: '',
-    rate: ''
+    rate: '',
+    date: ''
 }
 
 const ADD_DRIVERS = 'ADD_DRIVERS';
@@ -20,8 +21,8 @@ export default function (state = initalState, action) {
             let driversList2 = state.drivers.filter(driver => driver.driver != action.payload);
             return Object.assign({}, state, { drivers: driversList2 });
         case ADD_LOAD:
-            let { shipper, pickupAddr, destAddr,  rate } = action.payload;
-            return Object.assign({}, state, {shipper: shipper, pickupAddr: pickupAddr, destAddr: destAddr, rate: rate})
+            let { shipper, pickupAddr, destAddr,  rate, date } = action.payload;
+            return Object.assign({}, state, {shipper: shipper, pickupAddr: pickupAddr, destAddr: destAddr, rate: rate, date: date})
         default:
             return state;
     }

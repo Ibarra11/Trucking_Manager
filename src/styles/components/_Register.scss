@@ -16,15 +16,14 @@
         flex-direction: column;
         padding: 0 1.5rem;
     }
-    .form-group{
+    .form-group {
         margin-bottom: 10px;
     }
-    .errors{
+    .errors {
         width: 35%;
         position: relative;
         left: 725px;
-        bottom: 400px;
-        // padding: 1rem;
+        bottom: 400px; // padding: 1rem;
         color: $light;
     }
     nav {
@@ -53,7 +52,13 @@
     .btn {
         width: 75%;
     }
-    small{
+    .home {
+        width: 100%;
+        background-color: #F2A707;
+        color: white;
+        font-size: 1.1rem;
+    }
+    small {
         color: #E80000;
     }
 }

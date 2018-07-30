@@ -36,16 +36,14 @@ class Dashboard_Income_Monthly extends Component {
         }
     }
     componentDidMount() {
-        let sumArray = [];
-        axios.get('/api/payroll/monthly')
-            .then(res => {
-                for (let i = 0; i < res.data.length; i++) {
-                    sumArray.push(res.data[i].sum)
-                }
-                data.datasets[0].data = sumArray;
-                this.setState({ resetState: !this.state.resetState })
-            })
-            .catch(err => console.log(err));
+        let incomePerMonth = [];
+        axios.get('/api/income/monthly')
+        .then(res =>{
+            res.data.forEach(income => incomePerMonth.push(income.sum));
+            data.datasets[0].data = incomePerMonth;
+            this.setState({resetState: !this.state.resetState})
+        } )
+        .catch(err => console.log(err))
     }
 
     render() {

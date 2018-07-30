@@ -1,0 +1,70 @@
+.component-dashboard-home {
+    height: 100%;
+    h5{
+        color: black;
+        text-align: center;
+    }
+    .dashboard-home-view {
+        height: 88.5%;
+        .container {
+            height: 100%;
+        }
+        .row {
+            height: 100%;
+        }
+    }
+    .revenue {
+        border: 1px solid orange;
+        height: 50%;
+    }
+    .weather-api {
+        border: 1px solid blue;
+        height: 50%;
+    }
+    .reminders {
+        height: 100%;
+        .card{
+            height: 100%;
+            text-align: center;
+            .card-body{
+                .card{
+                    padding-top: 0.5rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+    .component-home-metrics {
+        height: 100%;
+        padding: 0.5rem 0;
+        h5 {
+            color: black;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+        //    padding-top: rem;
+            .card {
+                text-align: center;
+            }
+        }
+    }
+
+    .component-weather{
+            padding: 0.5rem;
+            border: 1px solid red;
+            .component-weather-view{
+                height: 100%;
+            }
+        .weather-controls{
+            height: 220px;
+            padding: 1rem;
+
+            .weather-button{
+               display: flex;
+               justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

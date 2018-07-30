@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { dashboardRoutes } from '../../routes';
 
@@ -17,7 +16,10 @@ class Dashboard extends Component {
         return (
             <div className='component-dashboard'>
                 <nav className="dashboard-nav">
-                    <h1>Trucking Manager</h1>
+                    <div className="dashboard-nav-header">
+                        <h1>Trucking Manager</h1>
+                    </div>
+
                     <ul className="nav-link-container">
                         <Link className="nav-link" to='/dashboard'>
                             <h5>Home</h5>
@@ -37,17 +39,14 @@ class Dashboard extends Component {
                         <Link className="nav-link" to='/dashboard/payroll'>
                             <h5>Payroll</h5>
                         </Link>
-                        <Link className="nav-link" to='/dashboard/ifta'>
-                            <h5>IFTA</h5>
-                        </Link>
                         <Link className="nav-link" to='/dashboard/contacts'>
                             <h5>Contacts</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/dispatch'>
                             <h5>Dispatch</h5>
                         </Link>
-                        <Link className="nav-link" to='/dashboard/dispatch'>
-                            <h5>Account</h5>
+                        <Link className="nav-link" to='/'>
+                            <h5>Logout</h5>
                         </Link>
                     </ul>
                 </nav>

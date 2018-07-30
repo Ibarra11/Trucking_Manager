@@ -53,7 +53,7 @@ class Dashboard_Add_Expense extends Component {
                     <form onSubmit={event => this.addExpense(event)}>
                         <div className="form-group">
                             <label>Date</label>
-                            <input onChange={this.onTextChange} name='date' className="form-control" type="text" />
+                            <input onChange={this.onTextChange} name='date' className="form-control" type="date" />
                         </div>
                         <div className="form-group">
                             <label>Category</label>

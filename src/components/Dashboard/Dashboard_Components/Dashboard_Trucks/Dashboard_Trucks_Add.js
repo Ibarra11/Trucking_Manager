@@ -27,6 +27,7 @@ class Dashboard_Trucks_Add extends Component {
     render() {
         return (
             <div className="component-truck-add">
+            <h4>Add Truck</h4>
                 <form onSubmit={event => this.addTruck(event)} className="truck-form">
                     <div className="container">
                         <div className="row">
