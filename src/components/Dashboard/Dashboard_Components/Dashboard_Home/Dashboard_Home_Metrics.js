@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import ReactDelayRender from 'react-delay-render';
+import numeral from 'numeral';
 import axios from 'axios';
 const data = {
     labels: [
@@ -55,15 +55,15 @@ class Dashboard_Home_Metrics extends Component {
                     <div className="col-md-4">
                         <div className="card">
                             <h6>Total Revenue</h6>
-                            <p>$ {this.state.revenue}</p>
+                            <p>{numeral(this.state.revenue).format('$0,0.00')}</p>
                         </div>
                         <div className="card">
                             <h6>Total Income</h6>
-                            <p>${this.state.totalIncome}</p>
+                            <p>{numeral(this.state.totalIncome).format('$0,0.00')}</p>
                         </div>
                         <div className="card">
                             <h6>Total Expenses</h6>
-                            <p>${this.state.totalExpenses}</p>
+                            <p>{numeral(this.state.totalExpenses).format('$0,0.00')}</p>
                         </div>
                     </div>
                     <div className="col-md-8">

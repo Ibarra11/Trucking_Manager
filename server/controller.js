@@ -193,6 +193,18 @@ module.exports = {
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
+    getAverageExpensePerMonth: (req,res) =>{
+        req.app.get('db').get_avg_expense_month()
+        .then(avg => res.send(avg))
+        .catch(err => res.status(500).send(err))
+    },
+    updateExpense: (req,res) =>{
+        let {id} = req.params;
+        let {date, category, truck, amount} = req.body;
+        req.app.get('db').update_expense([id, date, category, truck, amount])
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
     getExpenseSumPerCategory: (req, res) => {
         req.app.get('db').get_expense_sum_category()
             .then(expenses => res.send(expenses))
@@ -234,6 +246,11 @@ module.exports = {
         let{id} = req.params;
         req.app.get('db').delete_income([id])
         .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+    getAverageIncomePerMonth: (req,res) =>{
+        req.app.get('db').get_avg_income_month()
+        .then(avg => res.send(avg))
         .catch(err => res.status(500).send(err))
     },
     updateIncome: (req,res) =>{

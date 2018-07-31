@@ -123,7 +123,7 @@ class Dashboard_Drivers_Table extends Component {
                                         <td>{driver.unitnumber}</td>
                                         <td className="actions">
                                             <button onClick={() => this.onOpenModal(driver.id)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.deleteDriver(driver.id)} className="btn btn-danger"><i className="fa fa-close"></i></button>
+                                            <button onClick={() => this.deleteDriver(driver.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 )

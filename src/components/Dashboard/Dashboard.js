@@ -24,14 +24,14 @@ class Dashboard extends Component {
                         <Link className="nav-link" to='/dashboard'>
                             <h5>Home</h5>
                         </Link>
-                        <Link className="nav-link" to='/dashboard/trucks'>
-                            <h5>Trucks</h5>
-                        </Link>
                         <Link className="nav-link" to='/dashboard/expenses'>
                             <h5>Expenses</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/income'>
                             <h5>Income</h5>
+                        </Link>
+                        <Link className="nav-link" to='/dashboard/trucks'>
+                            <h5>Trucks</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/drivers'>
                             <h5>Drivers</h5>

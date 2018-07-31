@@ -38,6 +38,7 @@ class Dashboard_Trucks_Table extends Component {
             .then(res => this.setState({ trucks: res.data }))
             .catch(err => console.log(err))
     }
+  
     updateTruck = (event) => {
         event.preventDefault();
         let { unitNumber, make, model, year, plate_number, vin } = this.state
@@ -110,10 +111,10 @@ class Dashboard_Trucks_Table extends Component {
                                     <td>{truck.plate_number}</td>
                                     <td>{truck.vin}</td>
                                     <td>
-                                        <button onClick={() => this.onOpenModal(truck.unit)} className="btn">
+                                        <button onClick={() => this.onOpenModal(truck.unit)} className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
-                                        <button className="btn">
+                                        <button  className="btn btn-danger">
                                             <i className="fa fa-trash"></i>
                                         </button>
                                     </td>

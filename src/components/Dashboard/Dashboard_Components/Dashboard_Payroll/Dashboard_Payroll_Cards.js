@@ -41,7 +41,7 @@ class Dashboard_Payroll_Cards extends Component {
                         <div className="col-md-12">
                             <div className="card">
                                 <h5>Average/Month</h5>
-                                <h6>$5,000</h6>
+                                <h6>$720.45</h6>
                             </div>
                         </div>
                     </div>

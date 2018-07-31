@@ -3,21 +3,25 @@ import Dashboard_Expenses_Category from './Dashboard_Expenses_Category';
 import Dashboard_Expenses_Truck from './Dashboard_Expenses_Truck';
 import Dashboard_Expenses_Total from './Dashboard_Expenses_Total';
 import axios from 'axios';
+import numeral from 'numeral';
+
 class Dashboard_Expenses_Metrics extends Component {
     constructor() {
         super();
         this.state = {
-            totalExpenses: 0
+            totalExpenses: 0,
+            avgExpense: 0
         }
 
     }
-
     componentDidMount() {
         axios.get('/api/expenses/total')
             .then(res => this.setState({ totalExpenses: res.data[0].sum }))
             .catch(err => console.log(err))
+        axios.get('/api/expenses/avg')
+            .then(res => this.setState({avgExpense: res.data[0].Avg}))
+            .catch(err => console.log(err))
     }
-
     render() {
         return (
             <div className="component-expenses">
@@ -31,11 +35,11 @@ class Dashboard_Expenses_Metrics extends Component {
                                 <div className="expenses-metrics-overall col-md-12">
                                     <div className="card col-md-4">
                                         <h6>Expenses Total</h6>
-                                        <p>$ {this.state.totalExpenses}</p>
+                                        <p>{numeral(this.state.totalExpenses).format('$0,0.00')}</p>
                                     </div>
                                     <div className="card col-md-4">
                                         <h6>Avg Expense/Month</h6>
-                                        <p>$10,000</p>
+                                        <p>{numeral(this.state.avgExpense).format('$0,0.00')}</p>
                                     </div>
                                 </div>
                                 <div className="expense-metrics-graphs col-md-12">

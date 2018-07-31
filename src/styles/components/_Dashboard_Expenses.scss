@@ -13,22 +13,20 @@
         h5 {
             color: #000;
         }
-        .graph{
+        .graph {
             margin: 1.25rem 0;
         }
     }
-
-    .expenses-metrics-overall{
+    .expenses-metrics-overall {
         display: flex;
         justify-content: space-around;
         margin: 1rem 0;
         margin-bottom: 0.5rem;
-
-        h6{
+        h6 {
             font-size: 1.625rem;
             text-align: center;
         }
-        p{
+        p {
             text-align: center;
         }
     }
@@ -117,6 +115,9 @@
     width: 95%;
     margin: 0 auto;
     padding: 1.5rem 0;
+    h4 {
+        text-align: center;
+    }
     .table-controls {
         display: flex;
         justify-content: flex-end;
