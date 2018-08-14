@@ -104,6 +104,7 @@ app.get('/api/income', ctrl.getIncome);
 app.get('/api/income/total', ctrl.getTotalIncome);
 app.delete('/api/income/:id', ctrl.deleteIncome);
 app.put('/api/income/:id', ctrl.updateIncome);
-app.get('/api/income/companies/sum', ctrl.getIncomePerCompany)
+app.get('/api/income/companies/sum', ctrl.getIncomePerCompany);
+
 app.listen(SERVER_PORT, () => console.log('server running'));
 

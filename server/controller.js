@@ -1,5 +1,5 @@
 module.exports = {
-    registerUser: async (req, res, bcrypt, validationResult) => {
+    registerUser: async (req, res, bcrypt) => {
         // Validation for body inputs
         req.checkBody('username', 'Username field cannot be empty').notEmpty();
         req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15);

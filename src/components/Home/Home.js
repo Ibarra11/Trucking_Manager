@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import analytics from './images/analytics.PNG';
+import dispatch from './images/dispatch.PNG';
 class Home extends Component {
     render() {
         return (
@@ -28,53 +30,62 @@ class Home extends Component {
                 <section className="section features">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Features</h2>
-                        <p className="section-heading-secondary">Lorem ipsum dolor sit amet.</p>
+                        <p className="section-heading-secondary">Run Your Business in a More Efficient and Organized Manner</p>
                     </div>
                     <div className="section-content">
                         <div className="container">
                             <div className="row">
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Payroll</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
+                                <div className="col-md-6">
+                                    <div className="feature-container">
+                                        <h3>Record Management</h3>
+                                        <p>
+                                            Running a trucking business is very time consuming and
+                                            requires alot of record keeping.  With our software we
+                                            can keep track of your records for you.  It's hassle free and
+                                            very easy to use, we do all the hard work for you.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Income Records</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
-                                </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Dispatch</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
-                                </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Fuel Log</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
+                                <div className="col-md-6">
+                                    <div className="feature-img">
+                                        <img src={analytics} alt=" analytics Image" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Expense Records</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
+                                <div className="col-md-6">
+                                    <div className="feature-img">
+                                        <img src={analytics} alt=" analytics Image" />
+                                    </div>
                                 </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Contact Management</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
+                                <div className="col-md-6">
+                                    <div className="feature-container">
+                                        <h3>Analytics</h3>
+                                        <p>
+                                            We provide analytics for services like
+                                            revenue, payroll, and expenses. This will make
+                                            you much more efficient at evaluating the flow
+                                            of money throughout your company.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">Driver Management</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="feature-container">
+                                        <h3>Dispatch System</h3>
+                                        <p>
+                                            Sending jobs to drivers has never been easier.
+                                            Our dispatch system enables you to send jobs to multiple
+                                            drivers with a single click of a button.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="col-sm-3 feature-container">
-                                    <i className="fa fa-dollar"></i>
-                                    <h4 className="feature-heading-primary">1099 Tax Automation</h4>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum odio voluptatem quam optio suscipit non.</p>
-                                </div>
+                                <div className="col-md-6">
+                                    <div className="feature-img">
+                                        <img src={dispatch} alt="Dispatch Image" />
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -82,7 +93,7 @@ class Home extends Component {
                 <section className="section pricing">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Pricing</h2>
-                        <p className="section-heading-secondary">Lorem ipsum dolor sit amet.</p>
+                        <p className="section-heading-secondary">Pick a Plan and Elevate Your Trucking Business </p>
                     </div>
                     <div className="section-content">
                         <div className="container">
@@ -175,7 +186,7 @@ class Home extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="">Message</label>
-                                <textarea className="form-control"   rows="4"></textarea>
+                                <textarea className="form-control" rows="4"></textarea>
                             </div>
                             <div className="form-submit">
                                 <button className="btn">Send Message <i className="fa fa-send"></i></button>
