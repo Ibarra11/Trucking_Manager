@@ -1,6 +1,7 @@
 @import '../variables';
 .component-home {
     font-family: $font-family-oswald; // header styles
+    // Yellow button hover
     .header {
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../components/Home/images/mainbg.jpg');
         background-size: cover;
@@ -66,14 +67,16 @@
                 background-color: #F2A707;
                 color: white;
                 font-size: 1.5rem;
+                transition: all 1s;
+                &:hover{
+                    background-color: #d59307;
+                }
             }
         }
     }
     h1 {
         margin-bottom: 1.5rem;
-    } // h2{
-    //     color: white;
-    // } // section Styles
+    } 
     .section {
         padding: 3rem 3rem;
     }
@@ -86,10 +89,7 @@
     }
     .section-heading-secondary {
         font-size: 1.3rem;
-    }
-    .section .row {
-        margin-bottom: 1.5rem;
-    }
+    } 
     /* Features Section Styles */
     .features {
         background-color: #FAFAFA;
@@ -100,7 +100,7 @@
         flex-direction: column;
         justify-content: center;
         height: 100%;
-        background-color: #16BAC5;
+        background-color: #059BA5;
         padding: 0 1rem;
         h3,
         p {
@@ -119,6 +119,7 @@
     }
     .feature-img {
         width: 100%;
+        height: 225px;
         img {
             width: 100%;
             height: 100%;
@@ -129,34 +130,47 @@
         font-size: 1.75rem;
     }
     .feature {
-        color: white;
+        color: #F4F4F6;
         font-size: 1.5rem;
     }
     .cards {
-        padding: 0 20px;
+        width: 75%;
+        margin: 0 auto;
     }
     .feature-list {
         list-style: none;
-        padding-left: 1rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        .feature{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 3px;
+            border-bottom: 1px solid #F4F4F6;
+            margin-bottom: 0.5rem;
+
+            fa{
+                font-size: 1.25rem;
+            }
+        }
         li {
-            font-size: 1.125rem;
-            color: white;
+            font-size: 1.5rem;
+            color: #F4F4F6;
         }
     }
     /* Font Sizes */
-    .fa {
-        font-size: 3rem;
-    }
+   
     .pricing {
         background-color: $light-section-divider;
     }
     .card {
-        background-color: #059BA5;
-        height: 25rem;
+        background-color: #4C596A;
+        min-height: 25rem;
     }
     .card-heading {
+        background-color: #059BA5;
         text-align: center;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
     }
     .card-heading-primary {
         color: $light;
@@ -165,7 +179,10 @@
     .card-heading-secondary {
         color: $light;
         font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+    .big{
+        font-size: 2.5rem;
     }
     .card-register {
         margin-bottom: 2rem;
@@ -174,11 +191,19 @@
     }
     .btn-register {
         background-color: #F2A707;
-        width: 50%;
+        width: 75%;
         color: white;
         border-radius: 5px;
         font-size: 1.25rem;
         font-weight: 500;
+        transition: all 1s;
+
+        &:hover{
+            background-color: #d59307;
+        }
+    }
+    .feature-green {
+        color: #059BA5;
     }
     .section-contact {
         form {
@@ -193,6 +218,10 @@
                 color: white;
                 width: 40%;
                 background-color: #059BA5;
+                transition: all 1s;
+                &:hover{
+                    background-color: #058b94;
+                }
                 i {
                     font-size: 1.25rem;
                 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import analytics from './images/analytics.PNG';
 import dispatch from './images/dispatch.PNG';
+import records from './images/recordManagement.PNG';
 class Home extends Component {
     render() {
         return (
@@ -22,7 +23,7 @@ class Home extends Component {
                         <h1>Trucking Manager</h1>
                         <h3>A Management System Built For Truckers</h3>
                         <div className="hero-button">
-                            <button className="btn">Get Started Today</button>
+                            <button className="btn btn-yellow">Get Started Today</button>
                         </div>
                     </div>
                 </header>
@@ -48,7 +49,7 @@ class Home extends Component {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="feature-img">
-                                        <img src={analytics} alt=" analytics Image" />
+                                        <img src={records} alt=" Image" />
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +86,7 @@ class Home extends Component {
                                     <div className="feature-img">
                                         <img src={dispatch} alt="Dispatch Image" />
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,16 +103,30 @@ class Home extends Component {
                                     <div className="card">
                                         <div className="card-heading">
                                             <h3 className="card-heading-primary">Premium</h3>
-                                            <p className="card-heading-secondary">$39.99</p>
+                                            <p className="card-heading-secondary"><span className="big">$39.99</span>/Month</p>
                                         </div>
-                                        <div className="card-body cards">
-                                            <h5 className="feature">Features</h5>
+                                        <div className="cards">
                                             <ul className="feature-list">
-                                                <li>Payroll</li>
-                                                <li>Fuel Tracker</li>
-                                                <li>Navigation</li>
-                                                <li>IFTA</li>
-                                                <li>Expense Reports</li>
+                                                <div className="feature">
+                                                    <li >Payroll</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Dispatch</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Income Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Expense Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >IFTA Support</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
                                             </ul>
                                         </div>
                                         <div className="card-register">
@@ -123,16 +138,30 @@ class Home extends Component {
                                     <div className="card">
                                         <div className="card-heading">
                                             <h3 className="card-heading-primary">Pro</h3>
-                                            <p className="card-heading-secondary">$19.99</p>
+                                            <p className="card-heading-secondary"><span className="big">$19.99</span>/Month</p>
                                         </div>
-                                        <div className="card-body cards">
-                                            <h5 className="feature">Features</h5>
+                                        <div className="cards">
                                             <ul className="feature-list">
-                                                <li>Payroll</li>
-                                                <li>Fuel Tracker</li>
-                                                <li>Navigation</li>
-                                                <li>IFTA</li>
-                                                <li>Expense Reports</li>
+                                                <div className="feature">
+                                                    <li >Payroll</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Dispatch</li>
+                                                    <i className="fa fa-times"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Income Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Expense Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >IFTA Support</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
                                             </ul>
                                         </div>
                                         <div className="card-register">
@@ -144,16 +173,30 @@ class Home extends Component {
                                     <div className="card">
                                         <div className="card-heading">
                                             <h3 className="card-heading-primary">Basic</h3>
-                                            <p className="card-heading-secondary">$0.00</p>
+                                            <p className="card-heading-secondary"><span className="big">$0.00</span>/Month</p>
                                         </div>
-                                        <div className="card-body cards">
-                                            <h5 className="feature">Features</h5>
+                                        <div className="cards">
                                             <ul className="feature-list">
-                                                <li>Payroll</li>
-                                                <li>Fuel Tracker</li>
-                                                <li>Navigation</li>
-                                                <li>IFTA</li>
-                                                <li>Expense Reports</li>
+                                                <div className="feature">
+                                                    <li >Payroll</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Dispatch</li>
+                                                    <i className="fa fa-times"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Income Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >Expense Management</li>
+                                                    <i className="fa fa-check"></i>
+                                                </div>
+                                                <div className="feature">
+                                                    <li >IFTA Support</li>
+                                                    <i className="fa fa-times"></i>
+                                                </div>
                                             </ul>
                                         </div>
                                         <div className="card-register">
