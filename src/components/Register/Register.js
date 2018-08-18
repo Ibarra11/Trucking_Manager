@@ -28,6 +28,7 @@ class Register extends Component {
                     this.props.history.push('/dashboard')
                 }
                 else {
+                    console.log(res.data);
                     this.setState({ errors: res.data })
                 }
             })

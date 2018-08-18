@@ -24,7 +24,7 @@ const {
 } = process.env;
 
 
-app.use( express.static( `${__dirname}/../build` ));
+app.use(express.static(`${__dirname}/../build`));
 
 // Middleware
 app.use(bodyParser.json());
@@ -47,21 +47,33 @@ massive(CONNECTION_STRING)
 
 // endpoints
 
-app.post('/api/dispatch', (req, res) =>{
-    let {body, number} = req.body;
+app.post('/api/dispatch', (req, res) => {
+    let { body, number } = req.body;
     console.log(req.body)
     client.messages
-        .create({from: '+12093951427', body: body, to: number})
+        .create({ from: '+12093951427', body: body, to: number })
         .then(message => console.log(message.sid))
         .done(res.sendStatus(200));
 })
 
-app.post('/api/auth/register', (req, res) => ctrl.registerUser(req, res, bcrypt))
+app.post('/api/auth/register', function (req, res, next) {
+    req.checkBody('username', 'Username field cannot be empty').notEmpty();
+    req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15);
+    const errors = req.validationErrors();
+    // IF there are any errors than dont proceed to the next endpoint
+    if(errors){
+        res.send(errors);
+    }
+    else{
+        next();
+    }
+
+}, (req, res) => ctrl.registerUser(req, res, bcrypt))
 
 app.post('/api/auth/login', (req, res) => ctrl.findUser(req, res, bcrypt))
 
 app.get('/api/drivers', ctrl.getAllDrivers);
-app.post('/api/driver', ctrl.addDriver );
+app.post('/api/driver', ctrl.addDriver);
 app.put('/api/driver/:id', ctrl.updateDriver);
 app.delete('/api/driver/:driver_id', ctrl.deleteDriver);
 

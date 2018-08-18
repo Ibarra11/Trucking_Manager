@@ -23,7 +23,7 @@ class Home extends Component {
                         <h1>Trucking Manager</h1>
                         <h3>A Management System Built For Truckers</h3>
                         <div className="hero-button">
-                            <button className="btn ">Get Started Today</button>
+                            <button onClick={() => this.props.history.push('/register')} className="btn ">Get Started Today</button>
                         </div>
                     </div>
                 </header>
