@@ -220,10 +220,6 @@ class Home extends Component {
                                 <input className="form-control" type="text" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="">Name</label>
-                                <input className="form-control" type="text" />
-                            </div>
-                            <div className="form-group">
                                 <label htmlFor="">Email</label>
                                 <input className="form-control" type="email" />
                             </div>

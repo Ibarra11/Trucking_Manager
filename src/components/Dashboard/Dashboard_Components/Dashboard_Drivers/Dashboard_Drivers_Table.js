@@ -43,7 +43,7 @@ class Dashboard_Drivers_Table extends Component {
     getDrivers = () => {
         axios.get('api/drivers')
             .then(res => {
-                console.log(res);
+        
                 this.setState({ drivers: res.data })
             })
             .catch(err => console.log(err))
