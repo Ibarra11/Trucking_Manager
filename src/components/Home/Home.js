@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import analytics from './images/analytics.PNG';
 import dispatch from './images/dispatch.PNG';
 import records from './images/recordManagement.PNG';
+import {HashLink as Link } from 'react-router-hash-link';
 class Home extends Component {
     render() {
         return (
@@ -10,14 +11,11 @@ class Home extends Component {
                     <nav className="header-nav">
                         <h2>Trucking Manager</h2>
                         <div className="header-nav-links">
-                            <a className="link" href="#features">Features</a>
-                            <a className="link" href="#pricing">Pricing</a>
-                            <a className="link" href="#contact">Contact</a>
+                            <Link className="link" smooth to='/#features'>Features</Link>
+                            <Link className="link" smooth to='/#pricing'>Pricing</Link>
+                            <Link className="link" smooth to='/#contact'>Contact</Link>
                             <button className=" btn" onClick={() => this.props.history.push('/login')} >Login</button>
                         </div>
-                        {/* <div className="header-nav-login">
-                          
-                        </div> */}
                     </nav>
                     <div className="header-hero">
                         <h1>Trucking Manager</h1>
@@ -28,7 +26,7 @@ class Home extends Component {
                     </div>
                 </header>
                 {/* Start of Features Section */}
-                <section id="#features" className="section features">
+                <section id="features" className="section features">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Features</h2>
                         <p className="section-heading-secondary">Run Your Business in a More Efficient and Organized Manner</p>
