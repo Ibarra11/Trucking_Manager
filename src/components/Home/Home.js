@@ -23,12 +23,12 @@ class Home extends Component {
                         <h1>Trucking Manager</h1>
                         <h3>A Management System Built For Truckers</h3>
                         <div className="hero-button">
-                            <button onClick={() => this.props.history.push('/register')} className="btn ">Get Started Today</button>
+                            <button onClick={() => this.props.history.push('/register')} className="btn ">Sign Up Today</button>
                         </div>
                     </div>
                 </header>
                 {/* Start of Features Section */}
-                <section className="section features">
+                <section id="#features" className="section features">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Features</h2>
                         <p className="section-heading-secondary">Run Your Business in a More Efficient and Organized Manner</p>
@@ -91,7 +91,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="section pricing">
+                <section id="pricing" className="section pricing">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Pricing</h2>
                         <p className="section-heading-secondary">Pick a Plan and Elevate Your Trucking Business </p>
@@ -208,7 +208,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="section section-contact">
+                <section id="contact" className="section section-contact">
                     <div className="section-heading">
                         <h2 className="section-heading-primary">Contact</h2>
                         <p className="section-heading-secondary">Have any questions. Ask Us!</p>
