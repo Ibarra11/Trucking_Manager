@@ -38,7 +38,6 @@ module.exports = {
             .then(user => {
                 let { id, password } = user[0];
                 req.session.userId = id;
-                console.log(req.session);
                 bcrypt.compare(loginPassword, password, (error, response) => {
                     (response ? res.send('valid') : res.send('invalid'))
                 })
@@ -56,7 +55,7 @@ module.exports = {
         let { userId } = req.session;
         req.app.get('db').get_drivers([userId])
             .then(drivers => res.send(drivers))
-            .catch(err => res.status(500).send(err) )
+            .catch(err => res.status(500).send(err))
     },
     deleteDriver: (req, res) => {
         let { driver_id } = req.params;
@@ -116,16 +115,16 @@ module.exports = {
     },
     addPayroll: (req, res) => {
         let { date, driver, amount } = req.body;
-        let {userId} = req.session;
+        let { userId } = req.session;
         req.app.get('db').add_payroll([userId, date, driver, amount])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
     getPayroll: (req, res) => {
-        let {userId} = req.session;
+        let { userId } = req.session;
         req.app.get('db').get_payroll([userId])
             .then(payments => res.send(payments))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     getPayrollPerDriver: (req, res) => {
         req.app.get('db').get_sum_per_driver()
@@ -185,9 +184,10 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getTotalExpenses: (req, res) => {
-        req.app.get('db').get_total_expenses()
+        let { userId } = req.session;
+        req.app.get('db').get_total_expenses([userId])
             .then(expenses => res.send(expenses))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err) )
     },
     addCategory: (req, res) => {
         let { category } = req.body;
@@ -277,8 +277,9 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getTotalIncome: (req, res) => {
-        req.app.get('db').get_total_income()
+        let {userId} = req.session;
+        req.app.get('db').get_total_income([userId])
             .then(income => res.send(income))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err) )
     }
 }

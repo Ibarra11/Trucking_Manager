@@ -53,7 +53,7 @@ values
 
 -- Payroll Table
 CREATE TABLE payroll(
-    id SERIAL PRIMARY KEY,
+    payroll_id SERIAL PRIMARY KEY,
      owner_id INTEGER REFERENCES users(id),
     payroll_date VARCHAR(20),
     driver_name VARCHAR (80),

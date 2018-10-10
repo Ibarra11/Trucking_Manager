@@ -26,27 +26,45 @@ class Dashboard_Home_Metrics extends Component {
     constructor() {
         super();
         this.state = {
-            totalIncome: 0,
-            totalExpenses: 0,
+            income: 0,
+            expenses: 0,
             revenue: 0
         }
-        let totalExpenses = 0;
-        let totalIncome = 0;
-        let revenue = 0;
-        axios.get('/api/expenses/total')
+        // let totalExpenses = 0;
+        // let totalIncome = 0;
+        // let revenue = 0;
+    }
+
+    componentDidMount() {
+        this.calculateRevenue();
+    }
+
+    calculateRevenue = async () => {
+        let expenses = await this.getTotalExpenses();
+        let income = await this.getTotalIncome();
+        console.log(expenses);
+        console.log(income)
+        let revenue = income - expenses;
+        data.datasets[0].data = [revenue, income, expenses];
+        this.setState({ income, expenses, revenue })
+    }
+
+    getTotalExpenses() {
+       return axios.get('/api/expenses/total')
             .then(res => {
-                totalExpenses = res.data[0].sum;
+                console.log(res);
+                return res.data[0].sum;
             })
             .catch(err => console.log(err))
-        axios.get('/api/income/total')
+    }
+    getTotalIncome() {
+       return  axios.get('/api/income/total')
             .then(res => {
-                totalIncome = res.data[0].sum;
-                revenue = totalIncome - totalExpenses;
-                data.datasets[0].data = [revenue, totalIncome, totalExpenses];
-                this.setState({ totalIncome: totalIncome, totalExpenses: totalExpenses, revenue: revenue })
+                return res.data[0].sum;
             })
             .catch(err => console.log(err));
     }
+
     render() {
         return (
             <div className="component-home-metrics">
@@ -59,11 +77,11 @@ class Dashboard_Home_Metrics extends Component {
                         </div>
                         <div className="card">
                             <h6>Total Income</h6>
-                            <p>{numeral(this.state.totalIncome).format('$0,0.00')}</p>
+                            <p>{numeral(this.state.income).format('$0,0.00')}</p>
                         </div>
                         <div className="card">
                             <h6>Total Expenses</h6>
-                            <p>{numeral(this.state.totalExpenses).format('$0,0.00')}</p>
+                            <p>{numeral(this.state.expenses).format('$0,0.00')}</p>
                         </div>
                     </div>
                     <div className="col-md-8">
