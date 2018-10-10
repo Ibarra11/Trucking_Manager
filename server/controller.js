@@ -25,7 +25,7 @@ module.exports = {
                 req.app.get('db').register_user([accountType, username, hash, email])
                     .then((user) => {
                         let { id } = user[0];
-                        req.session.userid = id;
+                        req.session.userId = id;
                         res.sendStatus(200);
                     })
                     .catch(err => res.status(500).send(err));
@@ -37,7 +37,8 @@ module.exports = {
         req.app.get('db').find_user([username])
             .then(user => {
                 let { id, password } = user[0];
-                req.session.userid = id;
+                req.session.userId = id;
+                console.log(req.session);
                 bcrypt.compare(loginPassword, password, (error, response) => {
                     (response ? res.send('valid') : res.send('invalid'))
                 })
@@ -46,14 +47,16 @@ module.exports = {
     },
     addDriver: (req, res) => {
         let { name, contactNumber, address, dateHired, unitNumber } = req.body;
-        req.app.get('db').add_driver([name, contactNumber, address, dateHired, unitNumber])
+        let { userId } = req.session;
+        req.app.get('db').add_driver([userId, name, contactNumber, address, dateHired, unitNumber])
             .then(driver => res.send(driver))
             .catch(err => res.status(500).send(err))
     },
     getAllDrivers: (req, res) => {
-        req.app.get('db').get_drivers()
+        let { userId } = req.session;
+        req.app.get('db').get_drivers([userId])
             .then(drivers => res.send(drivers))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.status(500).send(err) )
     },
     deleteDriver: (req, res) => {
         let { driver_id } = req.params;
@@ -80,7 +83,7 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     deleteContacts: (req, res) => {
-        let {id} = req.params;
+        let { id } = req.params;
         req.app.get('db').delete_contacts([id])
             .then(contacts => res.send(contacts))
             .catch(err => res.status(500).send(err))
@@ -94,12 +97,14 @@ module.exports = {
     },
     addTruck: (req, res) => {
         let { unit, make, model, year, plate_number, vin } = req.body;
-        req.app.get('db').add_truck([unit, make, model, year, plate_number, vin])
+        let { userId } = req.session;
+        console.log(req.session);
+        req.app.get('db').add_truck([userId, unit, make, model, year, plate_number, vin])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
     getAllTrucks: (req, res) => {
-        req.app.get('db').get_trucks()
+        req.app.get('db').get_trucks([req.session.userId])
             .then(trucks => res.send(trucks))
             .catch(err => res.status(500).send(err))
     },
@@ -111,74 +116,78 @@ module.exports = {
     },
     addPayroll: (req, res) => {
         let { date, driver, amount } = req.body;
-        req.app.get('db').add_payroll([date, driver, amount])
+        let {userId} = req.session;
+        req.app.get('db').add_payroll([userId, date, driver, amount])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
     getPayroll: (req, res) => {
-        req.app.get('db').get_payroll()
+        let {userId} = req.session;
+        req.app.get('db').get_payroll([userId])
             .then(payments => res.send(payments))
+            .catch(err => console.log(err) )
+    },
+    getPayrollPerDriver: (req, res) => {
+        req.app.get('db').get_sum_per_driver()
+            .then(sum => res.send(sum))
             .catch(err => res.status(500).send(err))
     },
-    getPayrollPerDriver: (req, res) =>{
-        req.app.get('db').get_sum_per_driver()
-        .then(sum => res.send(sum))
-        .catch(err => res.status(500).send(err))
-    },
-    deletePayroll: (req, res) =>{
-        let {id} = req.params;
+    deletePayroll: (req, res) => {
+        let { id } = req.params;
         req.app.get('db').delete_payroll([id])
-        .then(() => res.sendStatus(200))
-        .catch( err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    updatePayroll: (req,res) =>{
-        let {id} = req.params;
-        let {date, driver, amount} = req.body;
+    updatePayroll: (req, res) => {
+        let { id } = req.params;
+        let { date, driver, amount } = req.body;
         req.app.get('db').update_payroll([id, date, driver, amount])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err));
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err));
     },
     getPayrollMonthly: (req, res) => {
         req.app.get('db').get_payroll_monthly()
             .then(payroll => res.send(payroll))
             .catch(err => res.status(500).send(err))
     },
-    getTotalPayroll: (req,res) =>{
+    getTotalPayroll: (req, res) => {
         req.app.get('db').get_total_payroll()
-        .then(amount => res.send(amount))
-        .catch(err => res.status(500).send(err))
+            .then(amount => res.send(amount))
+            .catch(err => res.status(500).send(err))
     },
-    getTotalPayments: (req,res) =>{
+    getTotalPayments: (req, res) => {
         req.app.get('db').get_total_payments()
-        .then(payments => res.send(payments))
-        .catch(err => console.log(err))
+            .then(payments => res.send(payments))
+            .catch(err => console.log(err))
     },
     getExpenseCategories: (req, res) => {
         req.app.get('db').get_expense_categories()
             .then(categories => res.send(categories))
             .catch(err => res.status(500).send(err))
     },
-    getExpensesMonthly: (req,res) =>{
+    getExpensesMonthly: (req, res) => {
         req.app.get('db').get_expense_monthly()
-        .then(expenses => res.send(expenses))
-        .catch(err => res.status(500).send(err))
+            .then(expenses => res.send(expenses))
+            .catch(err => res.status(500).send(err))
     },
     addExpense: (req, res) => {
+        let { userId } = req.session;
         let { date, category, truck, amount } = req.body;
-       +truck;
-        req.app.get('db').add_expense([date, category, truck, amount])
+        +truck;
+        req.app.get('db').add_expense([userId, date, category, truck, amount])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
     getAllExpenses: (req, res) => {
-        req.app.get('db').get_all_expenses()
+        let { userId } = req.session;
+        req.app.get('db').get_all_expenses([userId])
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },
-    getTotalExpenses: (req,res) =>{
+    getTotalExpenses: (req, res) => {
         req.app.get('db').get_total_expenses()
-        .then(expenses => res.send(expenses))
-        .catch(err => res.status(500).send(err))
+            .then(expenses => res.send(expenses))
+            .catch(err => res.status(500).send(err))
     },
     addCategory: (req, res) => {
         let { category } = req.body;
@@ -193,17 +202,17 @@ module.exports = {
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
-    getAverageExpensePerMonth: (req,res) =>{
+    getAverageExpensePerMonth: (req, res) => {
         req.app.get('db').get_avg_expense_month()
-        .then(avg => res.send(avg))
-        .catch(err => res.status(500).send(err))
+            .then(avg => res.send(avg))
+            .catch(err => res.status(500).send(err))
     },
-    updateExpense: (req,res) =>{
-        let {id} = req.params;
-        let {date, category, truck, amount} = req.body;
+    updateExpense: (req, res) => {
+        let { id } = req.params;
+        let { date, category, truck, amount } = req.body;
         req.app.get('db').update_expense([id, date, category, truck, amount])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
     getExpenseSumPerCategory: (req, res) => {
         req.app.get('db').get_expense_sum_category()
@@ -215,59 +224,61 @@ module.exports = {
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },
-    addCompany: (req,res) =>{
-        let {company} = req.body;
+    addCompany: (req, res) => {
+        let { company } = req.body;
         req.app.get('db').add_company([company])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getCompanies: (req,res) =>{
+    getCompanies: (req, res) => {
         req.app.get('db').get_companies()
-        .then(companies => res.send(companies))
-        .catch(err => this.status(500).send(err))
+            .then(companies => res.send(companies))
+            .catch(err => this.status(500).send(err))
     },
-    addIncome: (req,res) =>{
-        let {date, company, amount, check} = req.body;
-        req.app.get('db').add_income([date, company, amount, +check])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+    addIncome: (req, res) => {
+        let { userId } = req.session;
+        let { date, company, amount, check } = req.body;
+        req.app.get('db').add_income([userId, date, company, amount, +check])
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getIncome: (req,res) =>{
-        req.app.get('db').get_income()
-        .then(income => res.send(income))
-        .catch(err => res.status(500).send(err))
+    getIncome: (req, res) => {
+        let { userId } = req.session;
+        req.app.get('db').get_income([userId])
+            .then(income => res.send(income))
+            .catch(err => res.status(500).send(err))
     },
-    getIncomePerMonth: (req,res) =>{
+    getIncomePerMonth: (req, res) => {
         req.app.get('db').get_income_per_month()
-        .then(income => res.send(income))
-        .catch(err => res.status(500).send(err))
+            .then(income => res.send(income))
+            .catch(err => res.status(500).send(err))
     },
-    deleteIncome: (req,res) =>{
-        let{id} = req.params;
+    deleteIncome: (req, res) => {
+        let { id } = req.params;
         req.app.get('db').delete_income([id])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getAverageIncomePerMonth: (req,res) =>{
+    getAverageIncomePerMonth: (req, res) => {
         req.app.get('db').get_avg_income_month()
-        .then(avg => res.send(avg))
-        .catch(err => res.status(500).send(err))
+            .then(avg => res.send(avg))
+            .catch(err => res.status(500).send(err))
     },
-    updateIncome: (req,res) =>{
-        let{id} = req.params;
-        let {date,  company, amount, check} = req.body;
-        req.app.get('db').update_income([id, date,company, amount, check])
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+    updateIncome: (req, res) => {
+        let { id } = req.params;
+        let { date, company, amount, check } = req.body;
+        req.app.get('db').update_income([id, date, company, amount, check])
+            .then(() => res.sendStatus(200))
+            .catch(err => res.status(500).send(err))
     },
-    getIncomePerCompany: (req,res) =>{
+    getIncomePerCompany: (req, res) => {
         req.app.get('db').get_income_sum_companies()
-        .then(companies => res.send(companies))
-        .catch(err => res.status(500).send(err))
+            .then(companies => res.send(companies))
+            .catch(err => res.status(500).send(err))
     },
-    getTotalIncome: (req,res) =>{
+    getTotalIncome: (req, res) => {
         req.app.get('db').get_total_income()
-        .then(income => res.send(income))
-        .catch(err => res.status(500).send(err))
+            .then(income => res.send(income))
+            .catch(err => res.status(500).send(err))
     }
 }

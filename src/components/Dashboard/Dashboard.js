@@ -39,9 +39,6 @@ class Dashboard extends Component {
                         <Link className="nav-link" to='/dashboard/payroll'>
                             <h5>Payroll</h5>
                         </Link>
-                        <Link className="nav-link" to='/dashboard/contacts'>
-                            <h5>Contacts</h5>
-                        </Link>
                         <Link className="nav-link" to='/dashboard/dispatch'>
                             <h5>Dispatch</h5>
                         </Link>

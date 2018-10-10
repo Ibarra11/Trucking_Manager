@@ -1,2 +1,3 @@
 SELECT *
-FROM drivers;
+FROM drivers
+WHERE owner_id = $1;

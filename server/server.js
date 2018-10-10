@@ -61,10 +61,10 @@ app.post('/api/auth/register', function (req, res, next) {
     req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15);
     const errors = req.validationErrors();
     // IF there are any errors than dont proceed to the next endpoint
-    if(errors){
+    if (errors) {
         res.send(errors);
     }
-    else{
+    else {
         next();
     }
 

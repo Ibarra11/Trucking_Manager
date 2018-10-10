@@ -103,13 +103,13 @@ class Dashboard_Trucks_Table extends Component {
                     <tbody>
                         {this.state.trucks.map((truck, index) => {
                             return (
-                                <tr key={truck.unit}>
-                                    <td>{truck.unit}</td>
+                                <tr key={truck.truck_id}>
+                                    <td>{truck.unit_number}</td>
                                     <td>{truck.make}</td>
                                     <td>{truck.model}</td>
-                                    <td>{truck.year}</td>
+                                    <td>{truck.truck_year}</td>
                                     <td>{truck.plate_number}</td>
-                                    <td>{truck.vin}</td>
+                                    <td>{truck.truck_vin}</td>
                                     <td>
                                         <button onClick={() => this.onOpenModal(truck.unit)} className="btn btn-primary">
                                             <i className="fa fa-edit"></i>

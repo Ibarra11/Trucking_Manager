@@ -43,7 +43,6 @@ class Dashboard_Drivers_Table extends Component {
     getDrivers = () => {
         axios.get('api/drivers')
             .then(res => {
-        
                 this.setState({ drivers: res.data })
             })
             .catch(err => console.log(err))
@@ -114,13 +113,13 @@ class Dashboard_Drivers_Table extends Component {
                         <tbody>
                             {this.state.drivers.map(driver => {
                                 return (
-                                    <tr key={driver.id}>
-                                        <td>{driver.id}</td>
+                                    <tr key={driver.driver_id}>
+                                        <td>{driver.driver_id}</td>
                                         <td>{driver.name}</td>
-                                        <td>{driver.contactnumber}</td>
+                                        <td>{driver.contact_number}</td>
                                         <td>{driver.address}</td>
-                                        <td>{driver.datehired}</td>
-                                        <td>{driver.unitnumber}</td>
+                                        <td>{driver.date_hired}</td>
+                                        <td>{driver.unit_number}</td>
                                         <td className="actions">
                                             <button onClick={() => this.onOpenModal(driver.id)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
                                             <button onClick={() => this.deleteDriver(driver.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>

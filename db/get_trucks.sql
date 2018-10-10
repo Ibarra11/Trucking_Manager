@@ -1,3 +1,4 @@
-SELECT * 
+SELECT *
 FROM trucks
-ORDER BY unit;
+WHERE owner_id = $1
+ORDER BY truck_id ASC;

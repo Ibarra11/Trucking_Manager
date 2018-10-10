@@ -1,3 +1,4 @@
 SELECT * 
 FROM payroll
-ORDER BY date;
+WHERE owner_id = $1
+ORDER BY payroll_date;

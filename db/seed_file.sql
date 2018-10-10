@@ -12,12 +12,13 @@ VALUES('premium', 'aibarra13', 'Turlock209!', 'alan.ibarra209@gmail.com');
 
 --Drivers Tables
 CREATE TABLE drivers(
-    id SERIAL PRIMARY KEY,
+    driver_id SERIAL PRIMARY KEY,
+     owner_id INTEGER REFERENCES users(id),
     name VARCHAR(60) NOT NULL,
-    contactNumber VARCHAR(20),
+    contact_number VARCHAR(20),
     address VARCHAR(80),
-    dateHired varchar(10),
-    unitNumber INT REFERENCES trucks(unit)
+    date_hired varchar(10),
+    unit_number INTEGER
 );
 
 INSERT INTO drivers (name, contactnumber, address, datehired, unitnumber)
@@ -25,15 +26,15 @@ VALUES ('Israel Ibarra', '209-4954509', '419 Wolfe Ave Turlock', '1-2-2018', 194
 
 -- Truck
 CREATE TABLE trucks(
-    unit INT PRIMARY KEY,
+    truck_id SERIAL PRIMARY KEY,
+    owner_id INTEGER REFERENCES users(id),
+    unit_number INTEGER,
     make VARCHAR(50),
-    model VARCHAR(30),
-    year int,
-    plateNumber VARCHAR(12),
-    vin VARCHAR(60)
+    model VARCHAR(50)
+    truck_year INT,
+    plate_number VARCHAR(12),
+    truck_vin VARCHAR(60)
 );
-
-
 
 -- Contacts
 CREATE TABLE contacts(
@@ -53,9 +54,10 @@ values
 -- Payroll Table
 CREATE TABLE payroll(
     id SERIAL PRIMARY KEY,
-    date VARCHAR(20),
+     owner_id INTEGER REFERENCES users(id),
+    payroll_date VARCHAR(20),
     driver_name VARCHAR (80),
-    amount FLOAT
+    payroll_amount FLOAT
 )
 
 
@@ -76,12 +78,13 @@ VALUES
 
 -- Expenses
 CREATE TABLE expenses(
-    id SERIAL PRIMARY KEY,
-    date VARCHAR(100),
-    category VARCHAR(100),
-    truck INTEGER REFERENCES trucks(unit),
-    amount FLOAT
-)
+    expense_id SERIAL PRIMARY KEY,
+    owner_id INTEGER REFERENCES users(id),
+    expense_date VARCHAR(100),
+    expense_category VARCHAR(100),
+    unit_number INTEGER ,
+    expense_amount FLOAT
+);
 
 INSERT INTO expenses (date, category, truck, amount)
 VALUES
@@ -100,8 +103,9 @@ VALUES
 
 -- INcome
 CREATE TABLE income(
-    id SERIAL PRIMARY KEY,
-    date VARCHAR(80),
+    income_id SERIAL PRIMARY KEY,
+    owner_id INTEGER REFERENCES users(id),
+    check_date VARCHAR(80),
     company VARCHAR(100),
     amount FLOAT,
     check_number INTEGER

@@ -34,19 +34,22 @@ class Dashboard_Payroll_Table extends Component {
 
     getAllPayroll = () => {
         axios.get('/api/payroll')
-            .then(res => this.setState({ payroll: res.data, open: false}))
+            .then(res => {
+                console.log(res);
+                this.setState({ payroll: res.data, open: false })
+            })
             .catch(err => console.log(err))
     }
 
-    onInputChange = event => this.setState({[event.target.name]: event.target.value})
+    onInputChange = event => this.setState({ [event.target.name]: event.target.value })
 
-    updatePayroll = event =>{
+    updatePayroll = event => {
         event.preventDefault();
-        let {date, driver, amount, id} = this.state;
-        axios.put(`/api/payroll/${id}`,{date, driver, amount})
-        .then(() =>{
-            this.getAllPayroll();
-        })
+        let { date, driver, amount, id } = this.state;
+        axios.put(`/api/payroll/${id}`, { date, driver, amount })
+            .then(() => {
+                this.getAllPayroll();
+            })
     }
 
     deletePayroll = payrollId => {
@@ -91,13 +94,13 @@ class Dashboard_Payroll_Table extends Component {
                             <tbody>
                                 {this.state.payroll.map(payment => {
                                     return (
-                                        <tr key={payment.id}>
-                                            <td><span>{payment.date}</span></td>
+                                        <tr key={payment.payroll_id}>
+                                            <td><span>{payment.payroll_date}</span></td>
                                             <td><span>{payment.driver_name}</span></td>
-                                            <td><span>{payment.amount}</span></td>
+                                            <td><span>{payment.payroll_amount}</span></td>
                                             <td>
                                                 <button onClick={() => this.onOpenModal(payment)} className="btn"><i className="fa fa-edit"></i></button>
-                                                <button onClick={() => this.deletePayroll(payment.id)} className="btn"><i className="fa fa-trash"></i></button>
+                                                <button onClick={() => this.deletePayroll(payment.payroll_id)} className="btn"><i className="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     )

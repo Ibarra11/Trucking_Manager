@@ -1,2 +1,3 @@
 SELECT * FROM expenses
-ORDER BY date DESC;
+WHERE owner_id = $1
+ORDER BY expense_date DESC;

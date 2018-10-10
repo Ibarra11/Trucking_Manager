@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 class Dashboard_Drivers_Add extends Component {
-
     constructor(){
         super();
         this.state = {
@@ -10,7 +9,6 @@ class Dashboard_Drivers_Add extends Component {
             contactNumber: '',
             address: '',
             dateHired: ''
-
         }
     }
 

@@ -6,7 +6,7 @@ class Dashboard_Income_List extends Component {
     constructor() {
         super();
         this.state = {
-            income: [],
+            incomeList: [],
             date: '',
             company: '',
             amount: '',
@@ -16,7 +16,8 @@ class Dashboard_Income_List extends Component {
         }
         axios.get('/api/income')
             .then(res => {
-                this.setState({ income: res.data })
+                console.log(res);
+                this.setState({ incomeList: res.data })
             })
             .catch(err => console.log(err));
     }
@@ -40,7 +41,7 @@ class Dashboard_Income_List extends Component {
     getAllIncome = () => {
         axios.get('/api/income')
             .then(res => {
-                this.setState({ income: res.data })
+                this.setState({ incomeList: res.data })
             })
             .catch(err => console.log(err));
     }
@@ -103,16 +104,16 @@ class Dashboard_Income_List extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.income.map(e => {
+                        {this.state.incomeList.map(income => {
                             return (
-                                <tr key={e.id}>
-                                    <td>{e.date}</td>
-                                    <td>{e.company}</td>
-                                    <td>{e.amount}</td>
-                                    <td>{e.check_number}</td>
+                                <tr key={income.income_id}>
+                                    <td>{income.check_date}</td>
+                                    <td>{income.company}</td>
+                                    <td>{income.amount}</td>
+                                    <td>{income.check_number}</td>
                                     <td>
-                                        <button onClick={() => this.onOpenModal(e)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
-                                        <button onClick={() => this.deleteIncome(e.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                        <button onClick={() => this.onOpenModal(income)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
+                                        <button onClick={() => this.deleteIncome(income.income_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             )

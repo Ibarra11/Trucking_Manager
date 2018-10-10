@@ -13,7 +13,6 @@ import Dashboard_Trucks from './components/Dashboard/Dashboard_Components/Dashbo
 import Dashboard_Drivers from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers';
 import Dashboard_Payroll from './components/Dashboard/Dashboard_Components/Dashboard_Payroll/Dashboard_Payroll';
 import Dashboard_Expenses from './components/Dashboard/Dashboard_Components/Dashboard_Expenses/Dashboard_Expenses';
-import Dashboard_Contacts from './components/Dashboard/Dashboard_Components/Dashboard_Contacts/Dashboard_Contacts';
 import Dashboard_Dispatch from './components/Dashboard/Dashboard_Components/Dashboard_Dispatch/Dashboard_Dispatch';
 import Dashboard_Income from './components/Dashboard/Dashboard_Components/Dashboard_Income/Dashboard_Income';
 
@@ -43,7 +42,6 @@ export function dashboardRoutes() {
             <Route path='/dashboard/income' component={Dashboard_Income} />
             <Route path='/dashboard/drivers' component={Dashboard_Drivers} />
             <Route path='/dashboard/payroll' component={Dashboard_Payroll} />
-            <Route path='/dashboard/contacts' component={Dashboard_Contacts} />
             <Route path='/dashboard/dispatch' component={Dashboard_Dispatch} />
             <Route path='/' component={Dashboard_Home} />
         </Switch>

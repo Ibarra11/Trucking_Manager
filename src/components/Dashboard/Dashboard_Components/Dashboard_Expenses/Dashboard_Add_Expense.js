@@ -19,10 +19,13 @@ class Dashboard_Add_Expense extends Component {
                 category: res.data[0].type
             }))
         axios.get('/api/trucks')
-            .then(res => this.setState({
-                trucks: res.data,
-                truck: res.data[0].unit
-            }))
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    trucks: res.data,
+                    truck: res.data[0].unit_number
+                })
+            })
             .catch(err => console.log(err))
     }
 
@@ -68,9 +71,9 @@ class Dashboard_Add_Expense extends Component {
                         <div className="form-group">
                             <label>Truck</label>
                             <select onChange={this.onTruckChange} className="form-control">
-                                {this.state.trucks.map(truck => {
+                                {this.state.trucks.map((truck,index) => {
                                     return (
-                                        <option key={truck.unit} value={truck.unit}>{truck.unit}</option>
+                                        <option key={truck.unit_number + index} value={truck.unit_number}>{truck.unit_number}</option>
                                     )
                                 })}
                             </select>

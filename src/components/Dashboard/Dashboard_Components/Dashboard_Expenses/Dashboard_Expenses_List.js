@@ -93,11 +93,11 @@ class Dashboard_Expenses_List extends Component {
                     <tbody>
                         {this.state.expenses.map(expense => {
                             return (
-                                <tr key={expense.id}>
-                                    <td><span>{expense.date}</span></td>
-                                    <td><span>{expense.category}</span></td>
-                                    <td><span>{expense.truck}</span></td>
-                                    <td><span>{expense.amount}</span></td>
+                                <tr key={expense.expense_id}>
+                                    <td><span>{expense.expense_date}</span></td>
+                                    <td><span>{expense.expense_category}</span></td>
+                                    <td><span>{expense.unit_number}</span></td>
+                                    <td><span>{expense.expense_amount}</span></td>
                                     <td className="table-buttons">
                                         <span>
                                             <button onClick={() => this.onOpenModal(expense)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
