@@ -266,10 +266,10 @@ module.exports = {
     },
     updateIncome: (req, res) => {
         let { id } = req.params;
-        let { date, company, amount, check } = req.body;
-        req.app.get('db').update_income([id, date, company, amount, check])
+        let { check_date, company, amount, check_number } = req.body;
+        req.app.get('db').update_income([id, check_date, company, amount, check_number])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     getIncomePerCompany: (req, res) => {
         req.app.get('db').get_income_sum_companies()

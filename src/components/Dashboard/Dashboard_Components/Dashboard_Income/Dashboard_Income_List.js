@@ -7,11 +7,11 @@ class Dashboard_Income_List extends Component {
         super();
         this.state = {
             incomeList: [],
-            date: '',
+            check_date: '',
             company: '',
             amount: '',
-            check: 0,
-            id: 0,
+            check_number: 0,
+            income_id: 0,
             open: false
         }
         axios.get('/api/income')
@@ -26,11 +26,11 @@ class Dashboard_Income_List extends Component {
         console.log(income);
         this.setState({
             open: true,
-            date: income.date,
+            check_date: income.check_date,
             company: income.company,
             amount: income.amount,
-            check: income.check_number,
-            id: income.id
+            check_number: income.check_number,
+            income_id: income.income_id
         })
     }
 
@@ -54,8 +54,9 @@ class Dashboard_Income_List extends Component {
 
     updateIncome = event => {
         event.preventDefault();
-        let { date, company, amount, check, id } = this.state;
-        axios.put(`/api/income/${id}`, { date, company, amount, check })
+        let { check_date, company, amount, check_number, income_id } = this.state;
+        console.log(this.state)
+        axios.put(`/api/income/${income_id}`, { check_date, company, amount, check_number })
             .then(() => {
                 this.getAllIncome();
                 this.onCloseModal();
@@ -73,7 +74,7 @@ class Dashboard_Income_List extends Component {
                     <form onSubmit={event => this.updateIncome(event)} className="edit-driver-form">
                         <div className="form-group">
                             <h6 className="driver">Date</h6>
-                            <input name='date' onChange={this.onInputChange} value={this.state.date} className="form-control" type="text" />
+                            <input name='check_date' onChange={this.onInputChange} value={this.state.check_date} className="form-control" type="text" />
                         </div>
                         <div className="form-group">
                             <h6>Company </h6>
@@ -85,7 +86,7 @@ class Dashboard_Income_List extends Component {
                         </div>
                         <div className="form-group">
                             <h6>Check #</h6>
-                            <input onChange={this.onInputChange} name='check' value={this.state.check} className="form-control" type="text" />
+                            <input onChange={this.onInputChange} name='check_number' value={this.state.check_number} className="form-control" type="text" />
                         </div>
                         <div className="edit-form-buttons">
                             <button type='submit' className="btn btn-primary">Update</button>

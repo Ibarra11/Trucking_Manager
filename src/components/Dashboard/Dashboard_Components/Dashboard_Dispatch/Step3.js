@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import swal from 'sweetalert2';
+import { clearState } from '../../../../ducks/reducer';
 
 class Step3 extends Component {
 
     sendDispatch = async () => {
         let body = `\nShipper:${this.props.shipper}\nPickup Address: ${this.props.pickupAddr}\nDestination Address: ${this.props.destAddr}\nrate: ${this.props.rate}`;
-
         for (let i = 0; i < this.props.driversList.length; i++) {
+            console.log(this.props.driversList[i])
             await axios.post('/api/dispatch', {
                 body: body,
                 number: '1' + this.props.driversList[i].contactNumber
             })
+            this.props.clearState();
             swal({
                 position: 'top-end',
                 type: 'success',
@@ -71,4 +73,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Step3)
+export default connect(mapStateToProps, { clearState })(Step3)

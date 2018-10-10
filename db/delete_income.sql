@@ -1,1 +1,1 @@
-DELETE FROM income WHERE id = $1;
+DELETE FROM income WHERE income_id = $1;

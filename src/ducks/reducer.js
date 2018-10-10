@@ -10,6 +10,7 @@ let initalState = {
 const ADD_DRIVERS = 'ADD_DRIVERS';
 const DELETE_DRIVER = 'DELETE_DRIVER';
 const ADD_LOAD = 'ADD_LOAD';
+const CLEAR_STATE = 'CLEAR_STATE';
 
 export default function (state = initalState, action) {
     switch (action.type) {
@@ -23,6 +24,8 @@ export default function (state = initalState, action) {
         case ADD_LOAD:
             let { shipper, pickupAddr, destAddr,  rate, date } = action.payload;
             return Object.assign({}, state, {shipper: shipper, pickupAddr: pickupAddr, destAddr: destAddr, rate: rate, date: date})
+        case CLEAR_STATE:
+            return initalState;
         default:
             return state;
     }
@@ -47,6 +50,12 @@ export function addLoad(payload) {
     return {
         type: ADD_LOAD,
         payload
+    }
+}
+
+export function clearState(){
+    return{
+        type: CLEAR_STATE
     }
 }
 

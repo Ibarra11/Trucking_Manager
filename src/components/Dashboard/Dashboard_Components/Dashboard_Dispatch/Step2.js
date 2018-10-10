@@ -22,9 +22,9 @@ class Step2 extends Component {
         let drivers = document.querySelectorAll('input[type=checkbox]:checked');
         let driversList = [];
         for (let i = 0; i < drivers.length; i++) {
+            console.log(drivers[i])
             driversList.push({driver: drivers[i].defaultValue, contactNumber: drivers[i].dataset.number});
         }
-        console.log(driversList);
         for (let i = 0; i < drivers.length; i++) {
             drivers[i].checked = false;
         }
@@ -43,15 +43,16 @@ class Step2 extends Component {
                     <div className="card drivers">
                         <div className="driver-list">
                             <h6>Driver List</h6>
-                            <div className="container drivers">
+                            <div className="container-drivers">
                                 {this.state.drivers.map(driver => {
+                                    console.log(driver);
                                     return (
-                                        <div key={driver.id} className="row">
+                                        <div key={driver.driver_id} className="row">
                                             <div className="col-sm-9">
                                                 <p> {driver.name}</p>
                                             </div>
                                             <div className="col-sm-3">
-                                                <input data-number={driver.contactnumber} className="big-checkbox" type="checkbox" value={driver.name} />
+                                                <input data-number={driver.contact_number} className="big-checkbox" type="checkbox" value={driver.name} />
                                             </div>
                                         </div>
                                     )
@@ -65,7 +66,7 @@ class Step2 extends Component {
                         <h6>Drivers Added</h6>
                             {this.props.addedDrivers.map((driver,i) => {
                                 return (
-                                    <div key={i} className="driver">
+                                    <div key={driver.driver + i} className="driver">
                                        <p> {driver.driver} </p>
                                        <button onClick={() => this.deleteDriver(driver.driver)} className="btn"><i className='fa fa-times-circle'></i></button>
                                     </div>
