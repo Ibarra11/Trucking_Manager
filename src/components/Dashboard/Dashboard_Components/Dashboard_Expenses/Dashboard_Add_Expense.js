@@ -61,9 +61,9 @@ class Dashboard_Add_Expense extends Component {
                         <div className="form-group">
                             <label>Category</label>
                             <select onChange={this.onCategoryChange} className="form-control">
-                                {this.state.categories.map(category => {
+                                {this.state.categories.map((category, index) => {
                                     return (
-                                        <option key={category.id} value={category.type}>{category.type}</option>
+                                        <option key={category.type + index} value={category.type}>{category.type}</option>
                                     )
                                 })}
                             </select>
@@ -71,9 +71,9 @@ class Dashboard_Add_Expense extends Component {
                         <div className="form-group">
                             <label>Truck</label>
                             <select onChange={this.onTruckChange} className="form-control">
-                                {this.state.trucks.map((truck,index) => {
+                                {this.state.trucks.map(truck => {
                                     return (
-                                        <option key={truck.unit_number + index} value={truck.unit_number}>{truck.unit_number}</option>
+                                        <option key={truck.unit_number} value={truck.unit_number}>{truck.unit_number}</option>
                                     )
                                 })}
                             </select>

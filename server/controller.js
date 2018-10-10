@@ -187,7 +187,7 @@ module.exports = {
         let { userId } = req.session;
         req.app.get('db').get_total_expenses([userId])
             .then(expenses => res.send(expenses))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     addCategory: (req, res) => {
         let { category } = req.body;
@@ -200,7 +200,7 @@ module.exports = {
         let { id } = req.params;
         req.app.get('db').delete_expense([id])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     getAverageExpensePerMonth: (req, res) => {
         req.app.get('db').get_avg_expense_month()
@@ -209,8 +209,8 @@ module.exports = {
     },
     updateExpense: (req, res) => {
         let { id } = req.params;
-        let { date, category, truck, amount } = req.body;
-        req.app.get('db').update_expense([id, date, category, truck, amount])
+        let { expense_date, expense_category, unit_number, expense_amount } = req.body;
+        req.app.get('db').update_expense([id, expense_date, expense_category, unit_number, expense_amount])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
@@ -277,9 +277,9 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getTotalIncome: (req, res) => {
-        let {userId} = req.session;
+        let { userId } = req.session;
         req.app.get('db').get_total_income([userId])
             .then(income => res.send(income))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     }
 }

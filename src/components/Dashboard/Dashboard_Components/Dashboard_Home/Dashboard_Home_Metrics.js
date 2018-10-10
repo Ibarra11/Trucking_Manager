@@ -50,7 +50,7 @@ class Dashboard_Home_Metrics extends Component {
     }
 
     getTotalExpenses() {
-       return axios.get('/api/expenses/total')
+        return axios.get('/api/expenses/total')
             .then(res => {
                 console.log(res);
                 return res.data[0].sum;
@@ -58,7 +58,7 @@ class Dashboard_Home_Metrics extends Component {
             .catch(err => console.log(err))
     }
     getTotalIncome() {
-       return  axios.get('/api/income/total')
+        return axios.get('/api/income/total')
             .then(res => {
                 return res.data[0].sum;
             })

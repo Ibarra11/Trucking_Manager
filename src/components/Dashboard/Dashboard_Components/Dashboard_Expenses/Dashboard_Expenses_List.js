@@ -7,11 +7,11 @@ class Dashboard_Expenses_List extends Component {
         this.state = {
             expenses: [],
             open: false,
-            date: '',
-            category: '',
-            truck: '',
-            amount: '',
-            id: 0
+            expense_date: '',
+            expense_category: '',
+            unit_number: '',
+            expense_amount: '',
+            expense_id: 0
         }
     }
 
@@ -20,10 +20,10 @@ class Dashboard_Expenses_List extends Component {
     }
 
     onOpenModal = expense => {
-        let { date, category, amount, truck, id } = expense;
-        console.log(expense)
+        console.log(expense);
+        let { expense_date, expense_category, expense_amount, unit_number, expense_id } = expense;
         this.setState({
-            open: true, date, category, truck, amount, id
+            open: true, expense_date, expense_category, unit_number, expense_amount, expense_id
         })
     }
     onCloseModal = () => {
@@ -46,8 +46,9 @@ class Dashboard_Expenses_List extends Component {
 
     updateExpense = event => {
         event.preventDefault();
-        let { date, category, amount, truck, id } = this.state;
-        axios.put(`/api/expense/${id}`, { date, category, truck, amount })
+        let { expense_date, expense_category, expense_amount, unit_number, expense_id } = this.state;
+        console.log(this.state);
+        axios.put(`/api/expense/${expense_id}`, { expense_date, expense_category, expense_amount, unit_number, expense_id })
             .then(() => this.getAllExpenses())
             .catch(err => console.log(err))
     }
@@ -60,19 +61,19 @@ class Dashboard_Expenses_List extends Component {
                     <form onSubmit={event => this.updateExpense(event)} className="edit-driver-form">
                         <div className="form-group">
                             <h6 className="driver">Date</h6>
-                            <input name='date' onChange={this.onInputChange} value={this.state.date} className="form-control" type="date" />
+                            <input name='expense_date' onChange={this.onInputChange} value={this.state.expense_date} className="form-control" type="date" />
                         </div>
                         <div className="form-group">
                             <h6>Category</h6>
-                            <input onChange={this.onInputChange} name='category' value={this.state.category} className="form-control" type="text" />
+                            <input onChange={this.onInputChange} name='expense_category' value={this.state.expense_category} className="form-control" type="text" />
                         </div>
                         <div className="form-group">
                             <h6>Truck</h6>
-                            <input onChange={this.onInputChange} name='truck' value={this.state.truck} className="form-control" type="text" />
+                            <input onChange={this.onInputChange} name='unit_number' value={this.state.unit_number} className="form-control" type="text" />
                         </div>
                         <div className="form-group">
                             <h6>Amount</h6>
-                            <input onChange={this.onInputChange} name='amount' value={this.state.amount} className="form-control" type="text" />
+                            <input onChange={this.onInputChange} name='expense_amount' value={this.state.expense_amount} className="form-control" type="text" />
                         </div>
                         <div className="edit-form-buttons">
                             <button type='submit' className="btn btn-primary">Update</button>
@@ -101,7 +102,7 @@ class Dashboard_Expenses_List extends Component {
                                     <td className="table-buttons">
                                         <span>
                                             <button onClick={() => this.onOpenModal(expense)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
-                                            <button onClick={() => this.deleteExpense(expense.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                            <button onClick={() => this.deleteExpense(expense.expense_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                         </span>
                                     </td>
                                 </tr>
