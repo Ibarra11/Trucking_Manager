@@ -1,15 +1,29 @@
 .component-payroll {
-    h4 {
-        text-align: center;
-        font-size: 1.5rem;
-        margin-bottom: 1.25rem;
-    }
-    .row{
+    .row {
         margin-bottom: 1.5rem;
     }
-
-    .payroll-header{
-        margin-top: 1.5rem;
+    .payroll-header {  
+        position: relative;
+        margin: 1.5rem 0;
+        h4 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group{
+            position: absolute;
+            left: 3%;
+            top: 90%;
+            width: 16%;
+            display: flex;
+            justify-content: space-between;  
+            label{
+                font-size: 1.1rem;
+                position: relative;
+                top: 0.5vh;
+            }
+        }
     }
     h5 {
         color: #000;
@@ -26,16 +40,20 @@
     }
 }
 
-
 .component-payroll-add {
     width: 65%;
     margin: 0 auto;
-    .form-header{
+    .form-header {
         width: 35%;
         display: flex;
-       align-items: center;
+        align-items: center;
         justify-content: center;
         margin: 0 auto;
+    }
+    .react-datepicker__input-container {
+        input {
+            width: 330%;
+        }
     }
     margin-top: 2.5rem;
     .submit-payroll {
@@ -54,41 +72,38 @@
     }
 }
 
-.component-payroll-table{
-    table{
-        th,td{
+.component-payroll-table {
+    table {
+        th,
+        td {
             text-align: center;
         }
-        td{
-            .btn{
+        td {
+            .btn {
                 padding: 5px 10px;
             }
-            .btn:last-child{
+            .btn:last-child {
                 position: relative;
                 left: 0.8rem;
             }
-        
-            span{
+            span {
                 position: relative;
                 top: 5px;
             }
         }
-        
     }
-
-    .table-controls{
+    .table-controls {
         display: flex;
         justify-content: flex-end;
     }
 }
 
-.payroll-cards{
-    .card{
+.payroll-cards {
+    .card {
         margin-bottom: 0.5rem;
         padding: 0.5rem 0;
     }
-
-    h5{
+    h5 {
         text-align: center;
     }
 }

@@ -97,7 +97,6 @@ module.exports = {
     addTruck: (req, res) => {
         let { unit, make, model, year, plate_number, vin } = req.body;
         let { userId } = req.session;
-        console.log(req.session);
         req.app.get('db').add_truck([userId, unit, make, model, year, plate_number, vin])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
@@ -114,11 +113,11 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     addPayroll: (req, res) => {
-        let { date, driver, amount } = req.body;
+        let { month, day, year, driver, amount } = req.body;
         let { userId } = req.session;
-        req.app.get('db').add_payroll([userId, date, driver, amount])
+        req.app.get('db').add_payroll([userId, month, day, year, driver, amount])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     getPayroll: (req, res) => {
         let { userId } = req.session;
@@ -127,9 +126,13 @@ module.exports = {
             .catch(err => console.log(err))
     },
     getPayrollPerDriver: (req, res) => {
-        req.app.get('db').get_sum_per_driver()
-            .then(sum => res.send(sum))
-            .catch(err => res.status(500).send(err))
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_payroll_per_driver([userId, year])
+            .then(driverPayroll =>{
+                res.send(driverPayroll)
+            })
+            .catch(err => console.log(err))
     },
     deletePayroll: (req, res) => {
         let { id } = req.params;
@@ -145,19 +148,33 @@ module.exports = {
             .catch(err => res.status(500).send(err));
     },
     getPayrollMonthly: (req, res) => {
-        req.app.get('db').get_payroll_monthly()
-            .then(payroll => res.send(payroll))
-            .catch(err => res.status(500).send(err))
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_payroll_monthly([userId, year])
+            .then(payroll =>{
+                res.send(payroll)
+            } )
+            .catch(err => console.log(err))
     },
     getTotalPayroll: (req, res) => {
-        req.app.get('db').get_total_payroll()
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_total_payroll([userId, year])
             .then(amount => res.send(amount))
             .catch(err => res.status(500).send(err))
     },
     getTotalPayments: (req, res) => {
-        req.app.get('db').get_total_payments()
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_total_payments([userId, year])
             .then(payments => res.send(payments))
             .catch(err => console.log(err))
+    },
+    getPayrollYears: (req, res) => {
+        let { userId } = req.session;
+        req.app.get('db').get_payroll_years([userId])
+            .then(years => res.send(years))
+            .catch(err => res.status(500).send(err))
     },
     getExpenseCategories: (req, res) => {
         req.app.get('db').get_expense_categories()

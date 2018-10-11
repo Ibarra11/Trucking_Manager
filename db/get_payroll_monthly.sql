@@ -1,4 +1,5 @@
-SELECT SUBSTRING(date, 1,2) AS "Month", SUM(amount)
+SELECT month, SUM(payroll_amount)
 FROM payroll
-GROUP BY SUBSTRING(date, 1,2)
-ORDER BY 1;
+WHERE owner_id = $1 AND year = $2
+GROUP by 1
+ORDER BY 1 DESC;

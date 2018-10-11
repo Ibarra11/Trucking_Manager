@@ -54,12 +54,13 @@ values
 -- Payroll Table
 CREATE TABLE payroll(
     payroll_id SERIAL PRIMARY KEY,
-     owner_id INTEGER REFERENCES users(id),
-    payroll_date VARCHAR(20),
-    driver_name VARCHAR (80),
-    payroll_amount FLOAT
+    owner_id INTEGER REFERENCES users(id),
+    month INTEGER,
+    day INTEGER,
+    year INTEGER,
+    payroll_amount FLOAT,
+    driver_name VARCHAR (80)
 )
-
 
 INSERT INTO payroll (date, driver_name, amount)
 VALUES

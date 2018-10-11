@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 class Dashboard_Payroll_Add extends Component {
     constructor() {
         super();
         this.state = {
-            date: '',
+            date: moment(),
             driver: '',
             amount: 0,
             drivers: [],
@@ -24,12 +27,18 @@ class Dashboard_Payroll_Add extends Component {
     }
 
     onTextChange = event => this.setState({ [event.target.name]: event.target.value });
-
+    handleDateChange = date => this.setState({ date })
     onSelectChange = event => this.setState({ driver: event.target.value });
+
     addPayroll = event => {
         event.preventDefault();
         let { date, driver, amount } = this.state;
-        axios.post('/api/payroll', { date, driver, amount })
+        let formattedDate = moment(date).format('MM DD YYYY').split(' ');
+        let month = +formattedDate[0];
+        let day = +formattedDate[1];
+        let year = +formattedDate[2];
+        console.log(month, day, year);
+        axios.post('/api/payroll', { month, day, year, driver, amount })
             .then(() => this.props.history.goBack())
             .catch(err => console.log(err))
     }
@@ -43,7 +52,12 @@ class Dashboard_Payroll_Add extends Component {
 
                     <div className="form-group">
                         <label htmlFor="">Date</label>
-                        <input onChange={this.onTextChange} name='date'  className="form-control" type='date' />
+                        <DatePicker className="form-control"
+                            selected={this.state.date}
+                            onChange={this.handleDateChange}
+                        />
+                        {/* <label htmlFor="">Date</label>
+                        <input onChange={this.onTextChange} name='date'  className="form-control" type='date' /> */}
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Driver</label>

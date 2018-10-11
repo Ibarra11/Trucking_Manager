@@ -6,19 +6,39 @@ class Dashboard_Payroll_Cards extends Component {
         super();
         this.state = {
             totalPayroll: 0,
-            numberOfPayments: 0
+            numberOfPayments: 0,
+            average: 0
         }
     }
 
-    componentDidMount() {
-        axios.get('/api/payroll/total')
+    componentDidUpdate(prevProps) {
+        if (prevProps.year !== this.props.year) {
+            this.getPayrollTotal();
+            this.getNumberOfPayrollPayments();
+        }
+    }
+
+    getPayrollTotal = () => {
+        axios.get('/api/payroll/total?year=' + this.props.year)
             .then(res => {
                 this.setState({ totalPayroll: res.data[0].Total })
             })
             .catch(err => console.log(err))
-        axios.get('/api/payroll/payments')
-        .then(res => this.setState({numberOfPayments: res.data[0].count}))
-        .catch(err => console.log(err));
+    }
+
+    getNumberOfPayrollPayments = () => {
+        axios.get('/api/payroll/payments?year=' + this.props.year)
+            .then(res => {
+                this.setState({ numberOfPayments: res.data[0].count })
+            })
+            .catch(err => console.log(err));
+    }
+
+    calculatePayroll = () => {
+        if (this.state.numberOfPayments > 0) {
+            return Math.round(this.state.totalPayroll / this.state.numberOfPayments)
+        }
+        return 0;
     }
 
     render() {
@@ -41,7 +61,7 @@ class Dashboard_Payroll_Cards extends Component {
                         <div className="col-md-12">
                             <div className="card">
                                 <h5>Average/Month</h5>
-                                <h6>$720.45</h6>
+                                <h6>{this.calculatePayroll()}</h6>
                             </div>
                         </div>
                     </div>

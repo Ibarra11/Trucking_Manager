@@ -35,7 +35,6 @@ class Dashboard_Payroll_Table extends Component {
     getAllPayroll = () => {
         axios.get('/api/payroll')
             .then(res => {
-                console.log(res);
                 this.setState({ payroll: res.data, open: false })
             })
             .catch(err => console.log(err))
@@ -93,9 +92,13 @@ class Dashboard_Payroll_Table extends Component {
                             </thead>
                             <tbody>
                                 {this.state.payroll.map(payment => {
+                                    let { day, month, year } = payment;
+                                    if (month < 10) {
+                                        month = '0' + month;
+                                    }
                                     return (
                                         <tr key={payment.payroll_id}>
-                                            <td><span>{payment.payroll_date}</span></td>
+                                            <td><span>{month + '/' + day + '/' + year}</span></td>
                                             <td><span>{payment.driver_name}</span></td>
                                             <td><span>{payment.payroll_amount}</span></td>
                                             <td>

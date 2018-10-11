@@ -21,21 +21,24 @@ class Dashboard_Payroll_Driver extends Component {
             resetState: false
         }
     }
-    componentDidMount() {
-        axios.get('/api/payroll/drivers')
-            .then(res =>{
-                let labels = [];
-                let payrollPerDriver = [];
-                res.data.forEach(driver =>{
-                    labels.push(driver.name);
-                    payrollPerDriver.push(driver.sum)
+    componentDidUpdate(prevProps) {
+        if (this.props.year !== prevProps.year) {
+            axios.get('/api/payroll/drivers?year=' + this.props.year)
+                .then(res => {
+                    let labels = [];
+                    let payrollPerDriver = [];
+                    res.data.forEach(driver => {
+                        labels.push(driver.name);
+                        payrollPerDriver.push(driver.sum)
+                    })
+                    data.labels = labels;
+                    data.datasets[0].data = payrollPerDriver;
+                    this.setState({ resetState: !this.state.resetState })
                 })
-                data.labels = labels;
-                data.datasets[0].data = payrollPerDriver;
-                this.setState({resetState: !this.state.resetState})
-            })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+        }
     }
+   
     render() {
         return (
             <div className="component-payroll-chart">

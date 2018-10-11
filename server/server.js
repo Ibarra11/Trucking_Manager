@@ -94,6 +94,7 @@ app.delete('/api/payroll/:id', ctrl.deletePayroll);
 app.put('/api/payroll/:id', ctrl.updatePayroll);
 app.get('/api/payroll/total', ctrl.getTotalPayroll)
 app.get('/api/payroll/payments', ctrl.getTotalPayments);
+app.get('/api/payroll/years', ctrl.getPayrollYears);
 
 app.get('/api/expenses/categories', ctrl.getExpenseCategories);
 app.post('/api/expenses', ctrl.addExpense)

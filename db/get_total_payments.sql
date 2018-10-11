@@ -1,2 +1,3 @@
 SELECT COUNT(*)
-FROM payroll;
+FROM payroll
+WHERE owner_id = $1 AND year = $2;

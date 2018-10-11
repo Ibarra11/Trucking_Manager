@@ -30,9 +30,6 @@ class Dashboard_Home_Metrics extends Component {
             expenses: 0,
             revenue: 0
         }
-        // let totalExpenses = 0;
-        // let totalIncome = 0;
-        // let revenue = 0;
     }
 
     componentDidMount() {
@@ -42,8 +39,6 @@ class Dashboard_Home_Metrics extends Component {
     calculateRevenue = async () => {
         let expenses = await this.getTotalExpenses();
         let income = await this.getTotalIncome();
-        console.log(expenses);
-        console.log(income)
         let revenue = income - expenses;
         data.datasets[0].data = [revenue, income, expenses];
         this.setState({ income, expenses, revenue })
@@ -52,7 +47,6 @@ class Dashboard_Home_Metrics extends Component {
     getTotalExpenses() {
         return axios.get('/api/expenses/total')
             .then(res => {
-                console.log(res);
                 return res.data[0].sum;
             })
             .catch(err => console.log(err))

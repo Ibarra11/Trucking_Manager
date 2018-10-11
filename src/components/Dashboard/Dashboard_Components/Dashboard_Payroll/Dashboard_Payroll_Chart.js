@@ -28,24 +28,38 @@ let data = {
 };
 
 class Dashboard_Payroll_Chart extends Component {
-
-    constructor(){
+    constructor() {
         super();
         this.state = {
             resetState: false
         }
     }
-    componentDidMount(){
-        let sumArray = [];
-        axios.get('/api/payroll/monthly')
-        .then(res =>{
-            for(let i = 0; i < res.data.length; i++){
-               sumArray.push(res.data[i].sum)
-            }
-           data.datasets[0].data = sumArray;
-           this.setState({resetState: !this.state.resetState})
-        })
-        .catch(err => console.log(err));
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.year !== this.props.year) {
+            let sumArray = [];
+            axios.get('/api/payroll/monthly?year=' + this.props.year)
+                .then(res => {
+                    let months = [];
+                    for (let i = 0; i < res.data.length; i++) {
+                        months.push(res.data[i].month);
+                    }
+                    for (let i = 1; i <= 12; i++) {
+                        if (!months.includes(i)) {
+                            sumArray.push(0)
+                        }
+                        else {
+                            let month = res.data.pop();
+                            sumArray.push(month.sum)
+                        }
+                    }
+
+                    console.log(sumArray);
+                    data.datasets[0].data = sumArray;
+                    this.setState({ resetState: !this.state.resetState })
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     render() {
