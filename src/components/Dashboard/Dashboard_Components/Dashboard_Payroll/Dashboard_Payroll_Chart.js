@@ -53,8 +53,6 @@ class Dashboard_Payroll_Chart extends Component {
                             sumArray.push(month.sum)
                         }
                     }
-
-                    console.log(sumArray);
                     data.datasets[0].data = sumArray;
                     this.setState({ resetState: !this.state.resetState })
                 })

@@ -15,6 +15,7 @@ class Dashboard_Payroll_Cards extends Component {
         if (prevProps.year !== this.props.year) {
             this.getPayrollTotal();
             this.getNumberOfPayrollPayments();
+            this.getNumberOfMonths();
         }
     }
 
@@ -34,9 +35,17 @@ class Dashboard_Payroll_Cards extends Component {
             .catch(err => console.log(err));
     }
 
+    getNumberOfMonths = () =>{
+        axios.get('/api/payroll/monthly?year=' +  this.props.year)
+        .then(res =>{
+            this.setState({average: Math.round(this.state.totalPayroll / res.data.length)})
+        })
+        .catch(err => console.log(err));
+    }
+
     calculatePayroll = () => {
         if (this.state.numberOfPayments > 0) {
-            return Math.round(this.state.totalPayroll / this.state.numberOfPayments)
+            return Math.round(this.state.totalPayroll / 12)
         }
         return 0;
     }
@@ -61,7 +70,7 @@ class Dashboard_Payroll_Cards extends Component {
                         <div className="col-md-12">
                             <div className="card">
                                 <h5>Average/Month</h5>
-                                <h6>{this.calculatePayroll()}</h6>
+                                <h6>{this.state.average}</h6>
                             </div>
                         </div>
                     </div>

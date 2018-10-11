@@ -50,7 +50,7 @@ class Dashboard_Payroll_Metrics extends Component {
                         <div className="col-md-9">
                             <div className="chart">
                                 <h6>Payroll per Month</h6>
-                                <Dashboard_Payroll_Chart year={this.state.year} />
+                                <Dashboard_Payroll_Chart average={this.state.average} year={this.state.year} />
                             </div>
                             <div className="chart">
                                 <h6>Payroll Per Driver</h6>
