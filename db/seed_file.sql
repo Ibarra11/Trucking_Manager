@@ -106,10 +106,18 @@ VALUES
 CREATE TABLE income(
     income_id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users(id),
-    company VARCHAR(100),
-    amount FLOAT,
+    company_name VARCHAR(100),
+    check_amount FLOAT,
     check_number INTEGER,
     month INTEGER,
     day INTEGER,
     year INTEGER
+)
+
+
+
+CREATE TABLE companies(
+    company_id SERIAL PRIMARY KEY,
+    owner_id  INTEGER REFERENCES users(id),
+    company_name VARCHAR(100)
 )

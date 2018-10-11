@@ -243,19 +243,22 @@ module.exports = {
     },
     addCompany: (req, res) => {
         let { company } = req.body;
-        req.app.get('db').add_company([company])
+        let { userId } = req.session;
+        req.app.get('db').add_company([userId, company])
             .then(() => res.sendStatus(200))
             .catch(err => res.status(500).send(err))
     },
     getCompanies: (req, res) => {
-        req.app.get('db').get_companies()
+        let {userId} = req.session;
+        req.app.get('db').get_companies([userId])
             .then(companies => res.send(companies))
-            .catch(err => this.status(500).send(err))
+            .catch(err => console.log(err) )
     },
     addIncome: (req, res) => {
         let { userId } = req.session;
         let { company, check_amount, check_number, month, day, year } = req.body;
         +check_number
+        console.log(company)
         req.app.get('db').add_income([userId, company, check_amount, check_number, month, day, year])
             .then(() => res.sendStatus(200))
             .catch(err => console.log(err))
@@ -270,14 +273,14 @@ module.exports = {
         let { userId } = req.session;
         req.app.get('db').get_income_years([userId])
             .then(years => res.send(years))
-            .catch(err => console.log(years))
+            .catch(err => res.status(500).send(err) )
     },
     getIncomePerMonth: (req, res) => {
         let { userId } = req.session;
         let { year } = req.query;
         req.app.get('db').get_income_per_month([userId, year])
             .then(income => res.send(income))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.status(500).send(err) )
     },
     deleteIncome: (req, res) => {
         let { id } = req.params;
@@ -298,7 +301,9 @@ module.exports = {
             .catch(err => console.log(err))
     },
     getIncomePerCompany: (req, res) => {
-        req.app.get('db').get_income_sum_companies()
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_income_sum_companies([userId, year])
             .then(companies => res.send(companies))
             .catch(err => res.status(500).send(err))
     },

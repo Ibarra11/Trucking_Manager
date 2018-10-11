@@ -14,6 +14,9 @@ class Dashboard_Income_List extends Component {
             income_id: 0,
             open: false
         }
+    }
+
+    componentDidMount() {
         axios.get('/api/income')
             .then(res => {
                 this.setState({ incomeList: res.data })
@@ -104,17 +107,17 @@ class Dashboard_Income_List extends Component {
                     </thead>
                     <tbody>
                         {this.state.incomeList.map(income => {
-                            let {day, month, year} = income;
-                            if(month < 10){
+                            let { day, month, year } = income;
+                            if (month < 10) {
                                 month = '0' + month;
                             }
-                            if(day < 10){
+                            if (day < 10) {
                                 day = '0' + day
                             }
                             return (
                                 <tr key={income.income_id}>
                                     <td>{month + '/' + day + '/' + year}</td>
-                                    <td>{income.company}</td>
+                                    <td>{income.company_name}</td>
                                     <td>{income.check_amount}</td>
                                     <td>{income.check_number}</td>
                                     <td>

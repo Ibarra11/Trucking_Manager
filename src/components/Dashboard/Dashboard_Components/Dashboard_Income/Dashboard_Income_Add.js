@@ -20,9 +20,14 @@ class Dashboard_Income_Add extends Component {
 
     componentDidMount() {
         axios.get('/api/income/company')
-            .then(res => this.setState({ companies: res.data, company: res.data[0].name }))
+            .then(res => {
+                if (res.data.length > 0) {
+                    this.setState({ companies: res.data, company: res.data[0].company_name })
+                }
+            })
             .catch(err => console.log(err))
     }
+
 
     onOpenModal = () => {
         this.setState({
@@ -41,9 +46,9 @@ class Dashboard_Income_Add extends Component {
     onInputChange = event => this.setState({ [event.target.name]: event.target.value });
 
     onDateChange = date => {
-       this.setState({date})
+        this.setState({ date })
     }
-    addCompany = event => {
+    addCompany = () => {
         axios.post('/api/income/company', {
             company: this.state.companyModal
         })
@@ -92,7 +97,6 @@ class Dashboard_Income_Add extends Component {
                             selected={this.state.date}
                             onChange={this.onDateChange}
                         />
-                        {/* <input name='date' onChange={this.onInputChange} className="form-control" type="date" /> */}
                     </div>
                     <div className="form-group">
                         <label className="company">
@@ -102,7 +106,7 @@ class Dashboard_Income_Add extends Component {
                         <select onChange={this.onCompanyChange} className="form-control">
                             {this.state.companies.map(company => {
                                 return (
-                                    <option key={company.name} value={company.name}>{company.name}</option>
+                                    <option key={company.company_id} value={company.company_name}>{company.company_name}</option>
                                 )
                             })}
                         </select>

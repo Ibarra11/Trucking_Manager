@@ -28,7 +28,6 @@ let data = {
 };
 
 class Dashboard_Income_Monthly extends Component {
-
     constructor() {
         super();
         this.state = {

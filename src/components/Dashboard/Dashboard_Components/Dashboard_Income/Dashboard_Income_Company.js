@@ -16,35 +16,38 @@ let data = {
 };
 
 class Dashboard_Income_Company extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            resetState : false
+            resetState: false
         }
     }
 
-    componentDidMount(){
-        axios.get('/api/income/companies/sum')
-        .then(res => {
-            let labels = [];
-            let sumPerCompany = [];
-            res.data.forEach(company =>{
-                labels.push(company.name);
-                sumPerCompany.push(company.sum);
-            });
-            data.labels = labels;
-            data.datasets[0].data = sumPerCompany;
-            this.setState({resetState: !this.state.resetState})
+    componentDidUpdate(prevProps) {
+        if (prevProps.year !== this.props.year) {
+            axios.get('/api/income/companies/sum?year=' + this.props.year )
+                .then(res => {
+                    let labels = [];
+                    let sumPerCompany = [];
+                    res.data.forEach(company => {
+                        labels.push(company.company_name);
+                        sumPerCompany.push(company.sum);
+                    });
+                    data.labels = labels;
+                    data.datasets[0].data = sumPerCompany;
+                    this.setState({ resetState: !this.state.resetState })
 
-        })
-        .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+        }
     }
+
     render() {
         return (
             <div>
                 <Bar
                     data={data}
-                    height = {275}
+                    height={275}
                     options={{
                         maintainAspectRatio: false
                     }}

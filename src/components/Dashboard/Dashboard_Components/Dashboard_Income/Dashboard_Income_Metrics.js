@@ -87,10 +87,10 @@ class Dashbaord_Income_Metrics extends Component {
                             <h5>Income Per Month</h5>
                             <Dashboard_Income_Monthly year={this.state.incomeYear} />
                         </div>
-                        {/* <div className="income-monthly">
+                        <div className="income-monthly">
                             <h5>Income Per Company</h5>
-                            <Dashboard_Income_Company />
-                        </div> */}
+                            <Dashboard_Income_Company year={this.state.incomeYear} />
+                        </div>
                     </div>
                 </div>
             </div>

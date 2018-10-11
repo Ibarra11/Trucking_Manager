@@ -1,1 +1,2 @@
-SELECT * FROM company;
+SELECT * FROM companies
+WHERE owner_id = $1;
