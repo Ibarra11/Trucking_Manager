@@ -1,4 +1,5 @@
-SELECT  SUBSTRING(SUBSTRING(date, 6), 1,2) AS "Month", Sum(amount)
+SELECT month, SUM(check_amount)
 FROM income
-GROUP BY SUBSTRING(SUBSTRING(date, 6), 1,2)
-ORDER BY 1;
+WHERE owner_id = $1 AND year = $2
+GROUP BY 1 
+ORDER  BY month DESC;

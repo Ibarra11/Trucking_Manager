@@ -129,7 +129,7 @@ module.exports = {
         let { userId } = req.session;
         let { year } = req.query;
         req.app.get('db').get_payroll_per_driver([userId, year])
-            .then(driverPayroll =>{
+            .then(driverPayroll => {
                 res.send(driverPayroll)
             })
             .catch(err => console.log(err))
@@ -151,9 +151,9 @@ module.exports = {
         let { userId } = req.session;
         let { year } = req.query;
         req.app.get('db').get_payroll_monthly([userId, year])
-            .then(payroll =>{
+            .then(payroll => {
                 res.send(payroll)
-            } )
+            })
             .catch(err => console.log(err))
     },
     getTotalPayroll: (req, res) => {
@@ -254,10 +254,11 @@ module.exports = {
     },
     addIncome: (req, res) => {
         let { userId } = req.session;
-        let { date, company, amount, check } = req.body;
-        req.app.get('db').add_income([userId, date, company, amount, +check])
+        let { company, check_amount, check_number, month, day, year } = req.body;
+        +check_number
+        req.app.get('db').add_income([userId, company, check_amount, check_number, month, day, year])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     getIncome: (req, res) => {
         let { userId } = req.session;
@@ -265,8 +266,16 @@ module.exports = {
             .then(income => res.send(income))
             .catch(err => res.status(500).send(err))
     },
+    getIncomeYears: (req, res) => {
+        let { userId } = req.session;
+        req.app.get('db').get_income_years([userId])
+            .then(years => res.send(years))
+            .catch(err => console.log(years))
+    },
     getIncomePerMonth: (req, res) => {
-        req.app.get('db').get_income_per_month()
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_income_per_month([userId, year])
             .then(income => res.send(income))
             .catch(err => res.status(500).send(err))
     },
@@ -295,7 +304,8 @@ module.exports = {
     },
     getTotalIncome: (req, res) => {
         let { userId } = req.session;
-        req.app.get('db').get_total_income([userId])
+        let { year } = req.query;
+        req.app.get('db').get_total_income([userId, year])
             .then(income => res.send(income))
             .catch(err => console.log(err))
     }

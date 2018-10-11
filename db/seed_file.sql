@@ -106,8 +106,10 @@ VALUES
 CREATE TABLE income(
     income_id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users(id),
-    check_date VARCHAR(80),
     company VARCHAR(100),
     amount FLOAT,
-    check_number INTEGER
+    check_number INTEGER,
+    month INTEGER,
+    day INTEGER,
+    year INTEGER
 )

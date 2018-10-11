@@ -16,7 +16,6 @@ class Dashboard_Income_List extends Component {
         }
         axios.get('/api/income')
             .then(res => {
-                console.log(res);
                 this.setState({ incomeList: res.data })
             })
             .catch(err => console.log(err));
@@ -55,7 +54,6 @@ class Dashboard_Income_List extends Component {
     updateIncome = event => {
         event.preventDefault();
         let { check_date, company, amount, check_number, income_id } = this.state;
-        console.log(this.state)
         axios.put(`/api/income/${income_id}`, { check_date, company, amount, check_number })
             .then(() => {
                 this.getAllIncome();
@@ -106,11 +104,18 @@ class Dashboard_Income_List extends Component {
                     </thead>
                     <tbody>
                         {this.state.incomeList.map(income => {
+                            let {day, month, year} = income;
+                            if(month < 10){
+                                month = '0' + month;
+                            }
+                            if(day < 10){
+                                day = '0' + day
+                            }
                             return (
                                 <tr key={income.income_id}>
-                                    <td>{income.check_date}</td>
+                                    <td>{month + '/' + day + '/' + year}</td>
                                     <td>{income.company}</td>
-                                    <td>{income.amount}</td>
+                                    <td>{income.check_amount}</td>
                                     <td>{income.check_number}</td>
                                     <td>
                                         <button onClick={() => this.onOpenModal(income)} className="btn btn-primary"><i className="fa fa-edit"></i></button>

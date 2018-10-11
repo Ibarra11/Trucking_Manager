@@ -4,26 +4,71 @@ import Dashboard_Income_Company from './Dashboard_Income_Company';
 import axios from 'axios';
 import numeral from 'numeral';
 class Dashbaord_Income_Metrics extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             totalIncome: 0,
-            avgIncome: 0
+            avgIncome: 0,
+            incomeYears: [],
+            incomeYear: 0
         }
     }
 
-    componentDidMount(){
-        axios.get('/api/income/total')
-        .then(res => this.setState({totalIncome: res.data[0].sum}))
-        .catch(err => console.log(err));
+    componentDidMount() {
+        this.getIncomeYears();
+        // this.getAverageIncome();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.incomeYear !== this.state.incomeYear){
+            this.getTotalIncome();
+        }
+    }
+
+
+    getTotalIncome = () => {
+        axios.get('/api/income/total?year=' + this.state.incomeYear)
+            .then(res => {
+                this.setState({ totalIncome: res.data[0].sum })
+            })
+            .catch(err => console.log(err));
+    }
+
+    getAverageIncome = () => {
         axios.get('/api/income/avg')
-        .then(res => this.setState({avgIncome: res.data[0].Avg}) )
-        .catch(err => console.log(err))
+            .then(res => this.setState({ avgIncome: res.data[0].Avg }))
+            .catch(err => console.log(err))
+    }
+
+    handleYearChange = e => {
+        let year = parseInt(e.target.value);
+        this.setState({ incomeYear: year })
+    }
+
+    getIncomeYears = () => {
+        axios.get('/api/income/years')
+            .then(res => {
+                this.setState({ incomeYears: res.data, incomeYear: res.data[0].year })
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
         return (
             <div className="income-view">
+                <div className="income-year">
+                    <div className="input-group">
+                        <label htmlFor="">Income Year</label>
+                        <select onChange={this.handleYearChange}>
+                            <option key={this.state.incomeYear} value={this.state.incomeYear}>{this.state.incomeYear}</option>
+                            {this.state.incomeYears.map(incomeYear => {
+                                if (incomeYear.year !== this.state.incomeYear) {
+                                    return <option key={incomeYear.year} value={incomeYear.year}>{incomeYear.year}</option>
+                                }
+                            })}
+                        </select>
+                    </div>
+                </div>
                 <div className="card-body">
                     <div className="stats container">
                         <div className="row">
@@ -40,12 +85,12 @@ class Dashbaord_Income_Metrics extends Component {
                     <div className="graphs">
                         <div className="income-monthly">
                             <h5>Income Per Month</h5>
-                            <Dashboard_Income_Monthly />
+                            <Dashboard_Income_Monthly year={this.state.incomeYear} />
                         </div>
-                        <div className="income-monthly">
+                        {/* <div className="income-monthly">
                             <h5>Income Per Company</h5>
                             <Dashboard_Income_Company />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

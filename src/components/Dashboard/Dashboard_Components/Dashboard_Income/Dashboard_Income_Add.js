@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import axios from 'axios';
 class Dashboard_Income_Add extends Component {
     constructor() {
@@ -10,9 +12,9 @@ class Dashboard_Income_Add extends Component {
             companyModal: '',
             companies: [],
             open: false,
-            date: '',
-            amount: 0,
-            check: ''
+            date: moment(),
+            check_amount: 0,
+            check_number: 0
         }
     }
 
@@ -38,6 +40,9 @@ class Dashboard_Income_Add extends Component {
 
     onInputChange = event => this.setState({ [event.target.name]: event.target.value });
 
+    onDateChange = date => {
+       this.setState({date})
+    }
     addCompany = event => {
         axios.post('/api/income/company', {
             company: this.state.companyModal
@@ -49,8 +54,12 @@ class Dashboard_Income_Add extends Component {
 
     addIncome = event => {
         event.preventDefault();
-        let { date, company, amount, check } = this.state;
-        axios.post('/api/income', { date, company, amount, check })
+        let { date, company, check_amount, check_number } = this.state;
+        let formatedDate = moment(date).format('MM DD YYYY').split(' ');
+        let month = +formatedDate[0];
+        let day = +formatedDate[1];
+        let year = +formatedDate[2];
+        axios.post('/api/income', { company, check_amount, check_number, month, day, year })
             .then(() => this.props.history.goBack())
             .catch(err => console.log(err))
     }
@@ -78,7 +87,12 @@ class Dashboard_Income_Add extends Component {
                         <label>
                             Date
                         </label>
-                        <input name='date' onChange={this.onInputChange} className="form-control" type="date" />
+                        <DatePicker
+                            className="form-control"
+                            selected={this.state.date}
+                            onChange={this.onDateChange}
+                        />
+                        {/* <input name='date' onChange={this.onInputChange} className="form-control" type="date" /> */}
                     </div>
                     <div className="form-group">
                         <label className="company">
@@ -88,18 +102,18 @@ class Dashboard_Income_Add extends Component {
                         <select onChange={this.onCompanyChange} className="form-control">
                             {this.state.companies.map(company => {
                                 return (
-                                    <option  key={company.name} value={company.name}>{company.name}</option>
+                                    <option key={company.name} value={company.name}>{company.name}</option>
                                 )
                             })}
                         </select>
                     </div>
                     <div className="form-group">
                         <label>Amount</label>
-                        <input name='amount' onChange={this.onInputChange} className="form-control" type="text" />
+                        <input value={this.state.check_amount} name='check_amount' onChange={this.onInputChange} className="form-control" type="text" />
                     </div>
                     <div className="form-group">
                         <label>Check#</label>
-                        <input name='check' onChange={this.onInputChange} className="form-control" type="text" />
+                        <input value={this.state.check_number} name='check_number' onChange={this.onInputChange} className="form-control" type="text" />
                     </div>
                     <div className="form-submit">
                         <button onClick={this.addIncome} type='submit' className="btn btn-primary">Add Income</button>

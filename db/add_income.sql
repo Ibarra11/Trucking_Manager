@@ -1,3 +1,3 @@
 INSERT INTO income
-(owner_id, check_date, company, amount, check_number)
-VALUES($1,$2,$3,$4,$5);
+(owner_id,  company, check_amount, check_number, month, day, year)
+VALUES($1,$2,$3,$4,$5, $6, $7);

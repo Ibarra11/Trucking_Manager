@@ -35,15 +35,30 @@ class Dashboard_Income_Monthly extends Component {
             resetState: false
         }
     }
-    componentDidMount() {
-        let incomePerMonth = [];
-        axios.get('/api/income/monthly')
-        .then(res =>{
-            res.data.forEach(income => incomePerMonth.push(income.sum));
-            data.datasets[0].data = incomePerMonth;
-            this.setState({resetState: !this.state.resetState})
-        } )
-        .catch(err => console.log(err))
+
+    componentDidUpdate(prevProps) {
+        if (this.props.year !== prevProps.year) {
+            let incomePerMonth = [];
+            axios.get('/api/income/monthly?year=' + this.props.year)
+                .then(res => {
+                    let months = [];
+                    for (let i = res.data.length - 1; i >= 0; i--) {
+                        months.push(res.data[i].month)
+                    }
+                    for (let i = 1; i <= 12; i++) {
+                        if (!months.includes(i)) {
+                            incomePerMonth.push(0)
+                        }
+                        else {
+                            let monthSum = res.data.pop().sum;
+                            incomePerMonth.push(monthSum)
+                        }
+                    }
+                    data.datasets[0].data = incomePerMonth;
+                    this.setState({ resetState: !this.state.resetState })
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     render() {
