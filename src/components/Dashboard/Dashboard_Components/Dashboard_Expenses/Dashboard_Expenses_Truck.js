@@ -30,7 +30,6 @@ class Dashboard_Expenses_Truck extends Component {
     getExpensePerTruck = () =>{
         axios.get('/api/expenses/trucks/sum?year=' + this.props.year)
             .then(res => {
-                console.log(res)
                 let units = [];
                 let sumPerTruck = [];
                 res.data.forEach(truck => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Dashboard_Expenses_Category from './Dashboard_Expenses_Category';
 import Dashboard_Expenses_Truck from './Dashboard_Expenses_Truck';
-import Dashboard_Expenses_Total from './Dashboard_Expenses_Total';
+import Dashboard_Expenses_Monthly from './Dashboard_Expenses_Monthly';
 import axios from 'axios';
 import numeral from 'numeral';
 
@@ -32,7 +32,7 @@ class Dashboard_Expenses_Metrics extends Component {
     }
 
     getTotalExpenses = () => {
-        console.log(this.state);
+
         axios.get('/api/expenses/total?year=' + this.state.expenseYear)
             .then(res => this.setState({ totalExpenses: res.data[0].sum }))
             .catch(err => console.log(err))
@@ -82,10 +82,10 @@ class Dashboard_Expenses_Metrics extends Component {
                                     </div>
                                 </div>
                                 <div className="expense-metrics-graphs col-md-12">
-                                    {/* <div className="graph">
+                                    <div className="graph">
                                         <h5>Expenses Per Month</h5>
-                                        <Dashboard_Expenses_Total />
-                                    </div> */}
+                                        <Dashboard_Expenses_Monthly year={this.state.expenseYear} />
+                                    </div>
 
                                     <div className="graph">
                                         <h5>Expenses Per Cagtegory</h5>

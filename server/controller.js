@@ -182,7 +182,9 @@ module.exports = {
             .catch(err => console.log(err))
     },
     getExpensesMonthly: (req, res) => {
-        req.app.get('db').get_expense_monthly()
+        let {userId} = req.session;
+        let {year} = req.query;
+        req.app.get('db').get_expense_monthly([userId, year])
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },

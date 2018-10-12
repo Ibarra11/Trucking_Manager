@@ -28,22 +28,41 @@ const data = {
     ]
 };
 
-class Dashboard_Expenses_Total extends Component {
+class Dashboard_Expenses_Monthly extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             changeState: false
         }
     }
 
-    componentDidMount() {
-        axios.get('/api/expenses/monthly')
-            .then(res =>{
+
+    componentDidUpdate(prevProps) {
+        if(this.props.year !== prevProps.year){
+            this.getExpensesMonthly();
+        }
+    }
+
+    getExpensesMonthly = () => {
+        axios.get('/api/expenses/monthly?year=' + this.props.year)
+            .then(res => {
+                let months = [];
                 let expensePerMonth = [];
-                res.data.forEach(expense => expensePerMonth.push(expense.sum));
+                for(let i = 0; i < res.data.length; i++){
+                    months.push(res.data[i].month);
+                }
+                for(let i = 1; i <= 12; i++){
+                    if(!months.includes(i)){
+                        expensePerMonth.push(0)
+                    }
+                    else{
+                        let monthSum = res.data.pop().sum
+                        expensePerMonth.push(monthSum);
+                    }
+                }
                 data.datasets[0].data = expensePerMonth;
-                this.setState({changeState: !this.state.changeState})
+                this.setState({ changeState: !this.state.changeState })
 
             })
             .catch(err => console.log(err))
@@ -64,4 +83,4 @@ class Dashboard_Expenses_Total extends Component {
     }
 }
 
-export default Dashboard_Expenses_Total;
+export default Dashboard_Expenses_Monthly;
