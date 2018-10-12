@@ -107,6 +107,7 @@ app.get('/api/expenses/categories/sum', ctrl.getExpenseSumPerCategory);
 app.get('/api/expenses/trucks/sum', ctrl.getExpenseSumPerTruck);
 app.get('/api/expenses/monthly', ctrl.getExpensesMonthly);
 app.get('/api/expenses/avg', ctrl.getAverageExpensePerMonth);
+app.get('/api/expenses/years', ctrl.getExpenseYears);
 
 app.post('/api/income/company', ctrl.addCompany);
 app.get('/api/income/company', ctrl.getCompanies);

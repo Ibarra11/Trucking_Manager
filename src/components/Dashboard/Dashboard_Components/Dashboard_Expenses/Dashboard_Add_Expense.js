@@ -40,7 +40,6 @@ class Dashboard_Add_Expense extends Component {
 
     addExpense = event => {
         event.preventDefault();
-
         let { expenseDate, expenseCategory, expenseUnitNumber, expenseAmount } = this.state;
         let formatedDate = moment(expenseDate).format('MM DD YYYY').split(' ');
         let month = formatedDate[0];
@@ -60,7 +59,6 @@ class Dashboard_Add_Expense extends Component {
     onCategoryChange = e => this.setState({ expenseCategory: e.target.value })
 
     handleDateChange = date => {
-       
         this.setState({ expenseDate: date })
     } 
 

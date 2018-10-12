@@ -1,4 +1,4 @@
 SELECT DISTINCT(year)
-FROM income
+FROM expenses
 WHERE owner_id = $1
-ORDER BY  1 DESC;
+ORDER BY 1 DESC;

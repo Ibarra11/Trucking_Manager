@@ -186,6 +186,12 @@ module.exports = {
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },
+    getExpenseYears: (req,res) =>{
+        let {userId} = req.session;
+        req.app.get('db').get_expense_years([userId])
+        .then(years => res.send(years))
+        .catch(err => console.log(err))
+    },
     addExpense: (req, res) => {
         let { userId } = req.session;
         let { expenseCategory, expenseUnitNumber, expenseAmount, month, day, year } = req.body;
@@ -201,7 +207,8 @@ module.exports = {
     },
     getTotalExpenses: (req, res) => {
         let { userId } = req.session;
-        req.app.get('db').get_total_expenses([userId])
+        let {year} = req.query;
+        req.app.get('db').get_total_expenses([userId, year])
             .then(expenses => res.send(expenses))
             .catch(err => console.log(err))
     },

@@ -16,6 +16,22 @@
         .graph {
             margin: 1.25rem 0;
         }
+
+        .expenses-metrics-header{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.25rem;
+            .input-group{
+                width: 10.5rem;
+                display: flex;
+                justify-content: space-between;
+                label{
+                    font-size: 1.125rem;
+                    position: relative;
+                    top: 0.5vh;
+                }
+            }
+        }
     }
     .expenses-metrics-overall {
         display: flex;

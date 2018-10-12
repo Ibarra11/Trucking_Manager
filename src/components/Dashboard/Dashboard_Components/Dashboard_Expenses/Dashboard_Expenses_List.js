@@ -93,9 +93,16 @@ class Dashboard_Expenses_List extends Component {
                     </thead>
                     <tbody>
                         {this.state.expenses.map(expense => {
+                            let {month, day, year} = expense;
+                            if(day < 10){
+                                day = '0' + day;
+                            }
+                            if(month < 10){
+                                month = '0' + month;
+                            }
                             return (
                                 <tr key={expense.expense_id}>
-                                    <td><span>{expense.expense_date}</span></td>
+                                    <td><span>{month + '/' + day + '/' + year}</span></td>
                                     <td><span>{expense.expense_category}</span></td>
                                     <td><span>{expense.unit_number}</span></td>
                                     <td><span>{expense.expense_amount}</span></td>
