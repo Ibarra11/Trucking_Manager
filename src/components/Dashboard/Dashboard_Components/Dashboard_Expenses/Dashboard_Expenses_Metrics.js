@@ -85,13 +85,13 @@ class Dashboard_Expenses_Metrics extends Component {
                                     {/* <div className="graph">
                                         <h5>Expenses Per Month</h5>
                                         <Dashboard_Expenses_Total />
-                                    </div>
+                                    </div> */}
 
                                     <div className="graph">
                                         <h5>Expenses Per Cagtegory</h5>
-                                        <Dashboard_Expenses_Category />
+                                        <Dashboard_Expenses_Category year={this.state.expenseYear} />
 
-                                    </div> */}
+                                    </div>
                                     <div className="graph">
                                         <h5>Expenses Per Truck</h5>
                                         <Dashboard_Expenses_Truck year={this.state.expenseYear} />

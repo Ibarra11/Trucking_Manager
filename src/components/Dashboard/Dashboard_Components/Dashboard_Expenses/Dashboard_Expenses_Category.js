@@ -24,25 +24,21 @@ class Dashboard_Expenses_Category extends Component {
             resetState: false
         }
     }
-    componentDidMount() {
-        // axios.get('/api/expenses/categories')
-        //     .then(res => {
-        //         let labels = [];
-        //         res.data.forEach(category => {
-        //             labels.push(category.type)
-        //         })
-        //         this.setState({ resetState: !this.state.resetState })
-        //         data.labels = labels;
-        //     })
-        //     .catch(err => console.log(err));
 
-        axios.get('/api/expenses/categories/sum')
+    componentDidUpdate(prevProps) {
+        if (this.props.year !== prevProps.year) {
+            this.getExpensesPerCategory();
+        }
+    }
+
+    getExpensesPerCategory = () => {
+        axios.get('/api/expenses/categories/sum?year=' + this.props.year)
             .then(res => {
                 let expenseData = [];
                 let labels = [];
                 res.data.forEach(expense => {
                     expenseData.push(expense.sum)
-                    labels.push(expense.type);
+                    labels.push(expense.expense_category);
                 })
                 data.labels = labels;
                 data.datasets[0].data = expenseData;

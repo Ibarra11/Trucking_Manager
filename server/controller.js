@@ -186,18 +186,18 @@ module.exports = {
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },
-    getExpenseYears: (req,res) =>{
-        let {userId} = req.session;
+    getExpenseYears: (req, res) => {
+        let { userId } = req.session;
         req.app.get('db').get_expense_years([userId])
-        .then(years => res.send(years))
-        .catch(err => console.log(err))
+            .then(years => res.send(years))
+            .catch(err => console.log(err))
     },
     addExpense: (req, res) => {
         let { userId } = req.session;
         let { expenseCategory, expenseUnitNumber, expenseAmount, month, day, year } = req.body;
         req.app.get('db').add_expense([userId, expenseCategory, expenseUnitNumber, expenseAmount, month, day, year])
             .then(() => res.sendStatus(200))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     getAllExpenses: (req, res) => {
         let { userId } = req.session;
@@ -207,7 +207,7 @@ module.exports = {
     },
     getTotalExpenses: (req, res) => {
         let { userId } = req.session;
-        let {year} = req.query;
+        let { year } = req.query;
         req.app.get('db').get_total_expenses([userId, year])
             .then(expenses => res.send(expenses))
             .catch(err => console.log(err))
@@ -238,13 +238,15 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getExpenseSumPerCategory: (req, res) => {
-        req.app.get('db').get_expense_sum_category()
+        let { userId } = req.session;
+        let { year } = req.query;
+        req.app.get('db').get_expense_sum_category([userId,year])
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },
     getExpenseSumPerTruck: (req, res) => {
-        let {userId} = req.session;
-        let {year} = req.query;
+        let { userId } = req.session;
+        let { year } = req.query;
         req.app.get('db').get_expense_sum_truck([userId, year])
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))

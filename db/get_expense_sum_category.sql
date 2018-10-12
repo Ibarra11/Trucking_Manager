@@ -1,6 +1,5 @@
-SELECT type, SUM(amount)
+SELECT expense_category, SUM(expense_amount)
 FROM expenses
-FULL OUTER JOIN category
-ON expenses.category = category.type
-GROUP BY type
-ORDER BY sum DESC NULLS LAST;
+WHERE owner_id = $1 AND year = $2
+GROUP BY 1
+ORDER BY 2 DESC NULLS LAST;
