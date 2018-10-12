@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 class Dashboard_Add_Expense extends Component {
     constructor() {
         super();
         this.state = {
             categories: [],
             trucks: [],
-            truck: '',
-            category: '',
-            date: '',
-            amount: ''
+            expenseUnitNumber: 0,
+            expenseCategory: '',
+            expenseAmount: 0,
+            expenseDate: moment()
         }
     }
     componentDidMount() {
+        this.getExpenseCategories();
+        this.getTruckUnits();
+    }
+
+    getExpenseCategories = () => {
         axios.get('/api/expenses/categories')
             .then(res => this.setState({
                 categories: res.data,
-                category: res.data[0].type
+                expenseCategory: res.data[0].category
             }))
+    }
+
+    getTruckUnits = () => {
         axios.get('/api/trucks')
             .then(res => {
-                console.log(res);
                 this.setState({
                     trucks: res.data,
-                    truck: res.data[0].unit_number
+                    expenseUnitNumber: res.data[0].unit_number
                 })
             })
             .catch(err => console.log(err))
@@ -31,19 +40,31 @@ class Dashboard_Add_Expense extends Component {
 
     addExpense = event => {
         event.preventDefault();
-        let { date, category, truck, amount } = this.state;
+
+        let { expenseDate, expenseCategory, expenseUnitNumber, expenseAmount } = this.state;
+        let formatedDate = moment(expenseDate).format('MM DD YYYY').split(' ');
+        let month = formatedDate[0];
+        let day = formatedDate[1];
+        let year = formatedDate[2];
+        expenseAmount = parseFloat(expenseAmount);
+        console.log(this.state);
         axios.post('/api/expenses', {
-            date, category, truck, amount
+            expenseCategory, expenseUnitNumber, expenseAmount, month, day, year
         })
             .then(() => this.props.history.goBack())
             .catch(err => console.log(err))
     }
 
-    onTextChange = event => this.setState({ [event.target.name]: event.target.value });
+    onTextChange = e => this.setState({ [e.target.name]: e.target.value });
 
-    onCategoryChange = event => this.setState({ category: event.target.value })
+    onCategoryChange = e => this.setState({ expenseCategory: e.target.value })
 
-    onTruckChange = event => this.setState({ truck: event.target.value })
+    handleDateChange = date => {
+       
+        this.setState({ expenseDate: date })
+    } 
+
+    onTruckChange = e => this.setState({ expenseUnitNumber: e.target.value })
 
     render() {
         return (
@@ -53,17 +74,21 @@ class Dashboard_Add_Expense extends Component {
                         <h5>Add Expense</h5>
                     </div>
 
-                    <form onSubmit={event => this.addExpense(event)}>
+                    <form onSubmit={this.addExpense}>
                         <div className="form-group">
                             <label>Date</label>
-                            <input onChange={this.onTextChange} name='date' className="form-control" type="date" />
+                            <DatePicker
+                                className="form-control"
+                                selected={this.state.expenseDate}
+                                onChange={this.handleDateChange}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Category</label>
                             <select onChange={this.onCategoryChange} className="form-control">
-                                {this.state.categories.map((category, index) => {
+                                {this.state.categories.map(category => {
                                     return (
-                                        <option key={category.type + index} value={category.type}>{category.type}</option>
+                                        <option key={category.category_id} value={category.category}>{category.category}</option>
                                     )
                                 })}
                             </select>
@@ -80,10 +105,10 @@ class Dashboard_Add_Expense extends Component {
                         </div>
                         <div className="form-group">
                             <label>Amount</label>
-                            <input name="amount" onChange={this.onTextChange} className="form-control" type="text" />
+                            <input name="expenseAmount" value={this.state.expenseAmount} onChange={this.onTextChange} className="form-control" type="text" />
                         </div>
                         <div className="expense-submit">
-                            <button type='submit' className="btn">Add Expense</button>
+                            <button type='submit' className="btn">Add </button>
                         </div>
                     </form>
                 </div>

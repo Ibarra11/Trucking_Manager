@@ -81,6 +81,18 @@
     .card {
         border-bottom: none;
     }
+
+    .form-group:first-child{
+        .react-datepicker-wrapper{
+            width: 100%;
+        }
+        .react-datepicker__input-container{
+            width: 100%;  
+        }
+        input{
+            width: 100%;
+        }
+    }
     .card-body {
         padding-left: 7rem;
         padding-right: 7rem;
@@ -104,6 +116,7 @@
         width: 65%;
         margin: 0 auto;
         margin-top: 2rem;
+        
     }
     .category-submit {
         display: flex;

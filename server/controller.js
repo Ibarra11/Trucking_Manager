@@ -179,7 +179,7 @@ module.exports = {
     getExpenseCategories: (req, res) => {
         req.app.get('db').get_expense_categories()
             .then(categories => res.send(categories))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     getExpensesMonthly: (req, res) => {
         req.app.get('db').get_expense_monthly()
@@ -188,11 +188,10 @@ module.exports = {
     },
     addExpense: (req, res) => {
         let { userId } = req.session;
-        let { date, category, truck, amount } = req.body;
-        +truck;
-        req.app.get('db').add_expense([userId, date, category, truck, amount])
+        let { expenseCategory, expenseUnitNumber, expenseAmount, month, day, year } = req.body;
+        req.app.get('db').add_expense([userId, expenseCategory, expenseUnitNumber, expenseAmount, month, day, year])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err) )
     },
     getAllExpenses: (req, res) => {
         let { userId } = req.session;
@@ -249,10 +248,10 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getCompanies: (req, res) => {
-        let {userId} = req.session;
+        let { userId } = req.session;
         req.app.get('db').get_companies([userId])
             .then(companies => res.send(companies))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     addIncome: (req, res) => {
         let { userId } = req.session;
@@ -273,14 +272,14 @@ module.exports = {
         let { userId } = req.session;
         req.app.get('db').get_income_years([userId])
             .then(years => res.send(years))
-            .catch(err => res.status(500).send(err) )
+            .catch(err => res.status(500).send(err))
     },
     getIncomePerMonth: (req, res) => {
         let { userId } = req.session;
         let { year } = req.query;
         req.app.get('db').get_income_per_month([userId, year])
             .then(income => res.send(income))
-            .catch(err => res.status(500).send(err) )
+            .catch(err => res.status(500).send(err))
     },
     deleteIncome: (req, res) => {
         let { id } = req.params;

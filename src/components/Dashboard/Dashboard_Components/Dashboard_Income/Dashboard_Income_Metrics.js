@@ -35,7 +35,6 @@ class Dashbaord_Income_Metrics extends Component {
     }
 
     setMonths = months => {
-        console.log(months)
         this.setState({ months })
     }
 

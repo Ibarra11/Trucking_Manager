@@ -81,10 +81,12 @@ VALUES
 CREATE TABLE expenses(
     expense_id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users(id),
-    expense_date VARCHAR(100),
     expense_category VARCHAR(100),
-    unit_number INTEGER ,
-    expense_amount FLOAT
+    unit_number INTEGER,
+    expense_amount FLOAT,
+    month INTEGER,
+    day INTEGER,
+    year INTEGER
 );
 
 INSERT INTO expenses (date, category, truck, amount)
@@ -120,4 +122,9 @@ CREATE TABLE companies(
     company_id SERIAL PRIMARY KEY,
     owner_id  INTEGER REFERENCES users(id),
     company_name VARCHAR(100)
+)
+
+CREATE TABLE categories(
+    category_id SERIAL PRIMARY KEY,
+    category VARCHAR(80)
 )

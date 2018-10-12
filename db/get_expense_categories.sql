@@ -1,2 +1,2 @@
-SELECT * FROM category
-ORDER BY type;
+SELECT * FROM categories
+ORDER BY category;
