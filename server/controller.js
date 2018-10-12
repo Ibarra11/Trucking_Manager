@@ -243,7 +243,9 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     getExpenseSumPerTruck: (req, res) => {
-        req.app.get('db').get_expense_sum_truck()
+        let {userId} = req.session;
+        let {year} = req.query;
+        req.app.get('db').get_expense_sum_truck([userId, year])
             .then(expenses => res.send(expenses))
             .catch(err => res.status(500).send(err))
     },

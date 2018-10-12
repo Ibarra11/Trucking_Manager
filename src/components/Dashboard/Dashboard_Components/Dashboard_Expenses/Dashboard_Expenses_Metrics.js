@@ -21,17 +21,17 @@ class Dashboard_Expenses_Metrics extends Component {
 
         // axios.get('/api/expenses/avg')
         //     .then(res => this.setState({ avgExpense: res.data[0].Avg }))
-       //     .catch(err => console.log(err))
-       this.getIncomeYears();
+        //     .catch(err => console.log(err))
+        this.getIncomeYears();
     }
 
-   componentDidUpdate(prevProps, prevState){
-    if(this.state.expenseYear !== prevState.expenseYear){
-        this.getTotalIncome();
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.expenseYear !== prevState.expenseYear) {
+            this.getTotalExpenses();
+        }
     }
-   }
 
-    getTotalIncome = () => {
+    getTotalExpenses = () => {
         console.log(this.state);
         axios.get('/api/expenses/total?year=' + this.state.expenseYear)
             .then(res => this.setState({ totalExpenses: res.data[0].sum }))
@@ -91,11 +91,11 @@ class Dashboard_Expenses_Metrics extends Component {
                                         <h5>Expenses Per Cagtegory</h5>
                                         <Dashboard_Expenses_Category />
 
-                                    </div>
+                                    </div> */}
                                     <div className="graph">
                                         <h5>Expenses Per Truck</h5>
-                                        <Dashboard_Expenses_Truck />
-                                    </div> */}
+                                        <Dashboard_Expenses_Truck year={this.state.expenseYear} />
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
-SELECT unit, SUM(amount) as "total"
-FROM trucks
-FULL OUTER JOIN expenses
-ON trucks.unit = expenses.truck
-GROUP BY unit
-ORDER BY 2  DESC NULLS LAST;
+
+SELECT unit_number, SUM(expense_amount)
+FROM expenses
+WHERE owner_id = $1 AND year=$2
+GROUP BY 1 
+ORDER BY 2 DESC NULLS LAST;

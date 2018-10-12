@@ -22,21 +22,29 @@ class Dashboard_Expenses_Truck extends Component {
             resetState: false
         }
     }
-    componentDidMount() {
-
-        axios.get('/api/expenses/trucks/sum')
+    componentDidUpdate(prevProps){
+        if(prevProps.year !== this.props.year){
+            this.getExpensePerTruck();
+        }
+    }
+    getExpensePerTruck = () =>{
+        axios.get('/api/expenses/trucks/sum?year=' + this.props.year)
             .then(res => {
+                console.log(res)
                 let units = [];
                 let sumPerTruck = [];
                 res.data.forEach(truck => {
-                    units.push(truck.unit);
-                    sumPerTruck.push(truck.total)
+                    units.push(truck.unit_number);
+                    sumPerTruck.push(truck.sum)
                 })
 
                 data.labels = units;
                 data.datasets[0].data = sumPerTruck;
                 this.setState({ resetState: !this.resetState })
             })
+    }
+    componentDidMount() {
+        
     }
     render() {
         return (
