@@ -9,6 +9,7 @@ class Dashbaord_Income_Metrics extends Component {
         this.state = {
             totalIncome: 0,
             avgIncome: 0,
+            months: 0,
             incomeYears: [],
             incomeYear: 0
         }
@@ -16,11 +17,10 @@ class Dashbaord_Income_Metrics extends Component {
 
     componentDidMount() {
         this.getIncomeYears();
-        // this.getAverageIncome();
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.incomeYear !== this.state.incomeYear){
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.incomeYear !== this.state.incomeYear) {
             this.getTotalIncome();
         }
     }
@@ -34,10 +34,9 @@ class Dashbaord_Income_Metrics extends Component {
             .catch(err => console.log(err));
     }
 
-    getAverageIncome = () => {
-        axios.get('/api/income/avg')
-            .then(res => this.setState({ avgIncome: res.data[0].Avg }))
-            .catch(err => console.log(err))
+    setMonths = months => {
+        console.log(months)
+        this.setState({ months })
     }
 
     handleYearChange = e => {
@@ -54,6 +53,7 @@ class Dashbaord_Income_Metrics extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="income-view">
                 <div className="income-year">
@@ -78,14 +78,14 @@ class Dashbaord_Income_Metrics extends Component {
                             </div>
                             <div className="col-md-4 card">
                                 <h6>Avg Income/Month</h6>
-                                <p>{numeral(this.state.avgIncome).format('$0,0.00')}</p>
+                                <p>{numeral(this.state.totalIncome / this.state.months).format('$0,0.00')}</p>
                             </div>
                         </div>
                     </div>
                     <div className="graphs">
                         <div className="income-monthly">
                             <h5>Income Per Month</h5>
-                            <Dashboard_Income_Monthly year={this.state.incomeYear} />
+                            <Dashboard_Income_Monthly setMonths={this.setMonths} year={this.state.incomeYear} />
                         </div>
                         <div className="income-monthly">
                             <h5>Income Per Company</h5>

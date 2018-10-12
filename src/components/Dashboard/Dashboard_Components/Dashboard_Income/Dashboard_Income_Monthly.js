@@ -54,6 +54,7 @@ class Dashboard_Income_Monthly extends Component {
                         }
                     }
                     data.datasets[0].data = incomePerMonth;
+                    this.props.setMonths(months.length)
                     this.setState({ resetState: !this.state.resetState })
                 })
                 .catch(err => console.log(err))
