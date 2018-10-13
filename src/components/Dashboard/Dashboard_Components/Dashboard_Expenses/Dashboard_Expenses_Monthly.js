@@ -39,7 +39,7 @@ class Dashboard_Expenses_Monthly extends Component {
 
 
     componentDidUpdate(prevProps) {
-        if(this.props.year !== prevProps.year){
+        if (this.props.year !== prevProps.year) {
             this.getExpensesMonthly();
         }
     }
@@ -49,18 +49,19 @@ class Dashboard_Expenses_Monthly extends Component {
             .then(res => {
                 let months = [];
                 let expensePerMonth = [];
-                for(let i = 0; i < res.data.length; i++){
+                for (let i = 0; i < res.data.length; i++) {
                     months.push(res.data[i].month);
                 }
-                for(let i = 1; i <= 12; i++){
-                    if(!months.includes(i)){
+                for (let i = 1; i <= 12; i++) {
+                    if (!months.includes(i)) {
                         expensePerMonth.push(0)
                     }
-                    else{
+                    else {
                         let monthSum = res.data.pop().sum
                         expensePerMonth.push(monthSum);
                     }
                 }
+                this.props.setNumOfMonths(months.length);
                 data.datasets[0].data = expensePerMonth;
                 this.setState({ changeState: !this.state.changeState })
 

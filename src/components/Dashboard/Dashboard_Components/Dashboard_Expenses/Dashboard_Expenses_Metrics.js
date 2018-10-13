@@ -12,16 +12,13 @@ class Dashboard_Expenses_Metrics extends Component {
             totalExpenses: 0,
             avgExpense: 0,
             expenseYears: [],
-            expenseYear: ""
+            expenseYear: "",
+            numOfExpenseMonths: 0
         }
 
     }
 
     componentDidMount() {
-
-        // axios.get('/api/expenses/avg')
-        //     .then(res => this.setState({ avgExpense: res.data[0].Avg }))
-        //     .catch(err => console.log(err))
         this.getIncomeYears();
     }
 
@@ -29,10 +26,10 @@ class Dashboard_Expenses_Metrics extends Component {
         if (this.state.expenseYear !== prevState.expenseYear) {
             this.getTotalExpenses();
         }
+
     }
 
     getTotalExpenses = () => {
-
         axios.get('/api/expenses/total?year=' + this.state.expenseYear)
             .then(res => this.setState({ totalExpenses: res.data[0].sum }))
             .catch(err => console.log(err))
@@ -51,7 +48,13 @@ class Dashboard_Expenses_Metrics extends Component {
         this.setState({ expenseYear })
     }
 
+    setNumOfMonths = numOfExpenseMonths => {
+        console.log(numOfExpenseMonths)
+        this.setState({ numOfExpenseMonths })
+    }
+
     render() {
+        console.log
         return (
             <div className="component-expenses">
                 <div className="component-expenses-view">
@@ -78,13 +81,13 @@ class Dashboard_Expenses_Metrics extends Component {
                                     </div>
                                     <div className="card col-md-4">
                                         <h6>Avg Expense/Month</h6>
-                                        <p>{numeral(this.state.avgExpense).format('$0,0.00')}</p>
+                                        <p>{numeral(Math.round(this.state.totalExpenses / this.state.numOfExpenseMonths)).format('$0,0.00')}</p>
                                     </div>
                                 </div>
                                 <div className="expense-metrics-graphs col-md-12">
                                     <div className="graph">
                                         <h5>Expenses Per Month</h5>
-                                        <Dashboard_Expenses_Monthly year={this.state.expenseYear} />
+                                        <Dashboard_Expenses_Monthly setNumOfMonths={this.setNumOfMonths} year={this.state.expenseYear} />
                                     </div>
 
                                     <div className="graph">
