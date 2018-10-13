@@ -325,5 +325,11 @@ module.exports = {
         req.app.get('db').get_total_income([userId, year])
             .then(income => res.send(income))
             .catch(err => console.log(err))
+    },
+    getRevenueYears: (req,res) =>{
+        let {userId}= req.session;
+        req.app.get('db').get_revenue_years([userId])
+        .then(incomeYears => res.send(incomeYears))
+        .catch(err => console.log(err))
     }
 }

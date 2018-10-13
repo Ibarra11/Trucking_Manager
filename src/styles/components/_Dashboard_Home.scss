@@ -36,9 +36,23 @@
     .component-home-metrics {
         height: 100%;
         padding: 0.5rem 0;
-        h5 {
-            color: black;
-            text-align: center;
+        .metrics-header {
+            position: relative;
+            padding: 0 1rem;
+            h5 {
+                color: black;
+                text-align: center;
+            }
+            .form-group{
+                position: absolute;
+                right: 0;
+                top: 0;
+                margin-right: 1rem;
+                label{
+                    font-size: 1.1rem;
+                    margin-right: 0.5rem;
+                }
+            }
         }
         .container {
             display: flex; //    padding-top: rem;
