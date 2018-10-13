@@ -1,3 +1,3 @@
 SELECT * FROM income
-WHERE owner_id = 37
+WHERE owner_id = $1
 ORDER BY year DESC, month , day ;

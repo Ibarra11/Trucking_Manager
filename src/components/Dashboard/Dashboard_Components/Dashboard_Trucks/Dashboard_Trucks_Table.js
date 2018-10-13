@@ -7,20 +7,21 @@ class Dashboard_Trucks_Table extends Component {
         super();
         this.state = {
             trucks: [],
+            truckId: '',
             unitNumber: '',
             make: '',
             model: '',
             year: '',
-            plate_number: '',
+            plateNumber: '',
             vin: '',
             open: false
         }
     }
-    onOpenModal = unitId => {
-        let unitFilter = this.state.trucks.filter(truck => truck.unit === unitId);
-        let { unit, make, model, year, plate_number, vin } = unitFilter[0];
+    onOpenModal = truck => {
+        console.log(truck);
+        let { truck_id, unit_number, make, model, truck_year, plate_number, truck_vin } = truck;
         this.setState({
-            unitNumber: unit, make, model, year, plate_number, vin,
+            truckId: truck_id, unitNumber: unit_number, make, model, year: truck_year, plateNumber: plate_number, vin: truck_vin,
             open: true
         })
     }
@@ -38,18 +39,24 @@ class Dashboard_Trucks_Table extends Component {
             .then(res => this.setState({ trucks: res.data }))
             .catch(err => console.log(err))
     }
-  
+
     updateTruck = (event) => {
         event.preventDefault();
-        let { unitNumber, make, model, year, plate_number, vin } = this.state
-        axios.put('/api/truck', {
-            unit: unitNumber, make, model, year, plate_number, vin
+        let { truckId, unitNumber, make, model, year, plateNumber, vin } = this.state
+        axios.put(`/api/truck/${truckId}`, {
+            unitNumber, make, model, year, plateNumber, vin
         })
             .then(() => {
                 this.getAllTrucks();
                 this.onCloseModal();
             })
             .catch(err => console.log(err))
+    }
+
+    deleteTruck = truckId => {
+        axios.delete(`/api/truck/${truckId}`)
+            .then(() => this.getAllTrucks())
+            .catch(err => console.log(err));
     }
     render() {
         return (
@@ -73,10 +80,6 @@ class Dashboard_Trucks_Table extends Component {
                             <div className="form-group">
                                 <h6>Year</h6>
                                 <input onChange={this.onInputChange} name='year' value={this.state.year} className="form-control" type="text" />
-                            </div>
-                            <div className="form-group">
-                                <h6>Address</h6>
-                                <input onChange={this.onInputChange} name='plate_number' value={this.state.plate_number} className="form-control" type="text" />
                             </div>
                             <div className="form-group">
                                 <h6>VIN</h6>
@@ -111,10 +114,10 @@ class Dashboard_Trucks_Table extends Component {
                                     <td>{truck.plate_number}</td>
                                     <td>{truck.truck_vin}</td>
                                     <td>
-                                        <button onClick={() => this.onOpenModal(truck.unit)} className="btn btn-primary">
+                                        <button onClick={() => this.onOpenModal(truck)} className="btn btn-primary">
                                             <i className="fa fa-edit"></i>
                                         </button>
-                                        <button  className="btn btn-danger">
+                                        <button onClick={() => this.deleteTruck(truck.truck_id)} className="btn btn-danger">
                                             <i className="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -124,7 +127,7 @@ class Dashboard_Trucks_Table extends Component {
                     </tbody>
                 </table>
                 <div className="table-controls">
-                    <Link to='/dashboard/trucks/add'> <button  className="btn"><i className="fa fa-plus"> Truck</i></button></Link>
+                    <Link to='/dashboard/trucks/add'> <button className="btn"><i className="fa fa-plus"> Truck</i></button></Link>
                 </div>
             </div>
         )

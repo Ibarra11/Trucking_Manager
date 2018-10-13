@@ -79,12 +79,8 @@ app.delete('/api/driver/:driver_id', ctrl.deleteDriver);
 
 app.get('/api/trucks', ctrl.getAllTrucks)
 app.post('/api/truck', ctrl.addTruck);
-app.put('/api/truck', ctrl.updateTruck)
-
-app.post('/api/contacts', ctrl.addContact);
-app.get('/api/contacts', ctrl.getAllContacts);
-app.delete('/api/contacts/:id', ctrl.deleteContacts);
-app.put('/api/contacts/:id', ctrl.updateContact);
+app.put('/api/truck/:id', ctrl.updateTruck)
+app.delete('/api/truck/:id', ctrl.deleteTruck)
 
 app.post('/api/payroll', ctrl.addPayroll);
 app.get('/api/payroll', ctrl.getPayroll);

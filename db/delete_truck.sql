@@ -1,0 +1,1 @@
+DELETE FROM trucks WHERE owner_id = $1 AND truck_id = $2;
