@@ -65,11 +65,14 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     updateDriver: (req, res) => {
-        let { id } = req.params;
-        let { name, contactNumber, address, dateHired, unitNumber } = req.body;
-        req.app.get('db').update_driver([name, contactNumber, address, dateHired, unitNumber, id])
+        let driverId = req.params.id;
+        let {userId} = req.session;
+        console.log(req.body);
+        console.log(driverId);
+        let { name,  monthHired, dayHired, yearHired, unitNumber } = req.body;
+        req.app.get('db').update_driver([driverId, userId, name, dayHired, monthHired, yearHired, unitNumber])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err))
+            .catch(err => console.log(err))
     },
     addTruck: (req, res) => {
         let { unit, make, model, year, plate_number, vin } = req.body;

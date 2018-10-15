@@ -2,31 +2,37 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import { Link } from 'react-router-dom';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 class Dashboard_Drivers_Table extends Component {
     constructor() {
         super();
         this.state = {
-            addDriver: false,
             name: '',
-            contactNumber: '',
-            dateHired: '',
+            dateHired: moment(),
             unitNumber: '',
             driverId: '',
             drivers: [],
-            open: false,
+            truckList: [],
+            open: false
         }
     }
-    onOpenModal = driverId => {
-        let driver = this.state.drivers.filter(driver => driverId === driver.id);
-        let { name,  contactnumber, datehired, unitnumber } = driver[0];
+    onOpenModal = driver => {
+        let { name, dayHired, monthHired, yearHired, unit_number, driver_id } = driver;
+        if (dayHired < 10) {
+            dayHired = '0' + dayHired;
+        }
+        if (monthHired < 10) {
+            monthHired = '0' + monthHired;
+        }
+        let dateHired = monthHired + '/' + dayHired + '/' + yearHired;
+        dateHired = moment({ dateHired });
         this.setState({
             open: true,
-            driverId,
+            driverId: driver_id,
             name,
-            contactNumber: contactnumber,
-            dateHired: datehired,
-            unitNumber: unitnumber
+            dateHired,
+            unitNumber: unit_number
         })
     }
 
@@ -36,6 +42,7 @@ class Dashboard_Drivers_Table extends Component {
 
     componentDidMount() {
         this.getDrivers();
+        this.getTrucks();
     }
 
     getDrivers = () => {
@@ -45,21 +52,39 @@ class Dashboard_Drivers_Table extends Component {
             })
             .catch(err => console.log(err))
     }
+
+    getTrucks = () => {
+        axios.get('/api/trucks')
+            .then(res => this.setState({ truckList: res.data }))
+            .catch(err => console.log(err))
+    }
+
     deleteDriver = driver_id => {
         axios.delete(`/api/driver/${driver_id}`)
             .then(() => this.getDrivers())
             .catch(err => console.log(err))
     }
+
     updateDriver = event => {
         event.preventDefault();
-        axios.put(`/api/driver/${this.state.driverId}`, this.state)
+        let {name, dateHired, unitNumber} = this.state;
+        let formatDate = moment(dateHired).format('MM DD YYYY').split(' ');
+        let monthHired = +formatDate[0];
+        let dayHired = +formatDate[1];
+        let yearHired = +formatDate[2];
+        axios.put(`/api/driver/${this.state.driverId}`,{
+            name, monthHired, dayHired, yearHired, unitNumber
+        })
             .then(() => {
                 this.onCloseModal();
                 this.getDrivers();
             })
             .catch(err => console.log(err));
     }
+
     onInputChange = event => this.setState({ [event.target.name]: event.target.value })
+
+    onDateChange = date => this.setState({ dateHired: date })
 
     render() {
         return (
@@ -74,16 +99,20 @@ class Dashboard_Drivers_Table extends Component {
                                 <input name='name' onChange={this.onInputChange} value={this.state.name} className="form-control" type="text" />
                             </div>
                             <div className="form-group">
-                                <h6>Contact Number </h6>
-                                <input onChange={this.onInputChange} name='contactNumber' value={this.state.contactNumber} className="form-control" type="text" />
-                            </div>
-                            <div className="form-group">
                                 <h6>Date Hired</h6>
-                                <input onChange={this.onInputChange} name='dateHired' value={this.state.dateHired} className="form-control" type="text" />
+                                <DatePicker
+                                    className="form-control"
+                                    selected={this.state.dateHired}
+                                    onChange={this.onDateChange}
+                                />
                             </div>
                             <div className="form-group">
                                 <h6>Assigned Truck</h6>
-                                <input onChange={this.onInputChange} name='unitNumber' value={this.state.unitNumber} className="form-control" type="text" />
+                                <select onChange={this.onInputChange} className="form-control" name="unitNumber" >
+                                    {this.state.truckList.map(truck =>{
+                                        return <option key={truck.truck_id} value={truck.unit_number}>{truck.unit_number}</option>
+                                    })}
+                                </select>
                             </div>
                             <div className="edit-form-buttons">
                                 <button type='submit' className="btn btn-primary">Update</button>
@@ -95,7 +124,7 @@ class Dashboard_Drivers_Table extends Component {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Driver_ID</th>
+                                <th>Driver ID</th>
                                 <th>Name</th>
                                 <th>Date Hired</th>
                                 <th>Assigned Truck</th>
@@ -107,10 +136,10 @@ class Dashboard_Drivers_Table extends Component {
                                 let month = driver.month_hired;
                                 let day = driver.day_hired;
                                 let year = driver.year_hired;
-                                if(month < 10){
+                                if (month < 10) {
                                     month = '0' + month;
                                 }
-                                if(day < 10){
+                                if (day < 10) {
                                     day = '0' + day;
                                 }
 
@@ -121,7 +150,7 @@ class Dashboard_Drivers_Table extends Component {
                                         <td>{month + '/' + day + '/' + year}</td>
                                         <td>{driver.unit_number}</td>
                                         <td className="actions">
-                                            <button onClick={() => this.onOpenModal(driver.id)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.onOpenModal(driver)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
                                             <button onClick={() => this.deleteDriver(driver.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
