@@ -45,11 +45,12 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     addDriver: (req, res) => {
-        let { name, contactNumber, address, dateHired, unitNumber } = req.body;
+        let { name, dayHired, monthHired, yearHired, unitNumber } = req.body;
         let { userId } = req.session;
-        req.app.get('db').add_driver([userId, name, contactNumber, address, dateHired, unitNumber])
-            .then(driver => res.send(driver))
-            .catch(err => res.status(500).send(err))
+        console.log(req.body);
+        req.app.get('db').add_driver([userId, name, dayHired, monthHired, yearHired, unitNumber])
+            .then(() => res.sendStatus(200))
+           .catch(err => console.log(err) )
     },
     getAllDrivers: (req, res) => {
         let { userId } = req.session;

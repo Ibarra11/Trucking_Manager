@@ -10,7 +10,6 @@ class Dashboard_Drivers_Table extends Component {
             addDriver: false,
             name: '',
             contactNumber: '',
-            address: '',
             dateHired: '',
             unitNumber: '',
             driverId: '',
@@ -20,13 +19,12 @@ class Dashboard_Drivers_Table extends Component {
     }
     onOpenModal = driverId => {
         let driver = this.state.drivers.filter(driver => driverId === driver.id);
-        let { name, address, contactnumber, datehired, unitnumber } = driver[0];
+        let { name,  contactnumber, datehired, unitnumber } = driver[0];
         this.setState({
             open: true,
             driverId,
             name,
             contactNumber: contactnumber,
-            address,
             dateHired: datehired,
             unitNumber: unitnumber
         })
@@ -80,10 +78,6 @@ class Dashboard_Drivers_Table extends Component {
                                 <input onChange={this.onInputChange} name='contactNumber' value={this.state.contactNumber} className="form-control" type="text" />
                             </div>
                             <div className="form-group">
-                                <h6>Address</h6>
-                                <input onChange={this.onInputChange} name='address' value={this.state.address} className="form-control" type="text" />
-                            </div>
-                            <div className="form-group">
                                 <h6>Date Hired</h6>
                                 <input onChange={this.onInputChange} name='dateHired' value={this.state.dateHired} className="form-control" type="text" />
                             </div>
@@ -103,8 +97,6 @@ class Dashboard_Drivers_Table extends Component {
                             <tr>
                                 <th>Driver_ID</th>
                                 <th>Name</th>
-                                <th>Contact Number</th>
-                                <th>Address</th>
                                 <th>Date Hired</th>
                                 <th>Assigned Truck</th>
                                 <th>Actions</th>
@@ -112,13 +104,21 @@ class Dashboard_Drivers_Table extends Component {
                         </thead>
                         <tbody>
                             {this.state.drivers.map(driver => {
+                                let month = driver.month_hired;
+                                let day = driver.day_hired;
+                                let year = driver.year_hired;
+                                if(month < 10){
+                                    month = '0' + month;
+                                }
+                                if(day < 10){
+                                    day = '0' + day;
+                                }
+
                                 return (
                                     <tr key={driver.driver_id}>
                                         <td>{driver.driver_id}</td>
                                         <td>{driver.name}</td>
-                                        <td>{driver.contact_number}</td>
-                                        <td>{driver.address}</td>
-                                        <td>{driver.date_hired}</td>
+                                        <td>{month + '/' + day + '/' + year}</td>
                                         <td>{driver.unit_number}</td>
                                         <td className="actions">
                                             <button onClick={() => this.onOpenModal(driver.id)} className="btn btn-primary"><i className="fa fa-edit"></i></button>

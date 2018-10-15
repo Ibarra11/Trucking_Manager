@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 class Dashboard_Drivers_Add extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
+            truckList: [],
+            assignedTruck: '',
             name: '',
-            contactNumber: '',
-            address: '',
-            dateHired: ''
+            dateHired: moment()
         }
+    }
+
+    componentDidMount() {
+        axios.get('/api/trucks')
+            .then(res => this.setState({ truckList: res.data }))
+            .catch(err => console.log(err))
     }
 
     addDriver = event => {
         event.preventDefault();
-        let { name, contactNumber, address, dateHired, unitNumber } = this.state;
+        let { name, dateHired, assignedTruck } = this.state;
+        let formatedDate = moment(dateHired).format('MM DD YYYY').split(' ');
+        let monthHired = formatedDate[0];
+        let dayHired = formatedDate[1];
+        let yearHired = formatedDate[2];
         axios.post('/api/driver', {
-            name, contactNumber, address, dateHired, unitNumber
-        }).then(driver => {
+            name, dayHired, monthHired, yearHired, unitNumber: assignedTruck
+        }).then(() => {
             this.props.history.goBack();
         })
     }
-    onInputChange = event => this.setState({[event.target.name]: event.target.value})
+
+    handleDateChange = dateHired => this.setState({ dateHired });
+    
+    onInputChange = event => this.setState({ [event.target.name]: event.target.value });
+   
     render() {
         return (
             <div className="dashboard-drivers-add">
@@ -32,21 +48,20 @@ class Dashboard_Drivers_Add extends Component {
                         <input onChange={this.onInputChange} name='name' className="form-control" type="text" />
                     </div>
                     <div className="form-group">
-                        <h6>Contact Number</h6>
-                        <input onChange={this.onInputChange} name='contactNumber' className="form-control" type="text" />
-                    </div>
-
-                    <div className="form-group">
-                        <h6>Address</h6>
-                        <input onChange={this.onInputChange} name='address' className="form-control" type="text" />
-                    </div>
-                    <div className="form-group">
                         <h6>Date Hired</h6>
-                        <input onChange={this.onInputChange} name='dateHired' className="form-control" type="date" />
+                        <DatePicker
+                            className="form-control"
+                            selected={this.state.dateHired}
+                            onChange={this.handleDateChange}
+                        />
                     </div>
                     <div className="form-group">
                         <h6>Assigned Truck</h6>
-                        <input onChange={this.onInputChange} name='unitNumber' className="form-control" type="text" />
+                        <select onChange={this.onInputChange} name='assignedTruck' className="form-control">
+                            {this.state.truckList.map(truck => {
+                                return <option key={truck.truck_id} value={truck.unit_number}>{truck.unit_number}</option>
+                            })}
+                        </select>
                     </div>
                     <div className="form-drivers-add-buttons">
                         <button type='submit' className="btn btn-success">Add</button>

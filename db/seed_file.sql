@@ -15,11 +15,12 @@ CREATE TABLE drivers(
     driver_id SERIAL PRIMARY KEY,
      owner_id INTEGER REFERENCES users(id),
     name VARCHAR(60) NOT NULL,
-    contact_number VARCHAR(20),
-    address VARCHAR(80),
-    date_hired varchar(10),
+    day_hired INTEGER,
+    month_hired INTEGER,
+    year_hired INTEGER,
     unit_number INTEGER
 );
+
 
 INSERT INTO drivers (name, contactnumber, address, datehired, unitnumber)
 VALUES ('Israel Ibarra', '209-4954509', '419 Wolfe Ave Turlock', '1-2-2018', 1947);

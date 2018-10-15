@@ -46,7 +46,6 @@ class Dashboard_Add_Expense extends Component {
         let day = formatedDate[1];
         let year = formatedDate[2];
         expenseAmount = parseFloat(expenseAmount);
-        console.log(this.state);
         axios.post('/api/expenses', {
             expenseCategory, expenseUnitNumber, expenseAmount, month, day, year
         })

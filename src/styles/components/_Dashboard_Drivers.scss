@@ -24,14 +24,22 @@
             padding: 3px 5px;
         }
     }
-
-    .table-controls{
+    .table-controls {
         display: flex;
         justify-content: flex-end;
     }
     .actions {
+        .btn:last-child{
+            margin-left: 10%;
+        }
+        .btn {
+            padding: 6px 10px;
+            i{
+                font-size: 1.2rem;
+            }
+        }
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
 }
 
@@ -50,19 +58,27 @@
     width: 80%;
     margin: 0 auto;
     margin-top: 1rem;
-   h4{
-       text-align: center;
-   }
+    h4 {
+        text-align: center;
+    }
     .form-drivers-add {
-        
-    }
-    .form-drivers-add-buttons {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .btn {
-        padding: 0.5rem 1rem;
-        width: 5rem;
-        margin-right: 0.75rem;
+        .react-datepicker-wrapper {
+            width: 100%;
+            .react-datepicker__input-container {
+                width: 100%;
+            }
+            input {
+                width: 100%;
+            }
+        }
+        .form-drivers-add-buttons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            width: 5rem;
+            margin-right: 0.75rem;
+        }
     }
 }
