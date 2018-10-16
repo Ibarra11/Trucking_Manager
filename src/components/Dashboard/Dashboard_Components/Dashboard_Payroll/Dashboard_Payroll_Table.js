@@ -2,29 +2,35 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 class Dashboard_Payroll_Table extends Component {
     constructor() {
         super();
         this.state = {
-            payroll: [],
+            payrollList: [],
+            driverList: [],
             open: false,
-            date: '',
             driver: '',
-            amount: 0,
-            id: 0
+            payrollAmount: 0,
+            payrollDate: moment(),
+            payrollId: 0
         }
     }
     componentDidMount() {
         this.getAllPayroll();
+        this.getAllDrivers();
     }
 
     onOpenModal = payment => {
+        let { month, day, year, driver_name, payroll_amount, payroll_id } = payment;
+        let payrollDate = moment(month + '/' + day + '/' + year);
         this.setState({
             open: true,
-            date: payment.date,
-            driver: payment.driver_name,
-            amount: payment.amount,
-            id: payment.id
+            payrollDate,
+            driver: driver_name,
+            payrollAmount: payroll_amount,
+            payrollId: payroll_id
         })
     }
 
@@ -35,8 +41,14 @@ class Dashboard_Payroll_Table extends Component {
     getAllPayroll = () => {
         axios.get('/api/payroll')
             .then(res => {
-                this.setState({ payroll: res.data, open: false })
+                this.setState({ payrollList: res.data, open: false })
             })
+            .catch(err => console.log(err))
+    }
+
+    getAllDrivers = () => {
+        axios.get('/api/drivers')
+            .then(res => this.setState({ driverList: res.data }))
             .catch(err => console.log(err))
     }
 
@@ -44,8 +56,12 @@ class Dashboard_Payroll_Table extends Component {
 
     updatePayroll = event => {
         event.preventDefault();
-        let { date, driver, amount, id } = this.state;
-        axios.put(`/api/payroll/${id}`, { date, driver, amount })
+        let { payrollDate, driver, payrollAmount  } = this.state;
+        let formatedDate = moment(payrollDate).format('MM DD YYYY').split(' ');
+        let month = formatedDate[0]
+        let day = formatedDate[1]
+        let year = formatedDate[2]
+        axios.put(`/api/payroll/${this.state.payrollId}`, { month, day, year, payrollAmount, driver })
             .then(() => {
                 this.getAllPayroll();
             })
@@ -56,6 +72,8 @@ class Dashboard_Payroll_Table extends Component {
             .then(() => this.getAllPayroll())
             .catch(err => console.log(err));
     }
+
+    onDateChange = newDate => this.setState({payrollDate: newDate})
     render() {
         return (
             <div className="component-payroll-table container">
@@ -64,15 +82,26 @@ class Dashboard_Payroll_Table extends Component {
                     <form onSubmit={event => this.updatePayroll(event)} className="edit-driver-form">
                         <div className="form-group">
                             <h6 className="driver">Date</h6>
-                            <input name='date' onChange={this.onInputChange} value={this.state.date} className="form-control" type="text" />
+                            <DatePicker
+                                className="form-control"
+                                selected={this.state.payrollDate}
+                                onChange={this.onDateChange}
+                            />
                         </div>
                         <div className="form-group">
                             <h6>Driver </h6>
-                            <input onChange={this.onInputChange} name='driver' value={this.state.driver} className="form-control" type="text" />
+                            <select onChange={this.onInputChange} className="form-control" name="driver" >
+                                <option key={this.state.driver} value={this.state.driver}>{this.state.driver}</option>
+                                {this.state.driverList.map(driver => {
+                                    if (driver.name !== this.state.driver) {
+                                        return <option key={driver.name} value={driver.name}>{driver.name}</option>
+                                    }
+                                })}
+                            </select>
                         </div>
                         <div className="form-group">
                             <h6>Amount</h6>
-                            <input onChange={this.onInputChange} name='amount' value={this.state.amount} className="form-control" type="text" />
+                            <input onChange={this.onInputChange} name='payrollAmount' value={this.state.payrollAmount} className="form-control" type="text" />
                         </div>
                         <div className="edit-form-buttons">
                             <button type='submit' className="btn btn-primary">Update</button>
@@ -91,7 +120,7 @@ class Dashboard_Payroll_Table extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.payroll.map(payment => {
+                                {this.state.payrollList.map(payment => {
                                     let { day, month, year } = payment;
                                     if (month < 10) {
                                         month = '0' + month;

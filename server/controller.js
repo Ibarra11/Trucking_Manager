@@ -50,7 +50,7 @@ module.exports = {
         console.log(req.body);
         req.app.get('db').add_driver([userId, name, dayHired, monthHired, yearHired, unitNumber])
             .then(() => res.sendStatus(200))
-           .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     getAllDrivers: (req, res) => {
         let { userId } = req.session;
@@ -66,10 +66,10 @@ module.exports = {
     },
     updateDriver: (req, res) => {
         let driverId = req.params.id;
-        let {userId} = req.session;
+        let { userId } = req.session;
         console.log(req.body);
         console.log(driverId);
-        let { name,  monthHired, dayHired, yearHired, unitNumber } = req.body;
+        let { name, monthHired, dayHired, yearHired, unitNumber } = req.body;
         req.app.get('db').update_driver([driverId, userId, name, dayHired, monthHired, yearHired, unitNumber])
             .then(() => res.sendStatus(200))
             .catch(err => console.log(err))
@@ -92,7 +92,7 @@ module.exports = {
         let truckId = req.params.id;
         req.app.get('db').update_truck([userId, truckId, unitNumber, make, model, year, plateNumber, vin])
             .then(() => res.sendStatus(200))
-            .catch(err => console.log(err) )
+            .catch(err => console.log(err))
     },
     deleteTruck: (req, res) => {
         let { userId } = req.session;
@@ -130,11 +130,14 @@ module.exports = {
             .catch(err => res.status(500).send(err))
     },
     updatePayroll: (req, res) => {
-        let { id } = req.params;
-        let { date, driver, amount } = req.body;
-        req.app.get('db').update_payroll([id, date, driver, amount])
+        let payrollId = req.params.id;
+        let { userId } = req.session;
+        let { month, day, year, payrollAmount, driver } = req.body;
+        console.log(req.body);
+        console.log(req.params.id);
+        req.app.get('db').update_payroll([payrollId, userId, month, day, year, payrollAmount, driver])
             .then(() => res.sendStatus(200))
-            .catch(err => res.status(500).send(err));
+            .catch(err => console.log(err) )
     },
     getPayrollMonthly: (req, res) => {
         let { userId } = req.session;
