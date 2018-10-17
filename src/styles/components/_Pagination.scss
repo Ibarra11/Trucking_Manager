@@ -1,0 +1,25 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    .pagination-button{
+        border: 1px solid whitesmoke;
+        padding: 3px 10px;
+        i{
+            font-size: 1.25rem;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .pages{
+        display: flex;
+        .page-number{
+            border: 1px solid whitesmoke;
+            padding: 3px 10px;
+        }
+    }
+    
+    .active{
+        background-color: #3D52D5;
+    }
+}

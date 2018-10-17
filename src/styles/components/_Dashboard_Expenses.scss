@@ -3,6 +3,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #2C3E50;
+        color: #FCF5F4;
+        padding: 0 1rem !important;
+        height: 11.1vh;
     }
     .component-expenses-view {
         margin: 2rem 0;
@@ -16,16 +20,15 @@
         .graph {
             margin: 1.25rem 0;
         }
-
-        .expenses-metrics-header{
+        .expenses-metrics-header {
             display: flex;
             justify-content: center;
             margin-bottom: 0.25rem;
-            .input-group{
+            .input-group {
                 width: 10.5rem;
                 display: flex;
                 justify-content: space-between;
-                label{
+                label {
                     font-size: 1.125rem;
                     position: relative;
                     top: 0.5vh;
@@ -48,43 +51,6 @@
     }
 }
 
-.component-expenses-table {
-    padding: 0 2rem;
-    .expenses-header {
-        display: flex;
-        justify-content: space-between;
-    }
-    .actions {
-        button {
-            width: 25%;
-        }
-        i {
-            font-size: 1.25rem;
-        }
-        button:last-child {
-            margin-left: 0.5rem;
-        }
-    }
-    .expenses-search {
-        display: flex;
-        .form-control {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .btn {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-    }
-    .expenses-table {
-        margin-top: 1.5rem;
-        td,
-        th {
-            text-align: center;
-        }
-    }
-}
-
 .component-add-expense {
     .card-header {
         display: flex;
@@ -97,15 +63,14 @@
     .card {
         border-bottom: none;
     }
-
-    .form-group:first-child{
-        .react-datepicker-wrapper{
+    .form-group:first-child {
+        .react-datepicker-wrapper {
             width: 100%;
         }
-        .react-datepicker__input-container{
-            width: 100%;  
+        .react-datepicker__input-container {
+            width: 100%;
         }
-        input{
+        input {
             width: 100%;
         }
     }
@@ -132,7 +97,6 @@
         width: 65%;
         margin: 0 auto;
         margin-top: 2rem;
-        
     }
     .category-submit {
         display: flex;
@@ -141,37 +105,64 @@
 }
 
 .component-expense-list {
-    width: 95%;
+    background-color: #2C3E50;
     margin: 0 auto;
-    padding: 1.5rem 0;
-    h4 {
-        text-align: center;
-    }
-    .table-controls {
-        display: flex;
-        justify-content: flex-end;
-    }
-    table {
-        th,
-        td {
-            text-align: center;
+    height: 88.5vh;
+    position: relative;
+    color: #FCF5F4;
+    .table-container {
+        height: 100%;
+        position: relative;
+        .add-expense{
+            position: absolute;
+            right: 3%;
         }
-        td {
-            padding: 0 12px;
-            height: 2.75rem;
-            span {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
+        .table-controls {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .table-header {
+            border-left: 1px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+            height: 12%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        table {
+            th,
+            td {
+                text-align: center;
             }
-            .btn {
-                padding: 5px 10px;
+            th{
+              padding: 12px;  
             }
-            .btn:last-child {
+            td {
                 position: relative;
-                left: 0.8rem;
+                padding: 1%;
             }
+            td.table-buttons{
+                padding: 0;
+                .btn{
+                    position: relative;
+                    top: 1vh;
+                    padding: 3px 7px;
+                }
+                .btn:last-child{
+                    margin-left: 5%;
+                }
+            }
+        }
+        .table-controls{
+            height: 8%;
+            width: 80%;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: absolute;
+            bottom: 1%;
+            display: flex;
+            justify-content: center;
+            right: 10%;
         }
     }
 }

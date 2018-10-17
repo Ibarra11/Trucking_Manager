@@ -1,1 +1,1 @@
-DELETE FROM payroll WHERE id = $1;
+DELETE FROM payroll WHERE payroll_id = $1;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import Pagination from '../../../../utilities/Pagination';
 class Dashboard_Expenses_List extends Component {
     constructor() {
         super();
         this.state = {
             expenses: [],
+            currentExpenseOnPage: [],
             open: false,
             expense_date: '',
             expense_category: '',
@@ -13,6 +15,8 @@ class Dashboard_Expenses_List extends Component {
             expense_amount: '',
             expense_id: 0
         }
+        this.pagination = new Pagination([], 8);
+        this.currentPage = 1;
     }
 
     componentDidMount() {
@@ -32,8 +36,44 @@ class Dashboard_Expenses_List extends Component {
 
     getAllExpenses = () => {
         axios.get('/api/expenses')
-            .then(res => this.setState({ expenses: res.data, open: false }))
+            .then(res => {
+                if (res.data.length > 0) {
+                    this.pagination.itemList = res.data;
+                    this.pagination.calculateNumOfPages();
+                    let expenseList = this.pagination.displayItemsOnPage(this.currentPage);
+                    this.setState({ expenses: expenseList, open: false })
+                }
+            })
             .catch(err => console.log(err));
+    }
+
+    updatePageItems = () => {
+        let expenseList = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ expenses: expenseList })
+    }
+
+    updateCurrentPage = (dir) => {
+        console.log(dir);
+        if (dir === 'next' && this.pagination.numberOfPages > this.currentPage) {
+            this.currentPage++;
+            this.updatePageItems();
+        }
+        else if (dir === 'prev' && this.currentPage > 1) {
+            this.currentPage--;
+            this.updatePageItems();
+        }
+    }
+
+    renderPageNumbers = () => {
+        let tempArr = [];
+        for (let i = 0; i < this.pagination.numberOfPages; i++) {
+            tempArr.push(
+                <div className={this.currentPage === i + 1 ? 'page-number active': 'page-number'}key={i}>
+                    {i + 1}
+                </div>
+            )
+        }
+        return tempArr;
     }
 
     deleteExpense = expenseId => {
@@ -47,7 +87,6 @@ class Dashboard_Expenses_List extends Component {
     updateExpense = event => {
         event.preventDefault();
         let { expense_date, expense_category, expense_amount, unit_number, expense_id } = this.state;
-        console.log(this.state);
         axios.put(`/api/expense/${expense_id}`, { expense_date, expense_category, expense_amount, unit_number, expense_id })
             .then(() => this.getAllExpenses())
             .catch(err => console.log(err))
@@ -80,45 +119,58 @@ class Dashboard_Expenses_List extends Component {
                         </div>
                     </form>
                 </Modal>
-                <h4>Expense List</h4>
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th>Truck</th>
-                            <th>Amount</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.expenses.map(expense => {
-                            let {month, day, year} = expense;
-                            if(day < 10){
-                                day = '0' + day;
-                            }
-                            if(month < 10){
-                                month = '0' + month;
-                            }
-                            return (
-                                <tr key={expense.expense_id}>
-                                    <td><span>{month + '/' + day + '/' + year}</span></td>
-                                    <td><span>{expense.expense_category}</span></td>
-                                    <td><span>{expense.unit_number}</span></td>
-                                    <td><span>{expense.expense_amount}</span></td>
-                                    <td className="table-buttons">
-                                        <span>
+                <div className="table-container">
+                    <div className="table-header">
+                        <h4>Expense Records</h4>
+                        <div className="add-expense">
+                            <button onClick={() => this.props.history.push('/dashboard/expenses/add')} className="btn"><i className="fa fa-plus"></i> Expense</button>
+                        </div>
+
+                    </div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Truck</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.expenses.map(expense => {
+                                let { month, day, year } = expense;
+                                if (day < 10) {
+                                    day = '0' + day;
+                                }
+                                if (month < 10) {
+                                    month = '0' + month;
+                                }
+                                return (
+                                    <tr key={expense.expense_id}>
+                                        <td>{month + '/' + day + '/' + year}</td>
+                                        <td>{expense.expense_category}</td>
+                                        <td>{expense.unit_number}</td>
+                                        <td>{expense.expense_amount}</td>
+                                        <td className="table-buttons">
                                             <button onClick={() => this.onOpenModal(expense)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
                                             <button onClick={() => this.deleteExpense(expense.expense_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
-                                        </span>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-                <div className="table-controls">
-                    <button onClick={() => this.props.history.push('/dashboard/expenses/add')} className="btn"><i className="fa fa-plus"></i> Expense</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    <div className="table-controls">
+                        <div className="pagination">
+                            <div onClick={() => this.updateCurrentPage('prev')} className="pagination-button"> <i className="fa fa-angle-left"></i> </div>
+                            <div className="pages">
+                                {this.renderPageNumbers()}
+                            </div>
+                            <div onClick={() => this.updateCurrentPage('next')} className="pagination-button"> <i className="fa fa-angle-right"></i> </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         )

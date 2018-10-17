@@ -37,9 +37,8 @@ class Dashboard_Payroll_Add extends Component {
         let month = +formattedDate[0];
         let day = +formattedDate[1];
         let year = +formattedDate[2];
-        console.log(month, day, year);
         axios.post('/api/payroll', { month, day, year, driver, amount })
-            .then(() => this.props.history.goBack())
+            .then(() => this.props.history.push('/dashboard/payroll'))
             .catch(err => console.log(err))
     }
     render() {
