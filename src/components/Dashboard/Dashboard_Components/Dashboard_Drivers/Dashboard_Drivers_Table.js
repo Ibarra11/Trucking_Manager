@@ -4,6 +4,7 @@ import Modal from 'react-responsive-modal';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Pagination from '../../../../utilities/Pagination';
 class Dashboard_Drivers_Table extends Component {
     constructor() {
         super();
@@ -16,6 +17,8 @@ class Dashboard_Drivers_Table extends Component {
             truckList: [],
             open: false
         }
+        this.pagination = new Pagination([], 8);
+        this.currentPage = 1;
     }
     onOpenModal = driver => {
         let { name, dayHired, monthHired, yearHired, unit_number, driver_id } = driver;
@@ -48,7 +51,13 @@ class Dashboard_Drivers_Table extends Component {
     getDrivers = () => {
         axios.get('api/drivers')
             .then(res => {
-                this.setState({ drivers: res.data })
+                if (res.data.length > 0) {
+                    this.pagination.itemList = res.data;
+                    this.pagination.calculateNumOfPages();
+                    let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
+                    this.setState({ drivers: pageItems })
+                }
+
             })
             .catch(err => console.log(err))
     }
@@ -67,12 +76,12 @@ class Dashboard_Drivers_Table extends Component {
 
     updateDriver = event => {
         event.preventDefault();
-        let {name, dateHired, unitNumber} = this.state;
+        let { name, dateHired, unitNumber } = this.state;
         let formatDate = moment(dateHired).format('MM DD YYYY').split(' ');
         let monthHired = +formatDate[0];
         let dayHired = +formatDate[1];
         let yearHired = +formatDate[2];
-        axios.put(`/api/driver/${this.state.driverId}`,{
+        axios.put(`/api/driver/${this.state.driverId}`, {
             name, monthHired, dayHired, yearHired, unitNumber
         })
             .then(() => {
@@ -80,6 +89,34 @@ class Dashboard_Drivers_Table extends Component {
                 this.getDrivers();
             })
             .catch(err => console.log(err));
+    }
+
+    updatePageItems = () => {
+        let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ incomeList })
+    }
+
+    updateCurrentPage = (dir) => {
+        if (dir === 'next' && this.pagination.numberOfPages > this.currentPage) {
+            this.currentPage++;
+            this.updatePageItems();
+        }
+        else if (dir === 'prev' && this.currentPage > 1) {
+            this.currentPage--;
+            this.updatePageItems();
+        }
+    }
+
+    renderPageNumbers = () => {
+        let tempArr = [];
+        for (let i = 0; i < this.pagination.numberOfPages; i++) {
+            tempArr.push(
+                <div className={this.currentPage === i + 1 ? 'page-number active' : 'page-number'} key={i}>
+                    {i + 1}
+                </div>
+            )
+        }
+        return tempArr;
     }
 
     onInputChange = event => this.setState({ [event.target.name]: event.target.value })
@@ -109,7 +146,7 @@ class Dashboard_Drivers_Table extends Component {
                             <div className="form-group">
                                 <h6>Assigned Truck</h6>
                                 <select onChange={this.onInputChange} className="form-control" name="unitNumber" >
-                                    {this.state.truckList.map(truck =>{
+                                    {this.state.truckList.map(truck => {
                                         return <option key={truck.truck_id} value={truck.unit_number}>{truck.unit_number}</option>
                                     })}
                                 </select>
@@ -120,7 +157,13 @@ class Dashboard_Drivers_Table extends Component {
                         </form>
                     </Modal>
                 </div>
-                <div className="dashboard-drivers-view">
+                <div className="table-container">
+                    <div className="table-header">
+                        <h4>Driver Schedule</h4>
+                        <div className="table-add">
+                            <Link to='/dashboard/drivers/add'><button className="btn"><i className="fa fa-plus"></i> Driver</button></Link>
+                        </div>
+                    </div>
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -149,7 +192,7 @@ class Dashboard_Drivers_Table extends Component {
                                         <td>{driver.name}</td>
                                         <td>{month + '/' + day + '/' + year}</td>
                                         <td>{driver.unit_number}</td>
-                                        <td className="actions">
+                                        <td className="table-buttons">
                                             <button onClick={() => this.onOpenModal(driver)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
                                             <button onClick={() => this.deleteDriver(driver.id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
                                         </td>
@@ -159,7 +202,13 @@ class Dashboard_Drivers_Table extends Component {
                         </tbody>
                     </table>
                     <div className="table-controls">
-                        <Link to='/dashboard/drivers/add'><button className="btn"><i className="fa fa-plus"></i> Driver</button></Link>
+                        <div className="pagination">
+                            <div onClick={() => this.updateCurrentPage('prev')} className="pagination-button"> <i className="fa fa-angle-left"></i> </div>
+                            <div className="pages">
+                                {this.renderPageNumbers()}
+                            </div>
+                            <div onClick={() => this.updateCurrentPage('next')} className="pagination-button"> <i className="fa fa-angle-right"></i> </div>
+                        </div>
                     </div>
                 </div>
             </div>

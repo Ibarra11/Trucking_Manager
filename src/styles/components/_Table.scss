@@ -17,6 +17,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        .table-add {
+            position: absolute;
+            right: 3%;
+            .btn {
+                background-color: transparent;
+                border: 1px solid rgba(75, 192, 192, 1);
+                color: #fff;
+                &:hover {
+                    background-color: #1C1E2A;
+                }
+            }
+        }
     }
     table {
         th,

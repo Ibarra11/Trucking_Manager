@@ -1,41 +1,26 @@
-
-
-.component-trucks-table{
-    width: 95%;
-    margin: 0 auto;
-    table{
+.component-dashboard-trucks {
+    .card{
+        background-color: #2C3E50;
+        color: #fff;
+        border-bottom: 1px solid white;
+    }
+    .component-trucks-table {
+        height: 88.5vh;
+    }
+    .component-truck-add {
         margin-top: 2rem;
-        th,td{
+        h4 {
             text-align: center;
         }
-
-        td{
-            .btn:last-child{
-                position: relative;
-                left: 0.5rem;
-            }
+        .truck-form {
+            padding: 10px;
+        }
+        .truck-add-buttons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .truck-add-buttons .btn {
+            margin-right: 10px;
         }
     }
-    .table-controls{
-        display: flex;
-        justify-content: flex-end;
-    }
-}
-
-.component-truck-add{
-    margin-top: 2rem;
-    h4{
-        text-align: center;
-    }
-    .truck-form{
-        padding: 10px;
-    }
-    .truck-add-buttons{
-        display: flex;
-        justify-content: flex-end;
-    }
-    .truck-add-buttons .btn{
-        margin-right: 10px;
-    }
-
 }

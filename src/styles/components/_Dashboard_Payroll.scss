@@ -1,35 +1,37 @@
 .component-payroll {
+    color: #fff;
+    .card{
+        background-color: #2C3E50;
+        border-bottom: 1px solid white;
+    }
     .row {
         margin-bottom: 1.5rem;
     }
-    .payroll-header {  
+    .payroll-header {
         position: relative;
         margin: 1.5rem 0;
         h4 {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
+            font-size: 2rem;
+            margin-bottom: 2rem;
         }
-        
-        .form-group{
+        .form-group {
             position: absolute;
             left: 3%;
-            top: 90%;
+            top: 20%;
             width: 16%;
             display: flex;
-            justify-content: space-between;  
-            label{
+            justify-content: space-between;
+            label {
                 font-size: 1.1rem;
                 position: relative;
                 top: 0.5vh;
             }
         }
     }
-    h5 {
-        color: #000;
-    }
     h6 {
         text-align: center;
+        font-size: 1.5rem;
     }
     .chart {
         margin-bottom: 0.8rem;
@@ -38,6 +40,14 @@
         display: flex;
         align-items: center;
     }
+    .table-header{
+        border-top: 1px solid #fff;
+    }
+}
+
+.component-payroll-table{
+    width: 100%;
+    height: 88.5vh;
 }
 
 .component-payroll-add {
@@ -67,38 +77,21 @@
     }
 }
 
-.component-payroll-table {
-    table {
-        th,
-        td {
-            text-align: center;
-        }
-        td {
-            .btn {
-                padding: 5px 10px;
-            }
-            .btn:last-child {
-                position: relative;
-                left: 0.8rem;
-            }
-            span {
-                position: relative;
-                top: 5px;
-            }
-        }
-    }
-    .table-controls {
-        display: flex;
-        justify-content: flex-end;
-    }
-}
-
 .payroll-cards {
+
     .card {
         margin-bottom: 0.5rem;
         padding: 0.5rem 0;
+        background-color: rgba(75, 192, 192, 1);
+        border-bottom: none;
+        
     }
-    h5 {
+    h5,h6 {
         text-align: center;
+        color:inherit;
+        font-weight: bold;
+    }
+    h6{
+        font-size: 1.25rem;
     }
 }

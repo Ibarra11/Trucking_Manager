@@ -59,10 +59,7 @@ class Dashboard_Payroll_Metrics extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12">
-                            <h4>Payroll List</h4>
-                            <Dashboard_Payroll_Table />
-                        </div>
+                        <Dashboard_Payroll_Table />
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Pagination from '../../../../utilities/Pagination';
 class Dashboard_Payroll_Table extends Component {
     constructor() {
         super();
@@ -16,6 +17,8 @@ class Dashboard_Payroll_Table extends Component {
             payrollDate: moment(),
             payrollId: 0
         }
+        this.pagination = new Pagination([], 8);
+        this.currentPage = 1;
     }
     componentDidMount() {
         this.getAllPayroll();
@@ -41,7 +44,13 @@ class Dashboard_Payroll_Table extends Component {
     getAllPayroll = () => {
         axios.get('/api/payroll')
             .then(res => {
-                this.setState({ payrollList: res.data, open: false })
+                if(res.data.length > 0){
+                    this.pagination.itemList = res.data;
+                    this.pagination.calculateNumOfPages();
+                    let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
+                this.setState({ payrollList: pageItems, open: false })
+                }
+                
             })
             .catch(err => console.log(err))
     }
@@ -56,7 +65,7 @@ class Dashboard_Payroll_Table extends Component {
 
     updatePayroll = event => {
         event.preventDefault();
-        let { payrollDate, driver, payrollAmount  } = this.state;
+        let { payrollDate, driver, payrollAmount } = this.state;
         let formatedDate = moment(payrollDate).format('MM DD YYYY').split(' ');
         let month = formatedDate[0]
         let day = formatedDate[1]
@@ -72,11 +81,38 @@ class Dashboard_Payroll_Table extends Component {
             .then(() => this.getAllPayroll())
             .catch(err => console.log(err));
     }
+    updatePageItems = () => {
+        let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ payrollList: pageItems })
+    }
 
-    onDateChange = newDate => this.setState({payrollDate: newDate})
+    updateCurrentPage = (dir) => {
+        if (dir === 'next' && this.pagination.numberOfPages > this.currentPage) {
+            this.currentPage++;
+            this.updatePageItems();
+        }
+        else if (dir === 'prev' && this.currentPage > 1) {
+            this.currentPage--;
+            this.updatePageItems();
+        }
+    }
+
+    renderPageNumbers = () => {
+        let tempArr = [];
+        for (let i = 0; i < this.pagination.numberOfPages; i++) {
+            tempArr.push(
+                <div className={this.currentPage === i + 1 ? 'page-number active' : 'page-number'} key={i}>
+                    {i + 1}
+                </div>
+            )
+        }
+        return tempArr;
+    }
+
+    onDateChange = newDate => this.setState({ payrollDate: newDate })
     render() {
         return (
-            <div className="component-payroll-table container">
+            <div className="component-payroll-table">
                 <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
                     <h2>Edit Payment</h2>
                     <form onSubmit={event => this.updatePayroll(event)} className="edit-driver-form">
@@ -108,39 +144,50 @@ class Dashboard_Payroll_Table extends Component {
                         </div>
                     </form>
                 </Modal>
-                <div className="row">
-                    <div className="col-md-12">
-                        <table className="table table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Driver</th>
-                                    <th>Amount</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.payrollList.map(payment => {
-                                    let { day, month, year } = payment;
-                                    if (month < 10) {
-                                        month = '0' + month;
-                                    }
-                                    return (
-                                        <tr key={payment.payroll_id}>
-                                            <td><span>{month + '/' + day + '/' + year}</span></td>
-                                            <td><span>{payment.driver_name}</span></td>
-                                            <td><span>{payment.payroll_amount}</span></td>
-                                            <td>
-                                                <button onClick={() => this.onOpenModal(payment)} className="btn"><i className="fa fa-edit"></i></button>
-                                                <button onClick={() => this.deletePayroll(payment.payroll_id)} className="btn"><i className="fa fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
-                        <div className="table-controls">
+
+                <div className="table-container">
+                    <div className="table-header">
+                        <h4>Payroll Records</h4>
+                        <div className="table-add">
                             <Link to='/dashboard/payroll/add'><button className="btn"><i className="fa fa-plus"> Payment</i></button></Link>
+                        </div>
+                    </div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Driver</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.payrollList.map(payment => {
+                                let { day, month, year } = payment;
+                                if (month < 10) {
+                                    month = '0' + month;
+                                }
+                                return (
+                                    <tr key={payment.payroll_id}>
+                                        <td><span>{month + '/' + day + '/' + year}</span></td>
+                                        <td><span>{payment.driver_name}</span></td>
+                                        <td><span>{payment.payroll_amount}</span></td>
+                                        <td className="table-buttons">
+                                            <button onClick={() => this.onOpenModal(payment)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.deletePayroll(payment.payroll_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    <div className="table-controls">
+                        <div className="pagination">
+                            <div onClick={() => this.updateCurrentPage('prev')} className="pagination-button"> <i className="fa fa-angle-left"></i> </div>
+                            <div className="pages">
+                                {this.renderPageNumbers()}
+                            </div>
+                            <div onClick={() => this.updateCurrentPage('next')} className="pagination-button"> <i className="fa fa-angle-right"></i> </div>
                         </div>
                     </div>
                 </div>

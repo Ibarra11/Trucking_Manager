@@ -1,0 +1,37 @@
+.metrics {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+    margin-bottom: 0.5rem;
+    .card {
+        background-color: rgba(75, 192, 192, 1);
+        padding: 0.75rem 0;
+        color: #fff;
+        font-weight: bold;
+        h6 {
+            font-size: 1.625rem;
+            text-align: center;
+            margin: 0;
+        }
+        p {
+            text-align: center;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+    }
+    .metrics-header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.25rem;
+        .input-group {
+            width: 10.5rem;
+            display: flex;
+            justify-content: space-between;
+            label {
+                font-size: 1.125rem;
+                position: relative;
+                top: 0.5vh;
+            }
+        }
+    }
+}

@@ -65,8 +65,29 @@ class Dashboard_Income_Monthly extends Component {
         return (
             <div className="component-income-chart">
                 <Line
-                    options={{
+                      options={{
                         maintainAspectRatio: false,
+                        legend: {
+                            labels: {
+                                fontColor: '#fff',
+                                fontSize: 16
+                            }
+                        },
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    fontColor: '#fff',
+                                    fontSize: 12
+                                }
+                            }],
+                            xAxes:[{
+                                ticks:{
+                                    fontColor: '#fff',
+                                    fontSize: 12
+                                }
+                            }]
+                        }
+
                     }}
                     data={data}
                     height={275}

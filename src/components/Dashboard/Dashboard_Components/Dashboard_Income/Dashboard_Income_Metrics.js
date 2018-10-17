@@ -52,7 +52,6 @@ class Dashbaord_Income_Metrics extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="income-view">
                 <div className="income-year">

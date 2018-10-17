@@ -1,46 +1,13 @@
+
+.component-drivers{
+    .card {
+        background-color: #2C3E50;
+        color: #fff;
+        border-bottom: 1px solid white;
+    }
+}
 .component-dashboard-drivers {
-    width: 95%;
-    margin: 0 auto;
-    .dashboard-header {
-        display: flex;
-        justify-content: space-between;
-    }
-    .search-button {
-        padding: 0 0.5rem;
-    }
-    .dashboard-drivers-view {
-        margin-top: 2rem;
-    }
-    th {
-        text-align: center;
-    }
-    td {
-        text-align: center;
-        padding: 10px;
-    }
-    table {
-        margin-top: 20px;
-        .btn {
-            padding: 3px 5px;
-        }
-    }
-    .table-controls {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .actions {
-        .btn:last-child {
-            margin-left: 10%;
-        }
-        .btn {
-            padding: 6px 10px;
-            i {
-                font-size: 1.2rem;
-            }
-        }
-        display: flex;
-        justify-content: center;
-    }
+    height: 88.5vh;
 }
 
 .react-datepicker-wrapper {
