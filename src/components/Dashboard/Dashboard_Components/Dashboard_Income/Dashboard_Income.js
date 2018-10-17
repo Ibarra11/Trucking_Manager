@@ -10,9 +10,9 @@ class Dashboard_Income extends Component {
                 <div className="card">
                     <div className="card-header">
                         <h3>Income</h3>
-                        <div className="link-group">
-                            <Link to='/dashboard/income'><button className="btn btn-outline-primary">Income List</button></Link>
-                            <Link to='/dashboard/income/metrics'><button className="btn btn-outline-primary">Income Metrics</button></Link>
+                        <div className="link-controls">
+                            <Link to='/dashboard/income'><button className="btn">Income List</button></Link>
+                            <Link to='/dashboard/income/metrics'><button className="btn">Income Metrics</button></Link>
                         </div>
                     </div>
                 </div>

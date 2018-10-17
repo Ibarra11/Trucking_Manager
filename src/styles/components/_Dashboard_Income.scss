@@ -1,11 +1,24 @@
 .component-income {
+    .link-controls,
+    .add-expense {
+        .btn {
+            background-color: transparent;
+            border: 1px solid rgba(75, 192, 192, 1);
+            color: #fff;
+            &:hover {
+                background-color: #1C1E2A;
+            }
+        }
+    }
     .card-header {
         display: flex;
         justify-content: space-between;
-        .btn:last-child {
-            margin-left: 1rem;
-        }
-    }
+        align-items: center;
+        background-color: #2C3E50;
+        color: #FCF5F4;
+        padding: 0 1rem !important;
+        height: 11.1vh;
+    } 
     .income-view {
         .income-year {
             padding-top: 1rem;
@@ -77,52 +90,29 @@
                 width: 100%;
             }
         }
-    }
-    .income-table {
-        width: 97%;
-        margin: 1rem auto;
-        h4 {
-            text-align: center;
-        }
-        th,
-        td {
-            text-align: center;
-            .btn {
-                padding: 6px 10px;
-            }
-            .btn:last-child {
-                position: relative;
-                left: 0.8rem;
-            }
-        }
-        .card-header {
-            position: relative;
-            .btn {
-                position: absolute;
-                right: 0;
-                top: 0.8rem;
-                margin-right: 1rem;
-            }
-        }
-        .table-controls {
-            float: right;
-            position: relative;
-            bottom: 0.5rem;
-        }
-    }
+    } 
+}
+
+.component-income-list{
+    height: 88.5vh;
 }
 
 .component-income-add {
+    color: #fff;
     .form {
         width: 80%;
         margin: 0 auto;
-        margin-top: 2.5rem;
-        h4 {
+        margin-top: 1rem;
+        h5 {
             text-align: center;
+            font-size: 1.75rem;
         }
-        .react-datepicker__input-container {
+        .form-group {
+            label {
+                font-size: 1.25rem;
+            }
             input {
-                width: 410%;
+                padding: 10px 4px;
             }
         }
     }
@@ -140,16 +130,14 @@
     .form-submit {
         display: flex;
         justify-content: flex-end;
-        .edit-driver-form {
-            border: 1px solid red;
-            margin: 0 auto;
+        width: 10rem;
+        margin: 0 auto;
+        margin-top: 4%;
+        button {
+            font-size: 1.2rem;
         }
         .btn:last-child {
             margin-left: 0.8rem;
         }
-    }
-    .submit {
-        display: flex;
-        justify-content: flex-end;
     }
 }

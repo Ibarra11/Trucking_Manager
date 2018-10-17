@@ -75,7 +75,28 @@ class Dashboard_Expenses_Monthly extends Component {
                 <Line
                     height={200}
                     options={{
-                        maintainAspectRatio: false
+                        maintainAspectRatio: false,
+                        legend: {
+                            labels: {
+                                fontColor: '#fff',
+                                fontSize: 16
+                            }
+                        },
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    fontColor: '#fff',
+                                    fontSize: 12
+                                }
+                            }],
+                            xAxes:[{
+                                ticks:{
+                                    fontColor: '#fff',
+                                    fontSize: 12
+                                }
+                            }]
+                        }
+
                     }}
                     data={data} />
 

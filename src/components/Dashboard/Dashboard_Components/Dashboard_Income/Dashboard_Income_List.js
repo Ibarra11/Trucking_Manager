@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import Pagination from '../../../../utilities/Pagination';
 
 class Dashboard_Income_List extends Component {
     constructor() {
@@ -13,19 +14,16 @@ class Dashboard_Income_List extends Component {
             check_number: 0,
             income_id: 0,
             open: false
-        }
+        };
+        this.pagination = new Pagination([], 8);
+        this.currentPage = 1;
     }
 
     componentDidMount() {
-        axios.get('/api/income')
-            .then(res => {
-                this.setState({ incomeList: res.data })
-            })
-            .catch(err => console.log(err));
+        this.getAllIncome();
     }
 
     onOpenModal = income => {
-        console.log(income);
         this.setState({
             open: true,
             check_date: income.check_date,
@@ -39,11 +37,16 @@ class Dashboard_Income_List extends Component {
     onCloseModal = () => {
         this.setState({ open: false })
     }
-
     getAllIncome = () => {
         axios.get('/api/income')
             .then(res => {
-                this.setState({ incomeList: res.data })
+                if (res.data.length > 0) {
+                    this.pagination.itemList = res.data;
+                    this.pagination.calculateNumOfPages();
+                    let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
+                    this.setState({ incomeList})
+                }
+
             })
             .catch(err => console.log(err));
     }
@@ -64,12 +67,39 @@ class Dashboard_Income_List extends Component {
             })
             .catch(err => console.log(err))
     }
+    updatePageItems = () => {
+        let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ incomeList })
+    }
+
+    updateCurrentPage = (dir) => {
+        if (dir === 'next' && this.pagination.numberOfPages > this.currentPage) {
+            this.currentPage++;
+            this.updatePageItems();
+        }
+        else if (dir === 'prev' && this.currentPage > 1) {
+            this.currentPage--;
+            this.updatePageItems();
+        }
+    }
+
+    renderPageNumbers = () => {
+        let tempArr = [];
+        for (let i = 0; i < this.pagination.numberOfPages; i++) {
+            tempArr.push(
+                <div className={this.currentPage === i + 1 ? 'page-number active' : 'page-number'} key={i}>
+                    {i + 1}
+                </div>
+            )
+        }
+        return tempArr;
+    }
 
     onInputChange = event => this.setState({ [event.target.name]: event.target.value });
 
     render() {
         return (
-            <div className="income-table">
+            <div className="component-income-list">
                 <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
                     <h2>Edit Income</h2>
                     <form onSubmit={event => this.updateIncome(event)} className="edit-driver-form">
@@ -94,44 +124,60 @@ class Dashboard_Income_List extends Component {
                         </div>
                     </form>
                 </Modal>
-                <h4>Income List</h4>
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Company</th>
-                            <th>Amount</th>
-                            <th>Check #</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.incomeList.map(income => {
-                            let { day, month, year } = income;
-                            if (month < 10) {
-                                month = '0' + month;
-                            }
-                            if (day < 10) {
-                                day = '0' + day
-                            }
-                            return (
-                                <tr key={income.income_id}>
-                                    <td>{month + '/' + day + '/' + year}</td>
-                                    <td>{income.company_name}</td>
-                                    <td>{income.check_amount}</td>
-                                    <td>{income.check_number}</td>
-                                    <td>
-                                        <button onClick={() => this.onOpenModal(income)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
-                                        <button onClick={() => this.deleteIncome(income.income_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-                <div className="table-controls">
-                    <button onClick={() => this.props.history.push('/dashboard/income/add')} className="btn"><i className="fa fa-plus"></i> Income</button>
+                <div className="table-container">
+                    <div className="table-header">
+                        <h4>Income Records</h4>
+                        <div className="add-expense">
+                            <button onClick={() => this.props.history.push('/dashboard/income/add')} className="btn"><i className="fa fa-plus"></i> Income</button>
+                        </div>
+
+                    </div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Company</th>
+                                <th>Amount</th>
+                                <th>Check #</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.incomeList.map(income => {
+                                let { day, month, year } = income;
+                                if (month < 10) {
+                                    month = '0' + month;
+                                }
+                                if (day < 10) {
+                                    day = '0' + day
+                                }
+                                return (
+                                    <tr key={income.income_id}>
+                                        <td>{month + '/' + day + '/' + year}</td>
+                                        <td>{income.company_name}</td>
+                                        <td>{income.check_amount}</td>
+                                        <td>{income.check_number}</td>
+                                        <td className="table-buttons">
+                                            <button onClick={() => this.onOpenModal(income)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
+                                            <button onClick={() => this.deleteIncome(income.income_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    <div className="table-controls">
+                        <div className="pagination">
+                            <div onClick={() => this.updateCurrentPage('prev')} className="pagination-button"> <i className="fa fa-angle-left"></i> </div>
+                            <div className="pages">
+                                {this.renderPageNumbers()}
+                            </div>
+                            <div onClick={() => this.updateCurrentPage('next')} className="pagination-button"> <i className="fa fa-angle-right"></i> </div>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         )
     }

@@ -86,7 +86,7 @@ class Dashboard_Income_Add extends Component {
                 </Modal>
                 <div className="form">
                     <div className="form-header">
-                        <h4>Add Income</h4>
+                        <h5>Add Income</h5>
                     </div>
                     <div className="form-group">
                         <label>
@@ -120,8 +120,8 @@ class Dashboard_Income_Add extends Component {
                         <input value={this.state.check_number} name='check_number' onChange={this.onInputChange} className="form-control" type="text" />
                     </div>
                     <div className="form-submit">
-                        <button onClick={this.addIncome} type='submit' className="btn btn-primary">Add Income</button>
-                        <Link to='/dashboard/income'><button className="btn btn-danger">Cancel</button></Link>
+                        <button onClick={this.addIncome} type='submit' className="btn">Add</button>
+                        <Link to='/dashboard/income'><button className="btn">Cancel</button></Link>
                     </div>
                 </div>
             </div>

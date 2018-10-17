@@ -53,7 +53,6 @@ class Dashboard_Expenses_List extends Component {
     }
 
     updateCurrentPage = (dir) => {
-        console.log(dir);
         if (dir === 'next' && this.pagination.numberOfPages > this.currentPage) {
             this.currentPage++;
             this.updatePageItems();
