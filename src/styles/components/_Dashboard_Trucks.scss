@@ -8,19 +8,31 @@
         height: 88.5vh;
     }
     .component-truck-add {
+        color: #fff;
         margin-top: 2rem;
         h4 {
             text-align: center;
+            font-size: 2rem;
         }
         .truck-form {
             padding: 10px;
+            height: 70vh;
+            .form-group{
+                h6{
+                    font-size: 1.25rem;
+                }
+            }
         }
         .truck-add-buttons {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            width: 15rem;
+            margin: 0 auto;
+            margin-top: 12vh;
+            .btn{
+                font-size: 1.25rem;
+            }
         }
-        .truck-add-buttons .btn {
-            margin-right: 10px;
-        }
+        
     }
 }

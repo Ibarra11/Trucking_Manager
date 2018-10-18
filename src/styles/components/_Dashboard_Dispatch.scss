@@ -1,79 +1,83 @@
 .component-dispatch {
-    h5 {
-        color: #000;
+    color: #fff;
+    .card {
+        background-color: #2C3E50;
+        border-bottom: 1px solid white;
     }
-    .wizard{
-        // border: 1px solid red;
-    }
-    .dispatch-instructions{
+    .dispatch-instructions {
         padding: 1rem;
-        h4{
+        h4 {
             text-align: center;
             margin-bottom: 2rem;
         }
-        .instructions-container{
+        .instructions-container {
             display: flex;
             flex-direction: column;
         }
-        p{
+        p {
             font-size: 1.25rem;
         }
     }
-
-    .dispatch-wizard{
+    .dispatch-wizard {
         margin-top: 2rem;
-       .row{
-           display: flex;
-       }
+        .row {
+            display: flex;
+        }
     }
 }
 
 .component-load-form {
-    h5{
+    h5 {
         text-align: center;
     }
     .form-controls {
         float: right;
         margin-right: 2rem;
     }
-
-    .form-group{
+    .form-group {
         margin-bottom: 10px;
+        label {
+            font-size: 1.15rem;
+        }
+        input {
+            padding: 4px 12px;
+        }
     }
-
-    .form-control{
+    .form-control {
         padding: 3px
     }
-
 }
 
-.component-confirmation{
-    h5{
+.component-confirmation {
+    h5 {
         text-align: center;
     }
-    .controls{
+    .card{
+        border: 1px solid #fff;
+    }
+    .controls {
         width: 80%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         margin-top: 1rem;
     }
+    .driver-list {
 
-    .driver-list{
         display: flex;
         flex-wrap: wrap;
-       .driver-item{
-           width: 30%;
-           padding: 8px;
-           text-align: center;
-           border: 1px solid grey;
-           border-radius: 5px;
-           margin-right: 0.5rem;
-           list-style-type: none;
-       }
-       .driver-item:hover{
-           background-color: white;
-       }
+        .driver-item {
+            width: 30%;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid grey;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+            list-style-type: none;
+        }
+        .driver-item:hover {
+            background-color: white;
+        }
     }
 }
 
@@ -92,10 +96,10 @@
 }
 
 .component-drivers-info {
-    h5{
+    h5 {
         text-align: center;
     }
-    .wizard-controls{
+    .wizard-controls {
         display: flex;
         justify-content: space-between;
         width: 70%;
@@ -106,27 +110,27 @@
         height: 25rem;
         display: flex;
         flex-direction: row;
+        border: 1px solid #fff;
         .driver-list {
             position: relative;
             padding-top: 0.5rem;
             width: 50%;
-            border-right: 1px solid black;
+            border-right: 1px solid #fff;
             .add-driver {
-                 display: flex;
-                 
-                 justify-content: center;
-                button{
+                display: flex;
+                justify-content: center;
+                button {
                     position: absolute;
-                    bottom: 0; 
+                    bottom: 0;
                     margin-bottom: 1rem;
                     width: 250px;
-                }  
+                }
             }
         }
         .drivers-added {
             width: 50%;
             padding-top: 0.5rem;
-            .driver{
+            .driver {
                 border: 1px solid grey;
                 border-radius: 5px;
                 width: 80%;
@@ -136,27 +140,28 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                p{
+                p {
                     margin: 0;
                     position: relative;
                     bottom: 2px;
                 }
-                .btn{
+                .btn {
                     background-color: transparent;
                     padding: 0;
                 }
-
-                i{
+                i {
                     font-size: 1.5rem;
+                    color: #fff;
+                    &:hover{
+                        color: red;
+                    }
                 }
             }
         }
-
-        .drivers{
+        .drivers {
             height: 75%;
             overflow-y: auto;
         }
-
         h6 {
             text-align: center;
         }
@@ -169,14 +174,12 @@
             border: 1px solid grey;
             border-radius: 5px;
             margin-top: 0.5rem;
-            p{
+            p {
                 text-align: left;
                 position: relative;
                 top: 5px;
             }
-
-
-            .big-checkbox{
+            .big-checkbox {
                 width: 20px;
                 height: 20px;
             }

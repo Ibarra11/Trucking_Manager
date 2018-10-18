@@ -1,83 +1,65 @@
 .component-dashboard-home {
     height: 100%;
+    color: #fff;
+   .card{
+       background-color: #2C3E50;
+   }
     h5 {
-        color: black;
         text-align: center;
+        font-size: 1.75rem;
+        margin-top: 2vh;
     }
     .dashboard-home-view {
         height: 88.5%;
-        .container {
-            height: 100%;
+    }
+    .component-revenue{
+        width: 90%;
+        height: 88.5vh;
+        margin: 0 auto;
+        .metrics-header{
+            border: 1px solid red;
         }
-        .row {
-            height: 100%;
-        }
-    }
-    .revenue {
-        border: 1px solid lightgray;
-        height: 49%;
-    }
-    .weather-api {
-        height: 50%;
-    }
-    .reminders {
-        height: 100%;
-        .card {
-            height: 100%;
-            text-align: center;
-            .card-body {
-                .card {
-                    padding-top: 0.5rem;
-                    margin-bottom: 0.5rem;
+        .stats{
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 1vh;
+            .card{
+                background-color: rgba(75, 192, 192, 1);
+                text-align: center;
+                padding: 0.75rem 0;
+                width: 31%;
+                h6,p{
+                    margin: 0;
+                }
+                h6{
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                }
+                p{
+                    font-size: 1.25rem;
+                    font-weight: bold;
                 }
             }
         }
-    }
-    .component-home-metrics {
-        height: 100%;
-        padding: 0.5rem 0;
-        .metrics-header {
+        .graph{
             position: relative;
-            padding: 0 1rem;
-            h5 {
-                color: black;
-                text-align: center;
-            }
+            padding: 1rem 0;
             .form-group{
                 position: absolute;
+                top: 1rem;
                 right: 0;
-                top: 0;
+                width: 7rem;
                 margin-right: 1rem;
-                label{
-                    font-size: 1.1rem;
-                    margin-right: 0.5rem;
-                }
-            }
-        }
-        .container {
-            display: flex; //    padding-top: rem;
-            .card {
-                text-align: center;
-            }
-        }
-    }
-    .component-weather {
-        padding: 0.5rem;
-        border: 1px solid lightgray;
-        .component-weather-view {
-            height: 100%;
-            p {
-                text-align: center;
-                margin-bottom: 5px;
-            }
-        }
-        .weather-controls {
-            height: 220px;
-            padding: 1rem;
-            .weather-button {
                 display: flex;
-                justify-content: center;
-                margin-top: 1rem;
+                justify-content: space-between;
+                label{
+                    font-size: 1.25rem;
+                    position: relative;
+                    top: 0.4vh;
+                }
             }
         }
     }

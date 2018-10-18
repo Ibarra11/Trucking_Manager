@@ -64,7 +64,7 @@ class Dashboard_Drivers_Add extends Component {
                         </select>
                     </div>
                     <div className="form-drivers-add-buttons">
-                        <button type='submit' className="btn btn-success">Add</button>
+                        <button type='submit' className="btn btn-success">Add Driver</button>
                         <Link to='/dashboard/drivers'> <button className="btn btn-danger" onClick={this.toggleAddDriver}>Cancel</button></Link>
                     </div>
                 </form>

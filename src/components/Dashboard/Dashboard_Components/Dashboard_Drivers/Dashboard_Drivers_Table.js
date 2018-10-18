@@ -92,8 +92,8 @@ class Dashboard_Drivers_Table extends Component {
     }
 
     updatePageItems = () => {
-        let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
-        this.setState({ incomeList })
+        let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ drivers: pageItems })
     }
 
     updateCurrentPage = (dir) => {

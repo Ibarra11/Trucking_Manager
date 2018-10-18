@@ -68,8 +68,8 @@ class Dashboard_Trucks_Table extends Component {
             .catch(err => console.log(err));
     }
     updatePageItems = () => {
-        let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
-        this.setState({ incomeList })
+        let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
+        this.setState({ trucks: pageItems })
     }
 
     updateCurrentPage = (dir) => {
