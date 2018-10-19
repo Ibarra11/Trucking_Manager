@@ -1,27 +1,7 @@
 .component-expenses {
-    .link-controls, .add-expense {
-        .btn{
-            background-color: transparent;
-            border: 1px solid rgba(75, 192, 192, 1);
-            color: #fff;
-       
-            &:hover{
-                background-color: #1C1E2A;
-            }
-       
-        }
-    }
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #2C3E50;
-        color: #FCF5F4;
-        padding: 0.66rem 1rem;
-        
-    }
+    height: 100%;
+    color: $light;
     .component-expenses-view {
-        color: whitesmoke;
         margin: 2rem 0;
         h4,
         h5 {
@@ -29,6 +9,9 @@
         }
         .graph {
             margin: 1.25rem 0;
+            border: 1px solid $primary-yellow;
+            padding: 1rem 0.5rem;
+            border-radius: 5px;
         }
         .expenses-metrics-header {
             display: flex;
@@ -77,31 +60,10 @@
         display: flex;
         justify-content: space-between;
     }
-    .expense-submit {
-        display: flex;
-        justify-content: space-between;
-        width: 10rem;
-        margin: 0 auto;
-        margin-top: 4%;
-        button {
-            font-size: 1.2rem;
-        }
-    }
     .card {
         background-color: inherit;
         color: whitesmoke;
         border-bottom: none;
-    }
-    .form-group:first-child {
-        .react-datepicker-wrapper {
-            width: 100%;
-        }
-        .react-datepicker__input-container {
-            width: 100%;
-        }
-        input {
-            width: 100%;
-        }
     }
     .form-group {
         label {
@@ -142,64 +104,7 @@
 }
 
 .component-expense-list {
-    background-color: #2C3E50;
-    margin: 0 auto;
-    height: 88.5vh;
+    height: 87vh;
     position: relative;
-    color: #FCF5F4;
-    .table-container {
-        height: 100%;
-        position: relative;
-        .add-expense {
-            position: absolute;
-            right: 3%;
-        }
-        .table-controls {
-            display: flex;
-            justify-content: flex-end;
-        }
-        .table-header {
-            border-left: 1px solid #dee2e6;
-            border-right: 1px solid #dee2e6;
-            height: 12%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        table {
-            th,
-            td {
-                text-align: center;
-            }
-            th {
-                padding: 12px;
-            }
-            td {
-                position: relative;
-                padding: 1%;
-            }
-            td.table-buttons {
-                padding: 0;
-                .btn {
-                    position: relative;
-                    top: 1vh;
-                    padding: 3px 7px;
-                }
-                .btn:last-child {
-                    margin-left: 5%;
-                }
-            }
-        }
-        .table-controls {
-            height: 8%;
-            width: 80%;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: absolute;
-            bottom: 1%;
-            display: flex;
-            justify-content: center;
-            right: 10%;
-        }
-    }
+    color: $light;
 }

@@ -1,9 +1,6 @@
 .component-dashboard-home {
     height: 100%;
     color: #fff;
-   .card{
-       background-color: #2C3E50;
-   }
     h5 {
         text-align: center;
         font-size: 1.75rem;
@@ -14,6 +11,7 @@
     }
     .component-revenue{
         width: 90%;
+       
         height: 88.5vh;
         margin: 0 auto;
         .metrics-header{

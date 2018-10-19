@@ -56,7 +56,7 @@ class Step1 extends Component {
                         <input  value={this.state.date} name='date' onChange={this.onInputChange} type="date" className="form-control" />
                     </div>
                     <div className="form-controls">
-                        <button type='submit'  className="btn btn-primary">Next</button>
+                        <button type='submit'  className="btn btn-secondary">Next</button>
                     </div>
                 </form>
             </div>

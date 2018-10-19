@@ -104,9 +104,9 @@ class Dashboard_Add_Expense extends Component {
                             <label>Amount</label>
                             <input name="expenseAmount" value={this.state.expenseAmount} onChange={this.onTextChange} className="form-control" type="text" />
                         </div>
-                        <div className="expense-submit">
-                            <button type='submit' className="btn">Add</button>
-                            <button onClick={() => this.props.history.push('/dashboard/expenses')} type='submit' className="btn">Cancel</button>
+                        <div className="form-submit">
+                            <button type='submit' className="btn btn-secondary">Add</button>
+                            <button onClick={() => this.props.history.push('/dashboard/expenses')} type='submit' className="btn btn-secondary">Cancel</button>
                         </div>
                     </form>
                 </div>

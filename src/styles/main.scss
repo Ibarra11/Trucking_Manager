@@ -1,13 +1,14 @@
 @import 'reset';
 
-
+// Variables
+@import './variables';
 
 // components
 @import './components/Home';
 @import './components/Register';
 @import './components/Login';
 @import './components/Dashboard';
-@import './components/Dashboard_Home';
+@import './components/Dashboard_Revenue';
 @import './components/Dashboard_Trucks';
 @import './components/Dashboard_Drivers';
 @import './components/Dashboard_Expenses';
@@ -16,6 +17,9 @@
 @import './components/Dashboard_Payroll';
 @import './components/Dashboard_Notifications';
 @import './components/Dashboard_Income';
+
+// General Styles
 @import './components/Pagination';
 @import './components/Table';
 @import './components/Metrics';
+@import './components/Buttons';

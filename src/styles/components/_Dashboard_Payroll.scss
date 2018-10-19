@@ -1,9 +1,6 @@
 .component-payroll {
-    color: #fff;
-    .card{
-        background-color: #2C3E50;
-        border-bottom: 1px solid white;
-    }
+    color: $light;
+    height: 100%;
     .row {
         margin-bottom: 1.5rem;
     }
@@ -35,13 +32,21 @@
     }
     .chart {
         margin-bottom: 0.8rem;
+        border: 1px solid $primary-yellow;
+        border-radius: 5px;
+        padding: 1rem 0;
     }
     .payroll-container {
         display: flex;
-        align-items: center;
+        .col-md-3{
+            margin-top: 5vh;
+        }
+
     }
     .table-header{
-        border-top: 1px solid #fff;
+        border-top: 2px solid rgba(0,0,0,0.7);
+        border-left: 1px solid rgba(0,0,0,0.7);
+        border-right: 1px solid rgba(0,0,0,0.7);
     }
 }
 
@@ -70,15 +75,7 @@
     }
 }
 
-.component-payroll-chart {
-    .row {
-        display: flex;
-        justify-content: center;
-    }
-}
-
 .payroll-cards {
-
     .card {
         margin-bottom: 0.5rem;
         padding: 0.5rem 0;

@@ -92,6 +92,15 @@ class Dashboard_Home_Metrics extends Component {
                         <Doughnut
                             height={105}
                             data={data}
+                            options={{
+                                
+                                legend: {
+                                    labels: {
+                                        fontColor: '#fff',
+                                        fontSize: 16
+                                    }
+                                }
+                            }}
                         />
                         <div className="form-group">
                             <label htmlFor="">Year</label>

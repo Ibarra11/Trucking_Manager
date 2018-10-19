@@ -6,15 +6,14 @@ class Dashboard_Payroll extends Component {
     render() {
         return (
             <div className="component-payroll">
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Payroll</h3>
-                    </div>
+                <div className="dashboard-header">
+                    <h3>Payroll</h3>
                 </div>
+
                 <div className="component-payroll-views">
                     <Switch>
-                            <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
-                            <Route component={Dashboard_Payroll_Metrics} />
+                        <Route path='/dashboard/payroll/add' component={Dashboard_Payroll_Add} />
+                        <Route component={Dashboard_Payroll_Metrics} />
                     </Switch>
                 </div>
             </div>

@@ -8,7 +8,7 @@ import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 
 // Dashboard Routes
-import Dashboard_Home from './components/Dashboard/Dashboard_Components/Dashboard_Home/Dashboard_Home';
+import Dashboard_Revenue from './components/Dashboard/Dashboard_Components/Dashboard_Revenue/Dashboard_Revenue';
 import Dashboard_Trucks from './components/Dashboard/Dashboard_Components/Dashboard_Trucks/Dashboard_Trucks';
 import Dashboard_Drivers from './components/Dashboard/Dashboard_Components/Dashboard_Drivers/Dashboard_Drivers';
 import Dashboard_Payroll from './components/Dashboard/Dashboard_Components/Dashboard_Payroll/Dashboard_Payroll';
@@ -43,7 +43,7 @@ export function dashboardRoutes() {
             <Route path='/dashboard/drivers' component={Dashboard_Drivers} />
             <Route path='/dashboard/payroll' component={Dashboard_Payroll} />
             <Route path='/dashboard/dispatch' component={Dashboard_Dispatch} />
-            <Route path='/' component={Dashboard_Home} />
+            <Route path='/' component={Dashboard_Revenue} />
         </Switch>
     )
 }

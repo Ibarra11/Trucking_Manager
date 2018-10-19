@@ -6,10 +6,8 @@ class Dashboard_Trucks extends Component {
     render() {
         return (
             <div className="component-dashboard-trucks">
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Trucks</h3>
-                    </div>
+            <div className="dashboard-header">
+                    <h3>Trucks</h3>
                 </div>
                 <div className="trucks-view">
                     <Switch>

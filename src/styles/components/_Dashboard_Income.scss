@@ -1,23 +1,5 @@
 .component-income {
-    .link-controls,
-    .add-expense {
-        .btn {
-            background-color: transparent;
-            border: 1px solid rgba(75, 192, 192, 1);
-            color: #fff;
-            &:hover {
-                background-color: #1C1E2A;
-            }
-        }
-    }
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #2C3E50;
-        color: #FCF5F4;
-        padding: 0.66rem 1rem;
-    } 
+    height: 100%;
     .income-view {
         .income-year {
             padding-top: 1rem;
@@ -93,6 +75,9 @@
             width: 100%;
             .income-monthly {
                 margin-bottom: 1rem;
+                border: 1px solid $primary-yellow;
+                border-radius: 5px;
+                padding: 1rem 0.5rem;
             }
             h5 {
                 color: #fff;
@@ -102,15 +87,15 @@
                 width: 100%;
             }
         }
-    } 
+    }
 }
 
-.component-income-list{
-    height: 88.5vh;
+.component-income-list {
+    height: 87vh;
 }
 
 .component-income-add {
-    color: #fff;
+    color: $light;
     .form {
         width: 80%;
         margin: 0 auto;
@@ -128,28 +113,11 @@
             }
         }
     }
-    .btn-empty {
-        background-color: white;
-        border: none;
-    }
     i {
         font-size: 1.25rem;
     }
     .company {
         display: flex;
         justify-content: space-between;
-    }
-    .form-submit {
-        display: flex;
-        justify-content: flex-end;
-        width: 10rem;
-        margin: 0 auto;
-        margin-top: 4%;
-        button {
-            font-size: 1.2rem;
-        }
-        .btn:last-child {
-            margin-left: 0.8rem;
-        }
     }
 }

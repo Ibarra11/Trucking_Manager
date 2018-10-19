@@ -7,10 +7,8 @@ class Dashboard_Dispatch extends Component {
     render() {
         return (
             <div className="component-dispatch">
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Dispatch</h3>
-                    </div>
+                <div className="dashboard-header">
+                    <h3>Dispatch</h3>
                 </div>
                 <div className="dispatch-wizard container">
                     <div className="row">

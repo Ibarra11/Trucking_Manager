@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import Dashboard_Home_Metrics from './Dashboard_Home_Metrics';
-import Dashboard_Weather from './Dashboard_Weather';
+import Dashboard_Revenue_Metrics from './Dashboard_Revenue_Metrics';
 class Dashboard_Home extends Component {
     render() {
         return (
             <div className="component-dashboard-home">
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Revenue</h3>
-                    </div>
+                <div className="dashboard-header">
+                    <h3>Revenue</h3>
                 </div>
                 <div className="dashboard-home-view">
                     <div className="revenue">
-                        <Dashboard_Home_Metrics />
+                        <Dashboard_Revenue_Metrics />
                     </div>
                 </div>
             </div>

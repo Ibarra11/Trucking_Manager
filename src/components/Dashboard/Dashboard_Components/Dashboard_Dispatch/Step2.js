@@ -59,7 +59,7 @@ class Step2 extends Component {
                                 })}
                             </div>
                             <div className="add-driver">
-                                <button onClick={this.addDrivers} className="btn"><i className="fa fa-plus"> Drivers</i></button>
+                                <button onClick={this.addDrivers} className="btn btn-primary"><i className="fa fa-plus"> Drivers</i></button>
                             </div>
                         </div>
                         <div className="drivers-added">
@@ -68,15 +68,15 @@ class Step2 extends Component {
                                 return (
                                     <div key={driver.driver + i} className="driver">
                                        <p> {driver.driver} </p>
-                                       <button onClick={() => this.deleteDriver(driver.driver)} className="btn"><i className='fa fa-times-circle'></i></button>
+                                       <button onClick={() => this.deleteDriver(driver.driver)} className="btn "><i className='fa fa-times-circle'></i></button>
                                     </div>
                                 )
                             })}
                         </div>
                     </div>
                     <div className="wizard-controls">
-                        <button onClick={() => this.props.history.push('/dashboard/dispatch')} className="btn">Previous</button>
-                        <button onClick={() => this.props.history.push('/dashboard/dispatch/confirmation')} className="btn">Next</button>
+                        <button onClick={() => this.props.history.push('/dashboard/dispatch')} className="btn btn-secondary">Previous</button>
+                        <button onClick={() => this.props.history.push('/dashboard/dispatch/confirmation')} className="btn btn-secondary">Next</button>
                     </div>
                 </div>
         )

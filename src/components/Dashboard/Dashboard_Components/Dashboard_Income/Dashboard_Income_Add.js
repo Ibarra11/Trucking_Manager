@@ -120,8 +120,8 @@ class Dashboard_Income_Add extends Component {
                         <input value={this.state.check_number} name='check_number' onChange={this.onInputChange} className="form-control" type="text" />
                     </div>
                     <div className="form-submit">
-                        <button onClick={this.addIncome} type='submit' className="btn">Add</button>
-                        <Link to='/dashboard/income'><button className="btn">Cancel</button></Link>
+                        <button onClick={this.addIncome} type='submit' className="btn btn-secondary">Add</button>
+                        <button onClick={() => this.props.history.push('/dashboard/expenses/add')} className="btn btn-secondary">Cancel</button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 .component-dispatch {
-    color: #fff;
+    color: $light;
+    height: 100%;
     .card {
         background-color: #2C3E50;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid rbga(0,0,0,0.75);
     }
     .dispatch-instructions {
         padding: 1rem;
@@ -53,7 +54,7 @@
         text-align: center;
     }
     .card{
-        border: 1px solid #fff;
+        border: 2px solid rgba(0,0,0,0.7);
     }
     .controls {
         width: 80%;
@@ -110,12 +111,12 @@
         height: 25rem;
         display: flex;
         flex-direction: row;
-        border: 1px solid #fff;
+        border: 2px solid rgba(0,0,0,0.75);
         .driver-list {
             position: relative;
             padding-top: 0.5rem;
             width: 50%;
-            border-right: 1px solid #fff;
+            border-right: 2px solid rgba(0,0,0,0.75);
             .add-driver {
                 display: flex;
                 justify-content: center;

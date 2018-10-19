@@ -6,10 +6,8 @@ class Dashboard_Drivers extends Component {
     render() {
         return (
             <div className="component-drivers">
-                <div className="card">
-                    <div className="card-header">
-                        <h3>Drivers</h3>
-                    </div>
+                <div className="dashboard-header">
+                    <h3>Drivers</h3>
                 </div>
                 <div className="drivers-view">
                     <Switch>

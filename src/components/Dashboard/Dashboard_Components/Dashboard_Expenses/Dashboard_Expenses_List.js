@@ -121,7 +121,7 @@ class Dashboard_Expenses_List extends Component {
                 <div className="table-container">
                     <div className="table-header">
                         <h4>Expense Records</h4>
-                        <div className="add-expense">
+                        <div className="table-add">
                             <button onClick={() => this.props.history.push('/dashboard/expenses/add')} className="btn"><i className="fa fa-plus"></i> Expense</button>
                         </div>
 

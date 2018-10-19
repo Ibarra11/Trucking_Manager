@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
                     <ul className="nav-link-container">
                         <Link className="nav-link" to='/dashboard'>
-                            <h5>Home</h5>
+                            <h5>Revenue</h5>
                         </Link>
                         <Link className="nav-link" to='/dashboard/expenses'>
                             <h5>Expenses</h5>

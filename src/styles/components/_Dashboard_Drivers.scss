@@ -1,57 +1,40 @@
-
-.component-drivers{
-    .card {
-        background-color: #2C3E50;
-        color: #fff;
-        border-bottom: 1px solid white;
-    }
-}
-.component-dashboard-drivers {
-    height: 88.5vh;
-}
-
-.react-datepicker-wrapper {
-    width: 100%;
-    .react-datepicker__input-container {
-        width: 100%;
-    }
-    input {
-        width: 100%;
-    }
-}
-
-.custom-modal {
-    width: 600px;
-    .edit-form-buttons {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .btn:nth-child(1) {
-        margin-right: 1rem;
-    }
-}
-
-.dashboard-drivers-add {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 1rem;
-    color: #fff;
-    h4 {
-        text-align: center;
-        font-size: 2rem;
-    }
-    .form-drivers-add {
-        h6{
-            font-size: 1.25rem;
+.component-drivers {
+    height: 100%;
+    .component-dashboard-drivers {
+        height: 87vh;
+        .custom-modal {
+            width: 600px;
+            .edit-form-buttons {
+                display: flex;
+                justify-content: flex-end;
+            }
+            .btn:nth-child(1) {
+                margin-right: 1rem;
+            }
         }
-        .form-drivers-add-buttons {
-            display: flex;
-            justify-content: space-between;
-            width: 15rem;
-            margin: 0 auto;
-            margin-top: 12vh;
-            .btn{
+    }
+    .dashboard-drivers-add {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 1rem;
+        color: #fff;
+        h4 {
+            text-align: center;
+            font-size: 2rem;
+        }
+        .form-drivers-add {
+            h6 {
                 font-size: 1.25rem;
+            }
+            .form-drivers-add-buttons {
+                display: flex;
+                justify-content: space-between;
+                width: 15rem;
+                margin: 0 auto;
+                margin-top: 12vh;
+                .btn {
+                    font-size: 1.25rem;
+                }
             }
         }
     }

@@ -58,8 +58,8 @@ class Step3 extends Component {
                     </div>
                 </div>
                 <div className="controls">
-                    <button onClick={() => this.props.history.goBack()} className="btn">Previous</button>
-                    <button onClick={this.sendDispatch} className="btn">Send Dispatch</button>
+                    <button onClick={() => this.props.history.goBack()} className="btn btn-secondary">Previous</button>
+                    <button onClick={this.sendDispatch} className="btn btn-secondary">Send Dispatch</button>
                 </div>
             </div>
         )

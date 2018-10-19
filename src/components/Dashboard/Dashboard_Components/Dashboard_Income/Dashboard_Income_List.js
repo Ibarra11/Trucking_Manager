@@ -127,7 +127,7 @@ class Dashboard_Income_List extends Component {
                 <div className="table-container">
                     <div className="table-header">
                         <h4>Income Records</h4>
-                        <div className="add-expense">
+                        <div className="table-add">
                             <button onClick={() => this.props.history.push('/dashboard/income/add')} className="btn"><i className="fa fa-plus"></i> Income</button>
                         </div>
 
