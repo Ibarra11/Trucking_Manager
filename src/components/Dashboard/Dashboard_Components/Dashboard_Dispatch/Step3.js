@@ -9,7 +9,6 @@ class Step3 extends Component {
     sendDispatch = async () => {
         let body = `\nShipper:${this.props.shipper}\nPickup Address: ${this.props.pickupAddr}\nDestination Address: ${this.props.destAddr}\nrate: ${this.props.rate}`;
         for (let i = 0; i < this.props.driversList.length; i++) {
-            console.log(this.props.driversList[i])
             await axios.post('/api/dispatch', {
                 body: body,
                 number: '1' + this.props.driversList[i].contactNumber

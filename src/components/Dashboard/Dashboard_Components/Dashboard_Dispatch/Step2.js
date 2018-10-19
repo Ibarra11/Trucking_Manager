@@ -22,7 +22,6 @@ class Step2 extends Component {
         let drivers = document.querySelectorAll('input[type=checkbox]:checked');
         let driversList = [];
         for (let i = 0; i < drivers.length; i++) {
-            console.log(drivers[i])
             driversList.push({driver: drivers[i].defaultValue, contactNumber: drivers[i].dataset.number});
         }
         for (let i = 0; i < drivers.length; i++) {
@@ -45,7 +44,6 @@ class Step2 extends Component {
                             <h6>Driver List</h6>
                             <div className="container-drivers">
                                 {this.state.drivers.map(driver => {
-                                    console.log(driver);
                                     return (
                                         <div key={driver.driver_id} className="row">
                                             <div className="col-sm-9">
