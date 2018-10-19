@@ -59,7 +59,7 @@ class Dashboard_Trucks_Add extends Component {
                     </div>
                     <div className="form-submit">
                        <button type='submit' className="btn btn-secondary">Add</button>
-                       <button onClick={() => this.props.history.push('/dashboard/trucks/add')} className="btn btn-secondary">Cancel</button>
+                       <button onClick={() => this.props.history.push('/dashboard/trucks')} className="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>

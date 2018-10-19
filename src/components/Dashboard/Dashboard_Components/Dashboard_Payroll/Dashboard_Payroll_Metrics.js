@@ -4,6 +4,7 @@ import Dashboard_Payroll_Table from './Dashboard_Payroll_Table';
 import Dashboard_Payroll_Chart from './Dashboard_Payroll_Chart';
 import Dashboard_Payroll_Driver from './Dashboard_Payroll_Driver';
 import axios from 'axios';
+
 class Dashboard_Payroll_Metrics extends Component {
     constructor() {
         super();
