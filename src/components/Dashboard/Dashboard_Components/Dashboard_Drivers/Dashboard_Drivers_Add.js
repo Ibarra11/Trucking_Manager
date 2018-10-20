@@ -64,7 +64,7 @@ class Dashboard_Drivers_Add extends Component {
                         </select>
                     </div>
                     <div className="form-submit">
-                        <button type='submit' className="btn btn-secondary">Add</button>
+                        <button type='submit' className="btn btn-secondary">Add Driver</button>
                         <button type='submit' onClick={() => this.props.history.push('/dashboard/drivers')} className="btn btn-secondary">Cancel</button>
                     </div>
                 </form>

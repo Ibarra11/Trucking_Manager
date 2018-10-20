@@ -55,8 +55,6 @@ class Dashboard_Payroll_Add extends Component {
                             selected={this.state.date}
                             onChange={this.handleDateChange}
                         />
-                        {/* <label htmlFor="">Date</label>
-                        <input onChange={this.onTextChange} name='date'  className="form-control" type='date' /> */}
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Driver</label>
@@ -72,9 +70,9 @@ class Dashboard_Payroll_Add extends Component {
                         <label htmlFor="">Amount</label>
                         <input value={this.state.amount} onChange={this.onTextChange} name="amount" className="form-control" type="text" />
                     </div>
-                    <div className="submit-payroll">
-                        <button className="btn" type="submit">Submit Payment</button>
-                        <Link to='/dashboard/payroll'><button className="btn">Cancel</button></Link>
+                    <div className="form-submit">
+                        <button className="btn btn-secondary" type="submit">Submit Payment</button>
+                        <button onClick={() => this.props.history.push('/dashboard/payroll')} className="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>
