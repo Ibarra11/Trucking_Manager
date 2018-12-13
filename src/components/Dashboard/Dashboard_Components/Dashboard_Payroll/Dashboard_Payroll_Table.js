@@ -5,6 +5,7 @@ import Modal from 'react-responsive-modal';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Pagination from '../../../../utilities/Pagination';
+import Filter from '../../../../utilities/Filter';
 class Dashboard_Payroll_Table extends Component {
     constructor() {
         super();
@@ -19,6 +20,10 @@ class Dashboard_Payroll_Table extends Component {
         }
         this.pagination = new Pagination([], 8);
         this.currentPage = 1;
+        this.categoryOrder = {
+            date: 'ASC',
+            amount: ''
+        };
     }
     componentDidMount() {
         this.getAllPayroll();
@@ -44,13 +49,14 @@ class Dashboard_Payroll_Table extends Component {
     getAllPayroll = () => {
         axios.get('/api/payroll')
             .then(res => {
-                if(res.data.length > 0){
+                console.log(res.data);
+                if (res.data.length > 0) {
                     this.pagination.itemList = res.data;
                     this.pagination.calculateNumOfPages();
                     let pageItems = this.pagination.displayItemsOnPage(this.currentPage);
-                this.setState({ payrollList: pageItems, open: false })
+                    this.setState({ payrollList: pageItems, open: false })
                 }
-                
+
             })
             .catch(err => console.log(err))
     }
@@ -109,7 +115,23 @@ class Dashboard_Payroll_Table extends Component {
         return tempArr;
     }
 
+    filterCategory = (fn, category, order) => {
+        if (category === 'date' && this.categoryOrder[category] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList);
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+        else if (category === 'amount' && this.categoryOrder[order] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList, order, 'payroll_amount');
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+    }
+
     onDateChange = newDate => this.setState({ payrollDate: newDate })
+
     render() {
         return (
             <div className="component-payroll-table">
@@ -154,10 +176,26 @@ class Dashboard_Payroll_Table extends Component {
                     </div>
                     <table className="table table-bordered">
                         <thead>
-                            <tr>
-                                <th>Date</th>
+                            <tr className="category-row">
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Date</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'ASC')} className={"fa fa-caret-up"}></i>
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'DESC')} className={"fa fa-caret-down"}></i>
+                                    </div>
+                                </th>
                                 <th>Driver</th>
-                                <th>Amount</th>
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Amount</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'ASC')} className={'fa fa-caret-up'}></i>
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'DESC')} className={'fa fa-caret-down'}></i>
+                                    </div>
+                                </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

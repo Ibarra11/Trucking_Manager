@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import Pagination from '../../../../utilities/Pagination';
 import Filter from '../../../../utilities/Filter';
+import Numeral from 'numeral';
 class Dashboard_Expenses_List extends Component {
     constructor() {
         super();
@@ -184,7 +185,7 @@ class Dashboard_Expenses_List extends Component {
                                         <td>{month + '/' + day + '/' + year}</td>
                                         <td>{expense.expense_category}</td>
                                         <td>{expense.unit_number}</td>
-                                        <td>{expense.expense_amount}</td>
+                                        <td>{Numeral(expense.expense_amount).format('0,0.00')}</td>
                                         <td className="table-buttons">
                                             <button onClick={() => this.onOpenModal(expense)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
                                             <button onClick={() => this.deleteExpense(expense.expense_id)} className="btn btn-danger"><i className="fa fa-trash"></i></button>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import Pagination from '../../../../utilities/Pagination';
 import Filter from '../../../../utilities/Filter';
+import Numeral from 'numeral';
 class Dashboard_Income_List extends Component {
     constructor() {
         super();
@@ -62,18 +63,15 @@ class Dashboard_Income_List extends Component {
     }
 
     filterCategory = (fn, category, order) => {
-        console.log(fn, category, order);
         if (category === 'date' && this.categoryOrder[category] !== order) {
             this.categoryOrder[category] = order;
             let filteredResults = fn(this.pagination.itemList);
-            console.log(filteredResults);
             this.pagination.itemList = filteredResults;
             this.updatePageItems();
         }
         else if (category === 'amount' && this.categoryOrder[order] !== order) {
             this.categoryOrder[category] = order;
             let filteredResults = fn(this.pagination.itemList, order, 'check_amount');
-            console.log(filteredResults);
             this.pagination.itemList = filteredResults;
             this.updatePageItems();
         }
@@ -194,7 +192,7 @@ class Dashboard_Income_List extends Component {
                                     <tr key={income.income_id}>
                                         <td>{month + '/' + day + '/' + year}</td>
                                         <td>{income.company_name}</td>
-                                        <td>{income.check_amount}</td>
+                                        <td>{Numeral(income.check_amount).format('0,0.00')}</td>
                                         <td>{income.check_number}</td>
                                         <td className="table-buttons">
                                             <button onClick={() => this.onOpenModal(income)} className="btn btn-primary"><i className="fa fa-edit"></i></button>
