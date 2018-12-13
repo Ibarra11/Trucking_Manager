@@ -1,15 +1,13 @@
 .table-container {
-    height: 97%; 
+    height: 97%;
     width: 98%;
     margin: 0 auto;
     margin-top: 2vh;
     color: $light;
-
     position: relative;
-    .table{
+    .table {
         margin-bottom: 0;
     }
-    
     .add-expense {
         position: absolute;
         right: 3%;
@@ -49,16 +47,36 @@
             border: 2px solid rgba(0, 0, 0, 0.75);
             border-left: 1px solid black;
         }
-        th {
+        .category-row {
             padding: 1%;
             font-size: 1.25rem;
+            .category {
+                position: relative;
+                .category-type {
+                    p {
+                        margin: 0;
+                    }
+                }
+                .filter-icons {
+                    float: right;
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    top: 0.8rem;
+                    right: 1rem;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    .active {
+                        color: $primary-yellow;
+                    }
+                }
+            }
         }
         td {
             position: relative;
             padding: 0.9%;
             font-size: 1.1rem;
         }
-
         td.table-buttons {
             padding: 0;
             .btn {

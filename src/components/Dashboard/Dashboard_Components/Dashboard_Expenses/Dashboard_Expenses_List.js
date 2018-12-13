@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import Pagination from '../../../../utilities/Pagination';
+import Filter from '../../../../utilities/Filter';
 class Dashboard_Expenses_List extends Component {
     constructor() {
         super();
@@ -16,6 +17,9 @@ class Dashboard_Expenses_List extends Component {
             expense_id: 0
         }
         this.pagination = new Pagination([], 8);
+        this.categoryOrder = {
+            date: 'ASC'
+        };
         this.currentPage = 1;
     }
 
@@ -24,7 +28,6 @@ class Dashboard_Expenses_List extends Component {
     }
 
     onOpenModal = expense => {
-        console.log(expense);
         let { expense_date, expense_category, expense_amount, unit_number, expense_id } = expense;
         this.setState({
             open: true, expense_date, expense_category, unit_number, expense_amount, expense_id
@@ -63,11 +66,20 @@ class Dashboard_Expenses_List extends Component {
         }
     }
 
+    filterCategory = (fn, category, order) => {
+        if (this.categoryOrder[category] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList);
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+    }
+
     renderPageNumbers = () => {
         let tempArr = [];
         for (let i = 0; i < this.pagination.numberOfPages; i++) {
             tempArr.push(
-                <div className={this.currentPage === i + 1 ? 'page-number active': 'page-number'}key={i}>
+                <div className={this.currentPage === i + 1 ? 'page-number active' : 'page-number'} key={i}>
                     {i + 1}
                 </div>
             )
@@ -128,8 +140,16 @@ class Dashboard_Expenses_List extends Component {
                     </div>
                     <table className="table table-bordered">
                         <thead>
-                            <tr>
-                                <th>Date</th>
+                            <tr className="category-row">
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Date</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'ASC')} className={this.categoryOrder.date === 'ASC' ? "fa fa-caret-up active" : 'fa fa-caret-up'}></i>
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'DESC')} className={this.categoryOrder.date === 'DESC' ? "fa fa-caret-down active" : 'fa fa-caret-down'}></i>
+                                    </div>
+                                </th>
                                 <th>Category</th>
                                 <th>Truck</th>
                                 <th>Amount</th>
