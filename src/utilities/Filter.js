@@ -2,15 +2,15 @@ let Filter = {
     date: function (dateList) {
         return dateList.reverse();
     },
-    amount: function (amountList, order) {
+    amount: function (amountList, order, orderProperty) {
         if (order === 'ASC') {
             return amountList.sort((a, b) => {
-                return b.expense_amount - a.expense_amount;
+                return b[orderProperty] - a[orderProperty];
             })
         }
         else {
             return amountList.sort((a, b) => {
-                return a.expense_amount - b.expense_amount;
+                return a[orderProperty] - b[orderProperty];
             })
         }
     }

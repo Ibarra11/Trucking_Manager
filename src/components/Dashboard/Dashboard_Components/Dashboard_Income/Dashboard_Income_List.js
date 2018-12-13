@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
 import Pagination from '../../../../utilities/Pagination';
-
+import Filter from '../../../../utilities/Filter';
 class Dashboard_Income_List extends Component {
     constructor() {
         super();
@@ -17,6 +17,10 @@ class Dashboard_Income_List extends Component {
         };
         this.pagination = new Pagination([], 8);
         this.currentPage = 1;
+        this.categoryOrder = {
+            date: 'ASC',
+            amount: ''
+        };
     }
 
     componentDidMount() {
@@ -44,7 +48,7 @@ class Dashboard_Income_List extends Component {
                     this.pagination.itemList = res.data;
                     this.pagination.calculateNumOfPages();
                     let incomeList = this.pagination.displayItemsOnPage(this.currentPage);
-                    this.setState({ incomeList})
+                    this.setState({ incomeList })
                 }
 
             })
@@ -56,6 +60,25 @@ class Dashboard_Income_List extends Component {
             .then(() => this.getAllIncome())
             .catch(err => console.log(err))
     }
+
+    filterCategory = (fn, category, order) => {
+        console.log(fn, category, order);
+        if (category === 'date' && this.categoryOrder[category] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList);
+            console.log(filteredResults);
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+        else if (category === 'amount' && this.categoryOrder[order] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList, order, 'check_amount');
+            console.log(filteredResults);
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+    }
+
 
     updateIncome = event => {
         event.preventDefault();
@@ -134,10 +157,26 @@ class Dashboard_Income_List extends Component {
                     </div>
                     <table className="table table-bordered">
                         <thead>
-                            <tr>
-                                <th>Date</th>
+                            <tr className="category-row">
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Date</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'ASC')} className={"fa fa-caret-up"}></i>
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'DESC')} className={"fa fa-caret-down"}></i>
+                                    </div>
+                                </th>
                                 <th>Company</th>
-                                <th>Amount</th>
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Amount</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'ASC')} className={'fa fa-caret-up'}></i>
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'DESC')} className={'fa fa-caret-down'}></i>
+                                    </div>
+                                </th>
                                 <th>Check #</th>
                                 <th>Actions</th>
                             </tr>

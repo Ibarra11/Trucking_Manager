@@ -68,7 +68,7 @@ class Dashboard_Expenses_List extends Component {
     }
 
     filterCategory = (fn, category, order) => {
-        if (category === 'order' && this.categoryOrder[category] !== order) {
+        if (category === 'date' && this.categoryOrder[category] !== order) {
             this.categoryOrder[category] = order;
             let filteredResults = fn(this.pagination.itemList);
             this.pagination.itemList = filteredResults;
@@ -76,7 +76,7 @@ class Dashboard_Expenses_List extends Component {
         }
         else if (category === 'amount' && this.categoryOrder[order] !== order) {
             this.categoryOrder[category] = order;
-            let filteredResults = fn(this.pagination.itemList, order);
+            let filteredResults = fn(this.pagination.itemList, order, 'expense_amount');
             this.pagination.itemList = filteredResults;
             this.updatePageItems();
         }
