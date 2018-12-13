@@ -18,7 +18,8 @@ class Dashboard_Expenses_List extends Component {
         }
         this.pagination = new Pagination([], 8);
         this.categoryOrder = {
-            date: 'ASC'
+            date: 'ASC',
+            amount: ''
         };
         this.currentPage = 1;
     }
@@ -67,9 +68,15 @@ class Dashboard_Expenses_List extends Component {
     }
 
     filterCategory = (fn, category, order) => {
-        if (this.categoryOrder[category] !== order) {
+        if (category === 'order' && this.categoryOrder[category] !== order) {
             this.categoryOrder[category] = order;
             let filteredResults = fn(this.pagination.itemList);
+            this.pagination.itemList = filteredResults;
+            this.updatePageItems();
+        }
+        else if (category === 'amount' && this.categoryOrder[order] !== order) {
+            this.categoryOrder[category] = order;
+            let filteredResults = fn(this.pagination.itemList, order);
             this.pagination.itemList = filteredResults;
             this.updatePageItems();
         }
@@ -136,7 +143,6 @@ class Dashboard_Expenses_List extends Component {
                         <div className="table-add">
                             <button onClick={() => this.props.history.push('/dashboard/expenses/add')} className="btn"><i className="fa fa-plus"></i> Expense</button>
                         </div>
-
                     </div>
                     <table className="table table-bordered">
                         <thead>
@@ -146,13 +152,21 @@ class Dashboard_Expenses_List extends Component {
                                         <p>Date</p>
                                     </div>
                                     <div className="filter-icons">
-                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'ASC')} className={this.categoryOrder.date === 'ASC' ? "fa fa-caret-up active" : 'fa fa-caret-up'}></i>
-                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'DESC')} className={this.categoryOrder.date === 'DESC' ? "fa fa-caret-down active" : 'fa fa-caret-down'}></i>
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'ASC')} className={"fa fa-caret-up"}></i>
+                                        <i onClick={() => this.filterCategory(Filter.date, 'date', 'DESC')} className={"fa fa-caret-down"}></i>
                                     </div>
                                 </th>
                                 <th>Category</th>
                                 <th>Truck</th>
-                                <th>Amount</th>
+                                <th className="category">
+                                    <div className="category-type">
+                                        <p>Amount</p>
+                                    </div>
+                                    <div className="filter-icons">
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'ASC')} className={'fa fa-caret-up'}></i>
+                                        <i onClick={() => this.filterCategory(Filter.amount, 'amount', 'DESC')} className={'fa fa-caret-down'}></i>
+                                    </div>
+                                </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
