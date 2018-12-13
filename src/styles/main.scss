@@ -1,8 +1,6 @@
 @import 'reset';
-
 // Variables
 @import './variables';
-
 // components
 @import './components/Home';
 @import './components/Register';
@@ -17,9 +15,9 @@
 @import './components/Dashboard_Payroll';
 @import './components/Dashboard_Notifications';
 @import './components/Dashboard_Income';
-
 // General Styles
 @import './components/Pagination';
 @import './components/Table';
 @import './components/Metrics';
 @import './components/Buttons';
+@import './components/Modal';

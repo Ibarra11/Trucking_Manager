@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -72,12 +71,12 @@ class Dashboard_Income_Add extends Component {
     render() {
         return (
             <div className="component-income-add">
-                <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
+                <Modal className="modal-custom" classNames={{ modal: 'custom-modal'}} open={this.state.open} onClose={this.onCloseModal} center>
                     <h2>Add Company</h2>
-                    <div className="edit-driver-form">
+                    <div className="add-company-form">
                         <div className="form-group">
-                            <h6 className="driver">Company</h6>
-                            <input name='companyModal' onChange={this.onInputChange} className="form-control" type="text" />
+                            <h6 className="company-title">Company</h6>
+                            <input name='company-input' onChange={this.onInputChange} className="form-control" type="text" />
                         </div>
                         <div className="edit-form-buttons">
                             <button onClick={() => this.addCompany()} type='submit' className="btn btn-primary">Add</button>

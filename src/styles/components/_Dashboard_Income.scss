@@ -119,5 +119,12 @@
     .company {
         display: flex;
         justify-content: space-between;
+        .btn-empty {
+            background-color: transparent;
+            border: none;
+            i {
+                color: $light;
+            }
+        }
     }
 }

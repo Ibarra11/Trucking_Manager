@@ -135,7 +135,7 @@ class Dashboard_Payroll_Table extends Component {
     render() {
         return (
             <div className="component-payroll-table">
-                <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal} center>
+                <Modal classNames={{ modal: 'custom-modal' }} open={this.state.open} onClose={this.onCloseModal}>
                     <h2>Edit Payment</h2>
                     <form onSubmit={event => this.updatePayroll(event)} className="edit-driver-form">
                         <div className="form-group">
